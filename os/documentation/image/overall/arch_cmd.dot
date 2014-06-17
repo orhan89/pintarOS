@@ -1,0 +1,26 @@
+digraph Command_Interpreter {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"];
+interpreter [label="Command\nInterpreter", shape="circle", fixedsize=true, width=1]; 
+response [label="Response_SetSW", shape="circle", fixedsize=true, width=1];
+
+// relations
+header -> interpreter
+interpreter -> response[label="Response Type"]
+
+}

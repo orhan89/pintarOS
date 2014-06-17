@@ -1,0 +1,28 @@
+digraph MainLoop {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+         shape = "rounded"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+get_header [label="Get Header", shape="parallelogram"];
+interpret [label="Interpret Command", shape="box", style="rounded"];
+send_SW [label="Send SW", shape="parallelogram"];
+
+// relations
+start -> get_header
+get_header -> interpret;
+interpret -> send_SW;
+send_SW -> get_header;
+
+}

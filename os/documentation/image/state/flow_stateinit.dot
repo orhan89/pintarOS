@@ -1,0 +1,28 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+init_file [label="Init CurrentFile = 0", shape="box", fixedsize=true, width=2.5]
+init_record [label="Init CurrentRecord = 0", shape="box", fixedsize=true, width=2.5]
+init_security [label="Init SecurityState = 0", shape="box", fixedsize=true, width=2.5]
+end [label="End", shape="oval"];
+
+// relations
+start -> init_file
+init_file -> init_record
+init_record -> init_security
+init_security -> end
+
+}

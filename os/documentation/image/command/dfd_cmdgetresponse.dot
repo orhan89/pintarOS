@@ -1,0 +1,45 @@
+digraph DFD_CommandInterpreter {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+
+getresponse [label="Command Handler\nGet Response", shape="circle", fixedsize=true, width=1.2];
+
+senddata [label="Transmission\nSend Data", shape="circle", fixedsize=true, width=1.2]
+
+{
+rank=same
+response [label="Response data"]
+resplen [label="Response length"]
+}
+
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+sw [label="SW"]
+
+
+// relations
+header -> getresponse
+
+response -> senddata
+
+resplen -> getresponse
+
+getresponse -> set_sw
+
+set_sw -> sw
+
+}

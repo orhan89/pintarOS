@@ -1,0 +1,74 @@
+\documentclass[a4paper, 12pt]{report}
+\pagestyle{headings}
+
+\usepackage{multirow}
+\usepackage{array}
+
+\usepackage{graphicx}
+\graphicspath{ {image} }
+
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{nameref}
+
+\usepackage{rotating}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{frame=tb,
+  language=c,
+  frame=none,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  backgroundcolor=\color{backcolour},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  captionpos=b,
+}
+
+\newcounter{magicrownumbers}
+
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+
+\newenvironment{mydescription}[1]
+  {\begin{list}{}%
+   {\renewcommand\makelabel[1]{##1:\hfill}%
+   \settowidth\labelwidth{\makelabel{#1}}%
+   \setlength\leftmargin{\labelwidth}
+   \addtolength\leftmargin{\labelsep}}}
+  {\end{list}}
+
+%\renewcommand{\descriptionlabel}[1]{\hspace{1cm}\textsf{#1}\hfill}
+
+\begin{document}
+
+\title{Pintaros}
+\author{Ricky Hariady}
+
+\maketitle
+
+\include{overall}
+\include{hal}
+\include{transmission}
+\include{memory}
+\include{state}
+\include{command}
+\include{response}
+\include{fs}
+
+\end{document}

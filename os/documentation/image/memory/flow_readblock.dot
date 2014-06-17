@@ -1,0 +1,37 @@
+digraph Flow_ReadBlock {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+readnext [label="Read next address", shape="box"]
+save_byte [label="Save to buffer", shape="box"]
+check_len [label="Read len\nbyte already?", shape="diamond", fixedsize=true, width=1.5]
+end [label="End", shape="oval"];
+
+// relations
+/* start -> readnext */
+d1 [width=0, shape="point", label="."];
+start -> d1 [arrowhead=none]
+d1 -> readnext
+readnext -> save_byte
+save_byte -> check_len
+/* check_len -> readnext [label="No", constraint=false, tailport=e, headport=e] */
+d2 [width=0, shape="point", label="."];
+d3 [width=0, shape="point", label="."];
+d2 -> d3 [dir=back, arrowtail=none]
+{rank=same; d1 -> d2 [dir = back];}
+{rank=same; check_len -> d3 [arrowhead=none, label="No"];}
+check_len -> end [label="Yes"]
+
+}

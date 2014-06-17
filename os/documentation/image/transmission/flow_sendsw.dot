@@ -1,0 +1,26 @@
+digraph Flow_SendData {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+send_sw1 [label="Send SW1", shape="parallelogram"]
+send_sw2 [label="Send SW2", shape="parallelogram"]
+end [label="End", shape="oval"];
+
+// relations
+start -> send_sw1;
+send_sw1 -> send_sw2;
+send_sw2 -> end;
+
+}

@@ -1,0 +1,26 @@
+digraph DFD_GetCurrentFile {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+state_mng [label="State Manager"]
+get_currentfile [label="State\nGet Current File", shape="circle", fixedsize=true, width=1];
+current_file [label="Current File"]
+
+// relations
+state_mng -> get_currentfile
+get_currentfile -> current_file
+
+}

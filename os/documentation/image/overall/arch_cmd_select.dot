@@ -1,0 +1,31 @@
+digraph Command_Select {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header\n(from Transmission)"];
+get_data [label="Transmission\nGetData", shape="circle", fixedsize=true, width=1];
+select [label="Command\nSelect", shape="circle", fixedsize=true, width=1]; 
+fs_select [label="FS\nSelect", shape="circle", fixedsize=true, width=1];
+set_sw [label="Response\nSetSW", shape="circle", fixedsize=true, width=1];
+
+// relations
+header -> select
+get_data -> select [label="Command Data"]
+select -> fs_select [label="fid"]
+fs_select -> select [label="result status"]
+select -> set_sw [label="Response Type"]
+
+}

@@ -1,0 +1,170 @@
+\hypertarget{tea_8h}{\section{include/tea.h File Reference}
+\label{tea_8h}\index{include/tea.\-h@{include/tea.\-h}}
+}
+
+
+T\-E\-A declarations.  
+
+
+{\ttfamily \#include \char`\"{}types.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{tea_8h_aa678b837d257055122c760212507f5cf}{\#define {\bfseries iu32}~uint32\-\_\-t}\label{tea_8h_aa678b837d257055122c760212507f5cf}
+
+\item 
+\hypertarget{tea_8h_a17cd82048f8180bc8980bf1e8b0a8ffd}{\#define {\bfseries iu16}~uint16\-\_\-t}\label{tea_8h_a17cd82048f8180bc8980bf1e8b0a8ffd}
+
+\item 
+\hypertarget{tea_8h_a27fca80d38c40153b6a1d9ac3407681b}{\#define {\bfseries iu8}~uint8\-\_\-t}\label{tea_8h_a27fca80d38c40153b6a1d9ac3407681b}
+
+\item 
+\hypertarget{tea_8h_ac52845e68e2ba28492bfe7713ecd4446}{\#define \hyperlink{tea_8h_ac52845e68e2ba28492bfe7713ecd4446}{T\-E\-A\-\_\-\-K\-E\-Y\-\_\-\-L\-E\-N}~16}\label{tea_8h_ac52845e68e2ba28492bfe7713ecd4446}
+
+\begin{DoxyCompactList}\small\item\em T\-E\-A key size. \end{DoxyCompactList}\item 
+\hypertarget{tea_8h_a42fe1c2852561ea40a1380fc426d9c81}{\#define \hyperlink{tea_8h_a42fe1c2852561ea40a1380fc426d9c81}{T\-E\-A\-\_\-\-B\-L\-O\-C\-K\-\_\-\-L\-E\-N}~8}\label{tea_8h_a42fe1c2852561ea40a1380fc426d9c81}
+
+\begin{DoxyCompactList}\small\item\em T\-E\-A block length. \end{DoxyCompactList}\item 
+\hypertarget{tea_8h_a3fd2b1bcd7ddcf506237987ad780f495}{\#define \hyperlink{tea_8h_a3fd2b1bcd7ddcf506237987ad780f495}{D\-E\-L\-T\-A}~0x9\-E3779\-B9}\label{tea_8h_a3fd2b1bcd7ddcf506237987ad780f495}
+
+\begin{DoxyCompactList}\small\item\em Magic value. (Golden number $\ast$ 2$^\wedge$31) \end{DoxyCompactList}\item 
+\hypertarget{tea_8h_a69479655ab94c875413d38689002ff98}{\#define \hyperlink{tea_8h_a69479655ab94c875413d38689002ff98}{R\-O\-U\-N\-D\-S}~32}\label{tea_8h_a69479655ab94c875413d38689002ff98}
+
+\begin{DoxyCompactList}\small\item\em Number of rounds. \end{DoxyCompactList}\item 
+\hypertarget{tea_8h_a0e93a14e5e2e0f46131a360584d4a835}{\#define \hyperlink{tea_8h_a0e93a14e5e2e0f46131a360584d4a835}{swap\-\_\-us}(us)~(((us\&0x00\-F\-F)$<$$<$8)$|$((us\&0x\-F\-F00)$>$$>$8))}\label{tea_8h_a0e93a14e5e2e0f46131a360584d4a835}
+
+\begin{DoxyCompactList}\small\item\em Byte swap single short. \end{DoxyCompactList}\item 
+\hypertarget{tea_8h_a7d4ae55324da2e40ff7ddd19799c09f6}{\#define \hyperlink{tea_8h_a7d4ae55324da2e40ff7ddd19799c09f6}{swap\-\_\-ul}(ul)~(((ul\&0x000000\-F\-F)$<$$<$24)$|$((ul\&0x0000\-F\-F00)$<$$<$8)$|$((ul\&0x00\-F\-F0000)$>$$>$8)$|$((ul\&0x\-F\-F000000)$>$$>$24))}\label{tea_8h_a7d4ae55324da2e40ff7ddd19799c09f6}
+
+\begin{DoxyCompactList}\small\item\em Byte swap single long. \end{DoxyCompactList}\item 
+\hypertarget{tea_8h_a3ac6738fd6414caf56af16d5aa3cc27e}{\#define {\bfseries hton\-\_\-us}(us)}\label{tea_8h_a3ac6738fd6414caf56af16d5aa3cc27e}
+
+\item 
+\hypertarget{tea_8h_ab1151e3852ea534254b55edcc7c2492a}{\#define {\bfseries hton\-\_\-ul}(ul)}\label{tea_8h_ab1151e3852ea534254b55edcc7c2492a}
+
+\item 
+\#define \hyperlink{tea_8h_ac6afabdc09a49a433ee19d8a9486056d}{min}(a, b)~((a)$<$(b)?(a)\-:(b))
+\item 
+\#define \hyperlink{tea_8h_affe776513b24d84b39af8ab0930fef7f}{max}(a, b)~((a)$>$(b)?(a)\-:(b))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{tea_8h_a982d969b3496c4117d0079f91048a5ba}{hton\-\_\-us} (uint16\-\_\-t $\ast$us, uint8\-\_\-t num)
+\begin{DoxyCompactList}\small\item\em Byte swap multiple shorts. \end{DoxyCompactList}\item 
+void \hyperlink{tea_8h_aa8f61bcad3e32a5a398164a3de6ba287}{hton\-\_\-ul} (uint32\-\_\-t $\ast$ul, uint8\-\_\-t num)
+\begin{DoxyCompactList}\small\item\em Byte swap multiple longs. \end{DoxyCompactList}\item 
+void \hyperlink{tea_8h_a542935b6cd737dab8bf9c5bbfc10dbf0}{tea\-\_\-enc} (uint32\-\_\-t $\ast$v, uint32\-\_\-t $\ast$k)
+\begin{DoxyCompactList}\small\item\em T\-E\-A encryption function. \end{DoxyCompactList}\item 
+void \hyperlink{tea_8h_aca30c56208449c7ff223be556d98df80}{tea\-\_\-dec} (uint32\-\_\-t $\ast$v, uint32\-\_\-t $\ast$k)
+\begin{DoxyCompactList}\small\item\em T\-E\-A decryption function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\-E\-A declarations. Documentation for T\-E\-A is available at \href{http://www.cl.cam.ac.uk/ftp/users/djw3/tea.ps}{\tt http\-://www.\-cl.\-cam.\-ac.\-uk/ftp/users/djw3/tea.\-ps}.
+
+\begin{DoxyParagraph}{Id\-:}
+\hyperlink{tea_8h}{tea.\-h},v 1.\-5 2002/12/22 15\-:42\-:55 m Exp 
+\end{DoxyParagraph}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{tea_8h_affe776513b24d84b39af8ab0930fef7f}{\index{tea.\-h@{tea.\-h}!max@{max}}
+\index{max@{max}!tea.h@{tea.\-h}}
+\subsubsection[{max}]{\setlength{\rightskip}{0pt plus 5cm}\#define max(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~((a)$>$(b)?(a)\-:(b))}}\label{tea_8h_affe776513b24d84b39af8ab0930fef7f}
+Return maximum value \hypertarget{tea_8h_ac6afabdc09a49a433ee19d8a9486056d}{\index{tea.\-h@{tea.\-h}!min@{min}}
+\index{min@{min}!tea.h@{tea.\-h}}
+\subsubsection[{min}]{\setlength{\rightskip}{0pt plus 5cm}\#define min(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~((a)$<$(b)?(a)\-:(b))}}\label{tea_8h_ac6afabdc09a49a433ee19d8a9486056d}
+Return minimum value 
+
+\subsection{Function Documentation}
+\hypertarget{tea_8h_aa8f61bcad3e32a5a398164a3de6ba287}{\index{tea.\-h@{tea.\-h}!hton\-\_\-ul@{hton\-\_\-ul}}
+\index{hton\-\_\-ul@{hton\-\_\-ul}!tea.h@{tea.\-h}}
+\subsubsection[{hton\-\_\-ul}]{\setlength{\rightskip}{0pt plus 5cm}void hton\-\_\-ul (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t $\ast$}]{ul, }
+\item[{uint8\-\_\-t}]{num}
+\end{DoxyParamCaption}
+)}}\label{tea_8h_aa8f61bcad3e32a5a398164a3de6ba287}
+
+
+Byte swap multiple longs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ul} & Pointer to an array of longs. \\
+\hline
+{\em num} & Number of longs to process. \\
+\hline
+\end{DoxyParams}
+\hypertarget{tea_8h_a982d969b3496c4117d0079f91048a5ba}{\index{tea.\-h@{tea.\-h}!hton\-\_\-us@{hton\-\_\-us}}
+\index{hton\-\_\-us@{hton\-\_\-us}!tea.h@{tea.\-h}}
+\subsubsection[{hton\-\_\-us}]{\setlength{\rightskip}{0pt plus 5cm}void hton\-\_\-us (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t $\ast$}]{us, }
+\item[{uint8\-\_\-t}]{num}
+\end{DoxyParamCaption}
+)}}\label{tea_8h_a982d969b3496c4117d0079f91048a5ba}
+
+
+Byte swap multiple shorts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em us} & Pointer to an array of shorts. \\
+\hline
+{\em num} & Number of shorts to process. \\
+\hline
+\end{DoxyParams}
+\hypertarget{tea_8h_aca30c56208449c7ff223be556d98df80}{\index{tea.\-h@{tea.\-h}!tea\-\_\-dec@{tea\-\_\-dec}}
+\index{tea\-\_\-dec@{tea\-\_\-dec}!tea.h@{tea.\-h}}
+\subsubsection[{tea\-\_\-dec}]{\setlength{\rightskip}{0pt plus 5cm}void tea\-\_\-dec (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t $\ast$}]{v, }
+\item[{uint32\-\_\-t $\ast$}]{k}
+\end{DoxyParamCaption}
+)}}\label{tea_8h_aca30c56208449c7ff223be556d98df80}
+
+
+T\-E\-A decryption function. 
+
+This function decrypts {\itshape v} with {\itshape k} and returns the decrypted data in {\itshape v}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Array of two long values containing the data block. \\
+\hline
+{\em k} & Array of four long values containing the key. \\
+\hline
+\end{DoxyParams}
+\hypertarget{tea_8h_a542935b6cd737dab8bf9c5bbfc10dbf0}{\index{tea.\-h@{tea.\-h}!tea\-\_\-enc@{tea\-\_\-enc}}
+\index{tea\-\_\-enc@{tea\-\_\-enc}!tea.h@{tea.\-h}}
+\subsubsection[{tea\-\_\-enc}]{\setlength{\rightskip}{0pt plus 5cm}void tea\-\_\-enc (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t $\ast$}]{v, }
+\item[{uint32\-\_\-t $\ast$}]{k}
+\end{DoxyParamCaption}
+)}}\label{tea_8h_a542935b6cd737dab8bf9c5bbfc10dbf0}
+
+
+T\-E\-A encryption function. 
+
+This function encrypts {\itshape v} with {\itshape k} and returns the encrypted data in {\itshape v}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Array of two long values containing the data block. \\
+\hline
+{\em k} & Array of four long values containing the key. \\
+\hline
+\end{DoxyParams}

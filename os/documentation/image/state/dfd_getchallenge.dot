@@ -1,0 +1,40 @@
+digraph DFD_GetCurrentFile {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+state_mng [label="State Manager\nCurrentChallenge"]
+block [label="Block\nof Data"]
+key [label="Key"]
+{rank=same;
+mem_readblock [label="Memory\nRead Block", shape="circle", fixedsize=true, width=1];
+mem_writeblock [label="Memory\nWrite Block", shape="circle", fixedsize=true, width=1];
+}
+crypt_encrypt [label="Crypt\nEncrypt", shape="circle", fixedsize=true, width=1];
+get_challenge [label="State\nGet Challenge", shape="circle", fixedsize=true, width=1];
+challenge [label="Challenge"]
+
+// relations
+mem_writeblock -> block [dir=back]
+mem_readblock -> block
+mem_readblock -> key
+block -> crypt_encrypt
+key -> crypt_encrypt
+crypt_encrypt -> block
+block -> get_challenge
+get_challenge -> state_mng
+get_challenge -> challenge
+
+}

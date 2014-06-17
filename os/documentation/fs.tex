@@ -1,0 +1,1376 @@
+\graphicspath{ {image/} }
+
+\chapter{File System}
+\label{design}
+
+Bagian ini menjelaskan struktur data dan algoritma yang akan digunakan pada \emph{file system}.
+
+\section{Data Structure}
+\label{data-structure}
+
+\subsection{Konsep Block}
+\label{block-concept}
+
+Sebagaimana telah disebutkan pada \nameref{overview}, \emph{file system} menggunakan layanan dari \emph{Memory} untuk mengakses data file pada memory fisik. \emph{Memory} menyediakan ruang penyimpanan virtual yang menggunakan  pengalamatan linier dan kontinyu dimana setiap alamat dapat menyimpan data sebesar 1 byte. Namun penggunaan alamat untuk setiap 1 byte data ini kurang efisien dari sisi \emph{file system} karena akan membutuhkan ruang yang besar untuk menyimpan alamat sebuah file. Sebagai contoh, untuk memory berukuran 128 kB sebagaimana banyak ditemukan pada \textsl{smart card} terbaru membutuhkan ruang untuk alamat sebanyak 3 byte (dengan asumsi unit penyimpanan terkecil 1 byte). Pada kenyataannya sebuah file umumnya juga memiliki ukuran yang jauh lebih besar. Maka, untuk meningkatkan efisiensi penggunaan ruang memory digunakan konsep \emph{block} sebagai unit terkecil untuk mengalamati sebuah file dari sisi \emph{file system}, dimana satu \emph{block}x terdiri dari beberapa \emph{byte} memory. Sebagai contoh, untuk ukuran \emph{block} sebesar 4 byte, \emph{block} \texttt{0} merujuk pada alamat \texttt{0x0000} hingga \texttt{0x0003}, \emph{block} \texttt{1} merujuk pada alamat \texttt{0x0004} hingga \texttt{0x0007}, dan demikian seterusnya. Secara umum, alamat yang dirujuk dari sebuah \emph{block} dapat diketahui menggunakan:
+$$
+address=block\_number \cdot block\_size
+$$
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{fs_blocks.png}
+\caption{Konsep Block}
+\label{fig-block-concept}
+\end{figure}
+
+Konsep {\em block} ini mengadopsi {\em file system} pada PC seperti Unix File System ataupun FAT. Namun berbeda dengan {\em file system} tersebut dimana block juga menjadi unit operasi terkecil yang dapat dilakukan, pada {\em file system} yang dirancang, {\em block} hanya berfungsi sebagai unit pengalamatan terkecil. Operasi terhadap file tetap menggunakan unit {\em byte}. File system hanya akan membaca sejumlah {\em byte} yang diminta tidak perduli berapapun ukuran {\em block} yang digunakan. Demikian pula awal operasi pembacaan/penulisan dilakukan berdasarkan {\em offset} yang diukur dalam unit {\em byte}. Lebih jauh lagi penggunaan konsep {\em block} juga membantu dalam mengetahui bagian mana dari {\em virtual memory} yang telah digunakan (lebih lanjut akan dijelaskan pada \nameref{bat}).
+
+Disamping kelebihannya, penggunaan konsep {\em block} juga memiliki kelemahan yaitu pemborosan yang terjadi apabila ternyata hanya sebagian dari {\em block} yang digunakan untuk menyimpan data. Kerugian ini menjadi lebih terasa apabila menggunakan ukuran {\em block} yang besar. Sebagaimana telah disebutkan {\em block} merupakan unit terkecil pengalamatan file, maka ketika sebuah file membutuhkan ruang sebesar 9 byte, dengan ukuran {\em block} sebesar 8 byte, akan menggunakan sebanyak {\tt 2} {\em block} (= 16 {\em byte}). Selisih sebesar 7 (=16-9) {\em byte} ini kemudian menjadi percuma karena tidak dapat digunakan. Pada sistem komputer PC kerugian semacam ini memang tidak signifikan karena umumnya memiliki ruang penyimpanan yang relatif besar dan file yang besar pula, tetapi pada sistem \textsl{smart card} dengan penyimpanan terbatas hal ini tidak dapat diterima terutama ketika terjadi pada sejumlah besar file. Karenanya, penentuan ukuran {\em block} yang tepat menjadi penting untuk menghasilkan efisiensi yang paling tinggi.
+
+\subsection{Struktur file system}
+\label{fs-structure}
+
+File-file pada {\em file system} akan saling terhubung satu sama lain untuk membentuk sebuah struktur {\em file system}  (lihat Gambar \ref{fig-fs-example}). Hubungan ini dapat berupa {\em parent-to-child} dan sebaliknya {\em child-to-parent}. Hubungan {\em child-to-parent} merupakan hubungan satu-ke-satu sehingga tidak sulit untuk dideskripsikan dalam sebuah struktur data. Masalah kemudian muncul ketika mendeskripsikan hubungan {\em parent-to-child} yang merupakan hubungan satu-ke-banyak dan tidak ada batasan yang jelas mengenai jumlah anak dari sebuah file. Menyediakan sejumlah ruang yang telah ditentukan sebelumnya untuk menyimpan struktur ini jelas bukan pendekatan yang efektif karena akan membatasi jumlah anak yang mungkin dari sebuah file, serta tidak efisien mengingat ruang penyimpanan yang terbatas dari \textsl{smart card} dan karena mungkin saja hanya sebagaian kecil dari ruang tersebut yang digunakan. Menggunakan struktur yang dinamis juga bukan pendekatan yang baik pada sistem \textsl{smart card} yang terbatas karena dapat menyebabkan fragmentasi dan kerugian yang lebih besar. 
+
+Untuk mengatasi permasalahan tersebut maka diperkenalkan sebuah jenis hubungan baru yang dinamakan {\em sibling}, yaitu hubungan antara file {\em child} dengan {\em child} lainnya dalam sebuah directory (DF) yang sama. Dengan adanya hubungan ini maka sebuah DF (sebagai {\em parent}) hanya perlu menyimpan informasi satu file sebagai {\em child}, dan selanjutnya file {\em child} ini menunjuk satu file {\em child} lainnya sebagai {\em sibling}. Demikian seterusnya sehingga membentuk sebuah senarai berantai dari seluruh file dalam directory. Model pendekatan menggunakan {\em sibling} ini ditampilkan pada Gambar \ref{fig-file-relation}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{fs_table.png}
+\caption{Pembagian file system}
+\label{fig-file-relation}
+\end{figure}
+
+Sebagaimana dijelaskan pada \nameref{block-concept}, setiap unit data di dalam {\em file system} dialamati menggunakan nomor {\em block} yang berukuran 2 byte. 
+
+\subsection{Bagian-bagian file system}
+\label{fs-partitioning}
+
+Oleh {\em file system}, ruang memory virtual yang disediakan {\em Memory} dibagi menjadi tiga bagian besar, yaitu :
+\begin{itemize}
+\item Block Allocation Table (BAT)
+\item File Table
+\item File Body
+\end{itemize}
+
+Susunan ketiga bagian ini pada memory ditampilkan pada Gambar \ref{fig-fs-partition}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{fs_general.png}
+\caption{Pembagian file system}
+\label{fig-fs-partition}
+\end{figure}
+
+\subsubsection{Block Allocation Table}
+
+{\em Block Allocation Table} (BAT) berfungsi menyimpan informasi mengenai {\em block} mana saja yang telah digunakan dan {\em block} mana yang belum. Setiap bit dari {\em block allocation table} merujuk pada sebuah {\em block}, dimana untuk {\em block} yang telah digunakan ditandai dengan nilai 1, sedangkan {\em block} yang tidak digunakan ditandai dengan nilai 0. Gambar \ref{fig-bat} menampilkan contoh penggunaan {\em block allocation table} untuk menyimpan informasi penggunaan {\em block} pada {\em file system}. {\em Block} yang dirujuk oleh sebuah bit pada {\em block allocation table} dapat dihitung menggunakan rumus :
+$$
+block\_address=byte\_number\cdot8+bit\_number
+$$
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.4]{fs_bat.png}
+\caption{Contoh penggunaan block allocation table}
+\label{fig-bat}
+\end{figure}
+
+Total ruang memory yang digunakan oleh {\em Block Allocation Table} dalam byte dapat dihitung mengggunakan rumus :
+$$
+BAT\_size=(memory\_size/block\_size)/8
+$$
+
+Sebagai contoh, untuk sistem dengan ruang memory penyimpanan sebesar 128 kB dan ukuran {\em block} {\tt 4} byte, maka besar ruang yang dibutuhkan untuk {\em block allocation table} adalah $128kB/4B=32kbit=4kB$.
+
+Perlu diingat bahwa {\em block allocation table} akan mengurangi ruang memory virtual yang dapat digunakan untuk menyimpan informasi aktual. Tingkat kerugian penggunaan ruang memory yang diakibatkan oleh {\em block allocation memory} dapat dihitung sebagai perbandingan bagian memory yang digunakan untuk {\em block allocation table} terhadap seluruh ruang memory yang disediakan.
+$$
+kerugian=BAT\_size/memory\_size=8/block\_size
+$$
+
+Terlihat bahwa kerugian akibat {\em block allocation table} berbanding terbalik dengan ukuran {\em block}. Karenanya, hal ini juga harus menjadi perhatian saat menentukan ukuran {\em block}.
+
+\subsubsection{File Table}
+\label{file-table}
+
+{\em File Table} berfungsi menyimpan informasi mengenai struktur {\em file system} sebagai hubungan dari sejumlah file yang berawal dari sebuah MF (lihat \nameref{fs-structure}). Informasi-informasi dasar dari setiap file disimpan dalam sebuah struktur data yang dinamakan {\em file header}. Sejumlah {\em file header} yang saling terhubung inilah yang kemudian disimpan di dalam file table untuk membentuk struktur {\em file system}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{fs_header.png}
+\caption{Struktur data file header}
+\label{fig-header-field}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[angle=90,scale=0.4]{fs_table_complete.png}
+\caption{Struktur file header lengkap dari contoh sebuah file system (Gambar \ref{fig-fs-example}}
+\label{fig-header-complete}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{fs_table_memory.png}
+\caption{Susunan file header dari contoh sebuah file system (Gambar \ref{fig-fs-example}}
+\label{fig-header-memory}
+\end{figure}
+
+Gambar \ref{fig-header-field} menampilkan struktur akhir dari sebuah {\em file header}. Kemudian Gambar \ref{fig-header-complete} menampilkan contoh struktur {\em file header} lengkap dari {\em file system} yang ditunjukkan pada Gambar \ref{fig-fs-example}. Susunan struktur {\em file header} ini pada {\em virtual memory} kemudian ditampilkan pada Gambar \ref{fig-header-memory}.
+
+
+\begin{description}[leftmargin=2.5cm,style=sameline]
+
+\item[Tag] Merupakan indikasi mengenai jenis sebuah file. (Lihat bagian \nameref{file-attribute}.)
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    File Type & Tag\\[5pt]
+    \hline
+    MF        & 0x3F\\
+    DF        & 0x4F\\
+    EF        & 0x5F\\
+    \hline
+  \end{tabular}
+  \caption{File Tag}
+  \label{"tbl-file-tag}
+\end{table}
+
+
+\item[FID] Merupakan pengenal dari sebuah file dalam \textsl{smart card}. (Lihat bagian \nameref{file-attribute}.)
+
+\item[Parent] Merupakan pointer yang menyimpan alamat dari file {\em parent}. (Lihat \nameref{fs-structure}.)
+
+\item[Child] Merupakan pointer yang menyimpan alamat dari file {\em child} pertama. (Lihat \nameref{fs-structure}.)
+
+\item[Sibling] Merupakan pointer yang menyimpan alamat dari file {\em sibling} berikutnya. (Lihat \nameref{fs-structure}.)
+
+\item[File Body] Merupakan pointer yang menyimpan alamat dari bagian file body dari file. (Mengenai file body ini akan dijelaskan lebih rinci pada bagian \nameref{file-body}.)
+
+\end{description}
+
+
+\subsubsection{File Body}
+\label{file-body}
+
+Bagian ini diperuntukkan bagi isi dari file yang sebenarnya. Isi file ini akan tergabung dalam sebuah struktur {\em file body} yang terdiri dari {\em File Body Header} dan {\em File Body Data}. {\em File Body Header} mengandung deskripsi dari isi {\em File Body Data} dan beberapa atribut lainnya yang terkait dengan File. Data aktual dari file sendiri disimpan pada {\em File Body Data}. Gambar \ref{fig-body} menampilkan struktur dari {\em File Body}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{fs_file_body.png} 
+  \caption{Struktur File Body}
+  \label{fig-body}
+\end{figure}
+
+
+Gambar \ref{fig-body-header} menampilkan struktur data dari {\em File Body Header}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{fs_body_header.png}
+\caption{Pembagian file system}
+\label{fig-body-header}
+\end{figure}
+
+
+\begin{description}[leftmargin=3cm,style=sameline]
+
+\item[Structure] Menunjukkan struktur file yang digunakan. Sesuai dengan standard ISO 7816-4, maka struktur file yang didukung terdiri dari : Transparent, Record, dan Cyclic. Setiap struktur file ini akan diberi tag sendiri untuk membedakannya dari struktur file lain sebagaimana ditampilkan pada Tabel \ref{table-file-structure-tag}.
+
+\item[Type] Menunjukkan tipe file. Sesuai dengan standard ISO 7816-4, sebuah file dapat berupa working file ataupun internal file. working file dapat dibaca oleh aplikasi dan sistem operasi, sedangkan internal file hanya dapat dibaca oleh sistem operasi. Sebagaimana File Structure, setiap File Type ini diberi Tag untuk membedakannya dari File Type lain yang ditunjukkan pada Tabel \ref{table-file-type}.
+
+\item[Access cond.] Menunjukkan tingkat keamanan yang harus dicapai sebelum melakukan operasi terhadap file, masing-masing AC read untuk operasi baca dan ACUpdate untuk operasi tulis. Nilai-nilai ini akan diverifikasi oleh State Manager.
+
+\item[Size] Menunjukkan ukuran data file dalam byte. 
+
+\end{description}
+
+
+
+\section{Dokumentasi Fungsi}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{fs_usecase.png}
+\caption{Use Case Diagram File System}
+\label{fig-usecase}
+\end{figure}
+
+Fungsi-fungsi yang terdapat pada {\em File System} dan hubungannya dapat dilihat melalui use case diagram pada Gambar \ref{fig-usecase}. Dari usecase diagram tersebut terlihat fungsi-fungsi yang ada pada {\em file system} sebagai berikut :
+
+\begin{description}[labelindent=1cm,leftmargin=4.2cm,style=sameline]
+
+\item[Format] Format the filesystem.
+\item[Initialize] Initialize the filesystem.
+\item[Search File] Search for a file
+\item[Select File] Select a file
+\item[Create File] Create a new file
+\item[Create Header] Create a new file header
+\item[Create Body] Create a new file body
+\item[Delete File] Delete a file 
+\item[Access Binary] Access a transparent file
+\item[Access Record] Operate on a record file
+\item[Alloc Block(s)] Alloc block(s) of memory
+\item[Free Block(s)] Free block(s) of memory
+
+\end{description}
+
+
+\subsection{Format}
+
+Fungsi {\em Format} akan mempersiapkan memory untuk penggunaan pertama file system. Fungsi ini hanya sekali dipanggil oleh system operasi ketika finalisasi \textsl{smart card}. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{fs_format.png}
+\caption{Algoritma fungsi format}
+\label{fig-format}
+\end{figure}
+
+Gambar \ref{fig-format} menampilkan prosedur yang dijalankan oleh fungsi {\em Format}. Fungsi {\em Format} akan mempersiapkan memory dengan menghapus seluruh isi memory dan membagi memory menjadi bagian-bagian sebagaimana dijelaskan pada Bagian \nameref{fs-partitioning}. Setelah itu fungsi akan membuat file root (MF) di alamat pertama pada {\em File Table}. 
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | }
+    \hline
+    \bf{Output} \\
+    \hline
+    \bf{Memory value}\\
+    \hline
+    $FS\_ALLOC\_TABLE\_OFFSET \to FS\_ALLOC\_TABLE\_SIZE$ \\
+    {[0x00, ... 0x00]} \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Format}
+  \label{tabel-test-format}
+\end{table}
+
+Tabel \ref{tabel-test-format} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Format.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-format} menampilkan purwarupa dari implementasi fungsi File System Format. Fungsi ini akan diimplementasikan sebagai FSFormat() dan tidak menerima argumen apapun. Hasil keluaran dari fungsi adalah keterangan apakah fungsi berhasil atau mengalami kesalahan (error).
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{p{2cm}p{8cm}}
+    \hline\\
+    {\bf Name} & FS\_Format\\
+    \hline\\
+    {\bf Input}  & None\\
+    \hline\\
+    {\bf Output} & Status\\
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Format}
+  \label{tabel-format}
+\end{table}
+
+Listing \ref{list-format} menampilkan potongan program yang mengimplementasi fungsi FS Format.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Format}, label={list-format}]
+int FS_Format()
+{
+  uint16_t i;
+  uint16_t headerBlock;
+  uint16_t none16 = FS_NONE;
+  uint16_t fidMF  = 0x3F00;
+  uint8_t  tagMF  = FS_TAG_MF;
+  int status;
+
+  //Initialize Block Allocation Table
+  for(i=FS_ALLOC_TABLE_OFFSET; i<(FS_FILE_TABLE_OFFSET*FS_BLOCK_SIZE); i++)
+    Mem_WriteByte(FS_START + i, 0);
+
+  status = FS_ALLOC_HEADER(&headerBlock);
+
+  if(status == FS_OK && headerBlock == FS_FILE_TABLE_OFFSET){
+    FS_SET_HEADER_TAG(headerBlock, &tagMF);
+    FS_SET_HEADER_FID(headerBlock, &fidMF);
+    FS_SET_HEADER_PARENT(headerBlock, &headerBlock);
+    FS_SET_HEADER_CHILD(headerBlock, &none16);
+    FS_SET_HEADER_SIBLING(headerBlock, &none16);
+
+    return FS_OK;
+  }
+  else {
+    return FS_ERROR;
+  }
+}
+
+\end{lstlisting}
+
+\subsection{Initialize}
+
+Fungsi {\em Initialize} akan mempersiapkan memory untuk dapat dipergunakan. Fungsi ini dipanggil oleh sistem operasi setiap kali \textsl{memory card} diberi daya dan memasuki tahap initialisasi. 
+
+Gambar \ref{fig-initialize} menampilkan prosedur yang dijalankan oleh fungsi {\em Initialize}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{fs_initialize.png}
+\caption{Algoritma fungsi Initialize}
+\label{fig-initialize}
+\end{figure}
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | }
+    \hline
+    \bf{Output} \\
+    \hline
+    \bf{State}\\
+    \hline
+    CurrentFile = 0x0000 \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Initialize}
+  \label{tabel-test-initialize}
+\end{table}
+
+Tabel \ref{tabel-test-initialize} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Initialize.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-initialize} menampilkan purwarupa dari implementasi fungsi File System Initialize. Fungsi ini akan diimplementasikan sebagai FSInitialize() dan tidak menerima argumen apapun. Hasil keluaran dari fungsi adalah status apakah fungsi berhasil atau mengalami kesalahan (error).
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{p{2cm}p{8cm}}
+    \hline\\
+    {\bf Name} & FS\_Init\\
+    \hline\\
+    {\bf Input}  & None\\
+    \hline\\
+    {\bf Output} & Status
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi FS Initialize}
+  \label{tabel-initialize}
+\end{table}
+
+Listing \ref{list-initialize} menampilkan potongan program yang mengimplementasi fungsi FS Initialize.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Initialize}, label={list-initialize}]
+int FS_Init()
+{
+  FSSelectMF();
+
+  return FS_OK;
+}
+\end{lstlisting}
+
+\subsection{Create File}
+
+Fungsi {\em Create File} akan menciptakan sebuah file baru pada struktur {\em file system}. Fungsi ini dapat dipanggil oleh sistem operasi maupun aplikasi. 
+
+Gambar \ref{fig-create-file} menampilkan prosedur yang dijalankan oleh fungsi Create File. File baru hanya dapat dibuat apabila file yang sedang terpilih adalah sebuah DF, dimana file baru ini akan diletakkan dibawahnya (sebagai anak) pada struktur file system. Selain itu tidak boleh ada file lainnya dalam jangkauan parent yang memiliki FID yang sama dengan file baru agar tidak menimbulkan ambiguitas.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{fs_create_file.png}
+\caption{Algoritma fungsi Create File}
+\label{fig-create-file}
+\end{figure}
+
+Apabila semua syarat telah terpenuhi, Sebuah file baru akan dibuat dengan menghasilkan sebuah file header dengan memanggil fungsi {\em Create Header}. Apabila fungsi {\em Create Header} berhasil membuat file header baru, maka prosedur dilanjutkan dengan memperbaharui file header dari {\em parent} atau {\em sibling}, tergantung apakah file baru tersebut merupakan {\em child} pertama atau tidak dari {\em parent} file. Pada kasus {\em child} pertama, maka yang perlu diperbaharui adalah pointer {\em child} dari {\em parent} file (lihat Gambar \ref{fig-create-file-example-1}). Sementara pada kasus {\em child} kedua dan seterusnya, maka yang diperbaharui adalah pointer {\em sibling} dari file {\em sibling} sebelumnya (lihat Gambar \ref{fig-create-file-example-2}).
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{fs_create_file_example_1.png}
+\caption{Contoh fungsi Create File (kasus {\em child} pertama)}
+\label{fig-create-file-example-1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{fs_create_file_example_2.png}
+\caption{Contoh fungsi Create File (kasus {\em child} kedua)}
+\label{fig-create-file-example-2}
+\end{figure}
+
+Setelah file header dari file parent/sibling diperbaharui, fungsi kemudian akan membuat sebuah file body (dengan memanggil fungsi Create Body) dengan atribut yang sesuai dengan file descriptor yang diberikan pada masukan fungsi. Apabila file body berhasil dibuat, maka file header yang telah dibuat sebelumnya akan diperbaharui dengan memasukkan alamat file body. Namun apabila file body tidak berhasil dibuat, maka file header yang telah dibuat sebelumnya harus dihapus dengan memanggil fungsi Delete File.
+
+\subsubsection{Pengujian}
+
+\begin{sidewaystable}[h]
+  \centering
+  \begin{tabular}{ | c | c || c | c | }
+    \hline
+    \multicolumn{2}{ | c || }{\bf{Input}}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{Tag} & \bf{File descriptor} & \bf{Memory value} & \bf{Return Value}\\
+    \hline
+    0x5f & $EF\_st \to $ & $HEADER\_TAG \to 0x5f$ & FS\_OK \\
+    & FID = 0x1234 & $HEADER\_FID \to 0x1234$ &  \\
+    & structure = TRANSPARENT & $BODY\_STRUCTURE \to 0$ &  \\
+    & type = WORKING & $BODY\_TYPE \to 0$ & \\
+    & ACRead = 0x00 & $BODY\_ACREAD \to 0x00$ &  \\
+    & ACUpdate = 0x01 & $BODY\_ACUPDATE \to 0x01$ &  \\
+    & size = 0xff & $BODY\_SIZE \to 0xff$ &  \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Create File}
+  \label{tabel-test-createfile}
+\end{sidewaystable}
+
+\clearpage
+
+Tabel \ref{tabel-test-createfile} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Create File.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-createfile} menampilkan purwarupa dari implementasi fungsi File System Create File. Fungsi ini akan diimplementasikan sebagai FSCreateFile().
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FS\_CreateFile\\
+    \hline\\
+    {\bf Input} & File descriptor
+    \\
+    \hline\\
+    {\bf Output} & Status
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi FS Create File}
+  \label{tabel-createfile}
+\end{table}
+
+Listing \ref{list-createfile} menampilkan potongan program yang mengimplementasi fungsi FS Create File.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Create File}, label={list-createfile}]
+int FS_CreateFile(int tag, void * desc)
+{
+  uint16_t header, body;
+  uint16_t current;
+  uint16_t fid;
+  uint8_t  currentTag;
+  int status;
+
+  if(tag == FS_TAG_DF){
+    fid = ((struct DF_st *)desc)->FID;
+  }
+  else if (tag == FS_TAG_EF) {
+    fid = ((struct EF_st *)desc)->FID;
+  }
+
+  //check if current is DF
+  current = State_GetCurrent();
+  
+  FS_GET_HEADER_TAG(current, (uint8_t*)&currentTag);
+  
+  if(currentTag == FS_TAG_EF){
+    return FS_ERROR;
+  }
+
+  //check consistency
+
+  //check all FID of current DF
+  status = FSSearchFID(fid);
+
+  if(status != FS_NONE){
+    return FS_ERROR_DUPLICATE_FID;
+  }
+
+  //create file header
+  status = FSCreateHeader((uint8_t)tag, fid, &header);
+
+  if (status != FS_OK){
+    return status;
+  }
+
+  //create file body
+  if(tag == FS_TAG_EF) {
+    status = FSCreateBodyEF((struct EF_st *)desc, &body);
+
+    if (status != FS_OK){
+      return status;
+    }
+
+    FS_SET_HEADER_BODY(header, &body);
+
+  }
+
+  return 0;
+}
+\end{lstlisting}
+
+
+\subsection{Delete File}
+
+Fungsi {\em Delete File} akan menghapus sebuah file dari struktur file system. Fungsi ini dapat dipanggil oleh sistem operasi maupun aplikasi. 
+
+Gambar \ref{fig-delete-file} menampilkan prosedur yang dijalankan oleh fungsi Delete File. Pertama, file yang akan dihapus dicari dengan memanggil fungsi Search File. Setelah ditemukan, file header dari parent / sibling diperbarui sehingga tidak lagi menunjuk pada file yang akan dihapus. Gambar \ref{fig-delete-file-example-1}-\ref{fig-delete-file-example-3} menampilkan beberapa contoh kasus penghapusan file. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{fs_delete_file.png}
+\caption{Algoritma fungsi Delete File}
+\label{fig-delete-file}
+\end{figure}
+
+Pada kasus pertama (Gambar \ref{fig-delete-file-example-1}), file yang dihapus (EF3) merupakan anak pertama dari file parent (DF1). Untuk itu perlu dilakukan pembaruan pada pointer child dari file parent header sehingga menunjuk pada file sibling dari file yang akan dihapus (DF2). 
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{fs_delete_file_example_1.png}
+\caption{Contoh penghapusan file (kasus anak pertama)}
+\label{fig-delete-file-example-1}
+\end{figure}
+
+Pada kasus kedua (Gambar \ref{fig-delete-file-example-2}), file yang dihapus (DF2) bukan merupakan anak pertama dan bukan pula yang terakhir dari file parent (DF1). Untuk itu perlu dilakukan pembaruan pada pointer sibling dari file sibling sebelumnya (EF3) sehingga menunjuk pada file sibling dari file yang akan dihapus (EF4). 
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{fs_delete_file_example_2.png}
+\caption{Contoh penghapusan file (kasus bukan anak pertama/terakhir)}
+\label{fig-delete-file-example-2}
+\end{figure}
+
+Pada kasus ketiga (Gambar \ref{fig-delete-file-example-3}), file yang dihapus (EF4) merupakan anak yang terakhir dari file parent (DF1). Untuk itu perlu dilakukan pembaruan pada pointer sibling dari file sibling sebelumnya (DF2). Karena EF4 tidak memiliki sibling berikutnya, maka pointer sibling dari file sibling DF2 akan menunjuk ke NULL.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{fs_delete_file_example_3.png}
+\caption{Contoh penghapusan file (kasus anak terakhir)}
+\label{fig-delete-file-example-3}
+\end{figure}
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c || c | c | }
+    \hline
+    \bf{Input}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{FID} & \bf{Memory value} & \bf{Return Value}\\
+    \hline
+    0x1234 & $HEADER\_CHILD \to 0x0000$ & FS\_OK \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Delete File}
+  \label{tabel-test-deletefile}
+\end{table}
+
+Tabel \ref{tabel-test-deletefile} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Delete File.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-deletefile} menampilkan purwarupa dari implementasi fungsi File System Delete File. Fungsi ini akan diimplementasikan sebagai FSDeleteFile().
+
+\begin{table}[hp]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FSDeleteFile\\
+    \hline\\
+    {\bf Input} & FID
+    \\
+    \hline\\
+    {\bf Output} & Status
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Delete File}
+  \label{tabel-deletefile}
+\end{table}
+
+Listing \ref{list-deletefile} menampilkan potongan program yang mengimplementasi fungsi FS Delete File.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Create File}, label={list-deletefile}]
+int FSDeleteFile(uint16_t fid)
+{
+  uint16_t header, parent, sibling, child, siblingBefore, siblingNext;
+  uint16_t body, bodySize;
+  uint8_t  tag;
+
+  //check FID
+  header = FSSearchFID(fid);
+
+  if(header == FS_NONE){
+    return FS_ERROR_NOT_FOUND;
+  }
+
+  //if DF, make sure it doesn't have any child
+
+  //if first child, untie from parent, and change parent's child to sibling (if any)
+  FS_GET_HEADER_PARENT(header, &parent);
+
+  FS_GET_HEADER_CHILD(parent, &sibling);
+
+  if(sibling == header) {
+    FS_GET_HEADER_SIBLING(header, &sibling);
+    FS_SET_HEADER_CHILD(parent, &sibling);
+  }
+  //else, change the sibling before to chain to sibling after
+  else {
+
+    while(sibling != header) {
+      siblingBefore = sibling;
+      FS_GET_HEADER_SIBLING(sibling, &sibling);
+    }
+
+    FS_GET_HEADER_SIBLING(header, &siblingNext);
+    FS_SET_HEADER_SIBLING(siblingBefore, &siblingNext);
+  }
+
+  //free body
+  FS_GET_HEADER_TAG(header, &tag);
+
+  if(tag == FS_TAG_EF){
+    FS_GET_HEADER_BODY(header, &body);
+    FS_GET_BODY_SIZE(body, &bodySize);
+
+    FSFree(body, CEIL(((FS_BODY_HEADER_SIZE)+bodySize),FS_BLOCK_SIZE));
+  }
+
+  //free header
+  FSFree(header, CEIL((FS_HEADER_SIZE),FS_BLOCK_SIZE));
+
+  return FS_OK;
+}
+\end{lstlisting}
+
+\subsection{Select File}
+
+Fungsi Select File akan mengganti state file yang sedang terpilih dari smart card menjadi file dengan FID yang diberikan. 
+
+Gambar \ref{fig-select-file} menampilkan prosedur yang dijalankan oleh fungsi Select File. Pertama, file yang akan dipilih dicari dengan memanggil fungsi Search File. Apabila file ditemukan, maka state saat ini akan diubah sehingga menunjuk pada file yang dipilih. Sebaliknya apabila tidak ditemukan maka akan mengembalikan nilai kesalahan {\em File Not Found}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{fs_select_file.png}
+\caption{Algoritma fungsi Select File}
+\label{fig-select-file}
+\end{figure}
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c || c | c | }
+    \hline
+    \bf{Input}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{FID} & \bf{State} & \bf{Return Value}\\
+    \hline
+    0x1234 & $CurrentFile \to HEADER$ & FS\_OK \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Select File}
+  \label{tabel-test-selectfile}
+\end{table}
+
+Tabel \ref{tabel-test-selectfile} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Select File.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-selectfile} menampilkan purwarupa dari implementasi fungsi File System Select File. Fungsi ini akan diimplementasi oleh FSSelectFile(). 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FS\_SelectFID\\
+    \hline\\
+    {\bf Input} & FID
+    \\
+    \hline\\
+    {\bf Output} & Status
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Select File}
+  \label{tabel-selectfile}
+\end{table}
+
+Listing \ref{list-selectfile} menampilkan potongan program yang mengimplementasi fungsi FS Select File.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Select File}, label={list-selectfile}]
+uint16_t FS_SelectFID(uint16_t fid)
+{
+  uint16_t file;
+
+  file = FSSearchFID(fid);
+
+  if( file == FS_NONE )
+    return FS_ERROR_NOT_FOUND;
+
+  State_SetCurrent(file);
+
+  return FS_OK;
+}
+\end{lstlisting}
+
+\subsection{Access Binary}
+
+Fungsi {\em Access Binary} dipanggil oleh sistem operasi atau aplikasi untuk mengakses file EF bertipe transparent. Sebelum memanggil fungsi Access Binary maka sistem operasi atau aplikasi harus memilih file yang akan diakses menggunakan fungsi {\em File Select}. 
+
+Terdapat dua jenis operasi yang dapat dilakukan, yaitu Read dan Update. Operasi Read akan membaca data dari file yang sedang dipilih dan mengembalikan ke fungsi pemanggil. Sementara Operasi Update akan mengubah data pada file dengan data yang berasal dari fungsi pemanggil. Fungsi ini akan diimplementasikan oleh FSAccessBinary().
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{fs_access_binary.png}
+\caption{Algoritma fungsi Access Binary}
+\label{fig-access-binary}
+\end{figure}
+
+Gambar \ref{fig-access-binary} menampilkan prosedur yang dilakukan fungsi access binary. Pertama, fungsi akan mengambil alamat body dari file yang disimpan pada file header. Lalu dari file body tersebut fungsi akan mengambil {\em access condition} yang diperlukan untuk operasi dan diverifikasi ke {\em state manager}. Apabila {\em state manager} menyetujui akses, fungsi akan dilanjutkan dengan melakukan operasi yang diminta (baca/tulis). Sebaliknya apabila {\em state manager} tidak menyetujui, fungsi akan mengembalikan status kesalahan {\em Operation Not Allowed}.
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c | c | c || c | c | }
+    \hline
+    \multicolumn{4}{ | c ||}{\bf{Input}}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{Operation} & \bf{Offset} & \bf{Length} & \bf{Data} & \bf{Memory} & \bf{Data}\\
+    \hline
+    UPDATE & 0x0000 & 0x00ff & $[0x00 \to 0xff]$ & $BODY\_BODY == [0x00 \to 0xff] $ & \\
+    READ & 0x0000 & 0x00ff & & $BODY\_BODY == [0x00 \to 0xff] $ & $[0x00 \to 0xff]$ \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Access Binary}
+  \label{tabel-test-accessbinary}
+\end{table}
+
+Tabel \ref{tabel-test-accessbinary} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Access Binary.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-accessbinary} menampilkan purwarupa dari implementasi fungsi File System Access Binary.
+
+\begin{table}[hp]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FSAccessBinary\\
+    \hline\\
+    {\bf Input} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Operation (Read or Update)
+    \item Offset (in bytes)
+    \item Lenght of data to read/update
+    \item Data to update
+    \end{itemize}
+    \\
+    \hline\\
+    {\bf Output} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Data readed
+    \item Status
+    \end{itemize}
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Access Binary}
+  \label{tabel-accessbinary}
+\end{table}
+
+Listing \ref{list-accessbinary} menampilkan potongan program yang mengimplementasi fungsi FS Access Binary.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Access Binary}, label={list-accessbinary}]
+int FSAccessBinary(int op, int offset, int length, uint8_t *databyte)
+{
+  uint16_t header, body;
+
+  header = State_GetCurrent();
+
+  FS_GET_HEADER_BODY(header,&body);
+
+  if(op == FS_OP_READ){
+    if(length == 0)
+      FS_GET_BODY_SIZE(body, &length);
+
+    if(length > 256)
+      length = 256;
+
+    FS_GET_BODY_BODY(body, length, databyte);
+  }
+  else if(op = FS_OP_UPDATE){
+    FS_SET_BODY_BODY(body, length, databyte);
+  }
+
+  return length;
+}
+\end{lstlisting}
+
+\subsection{Access Record}
+
+Fungsi {\em Access Record} dipanggil oleh sistem operasi atau aplikasi untuk mengakses file EF bertipe Record. Sebelum memanggil fungsi {\em Access Record} maka sistem operasi atau aplikasi harus memilih file yang akan diakses menggunakan fungsi {\em File Select}.
+
+Terdapat lima jenis operasi yang dapat dilakukan, yaitu Read, Update, Append Record, Insert Record, dan Delete Record. Operasi Read akan membaca data record dari file yang sedang dipilih dan mengembalikan ke fungsi pemanggil. Operasi Update akan mengubah data record pada file dengan data record yang berasal dari fungsi pemanggil. Operasi Append akan menambahkan sebuah record baru setelah record yang paling akhir. Operasi Insert akan menambahkan sebuah record baru diantara record yang ada. Operasi Delete akan menghapus sebuah record dari file. Fungsi ini akan diimplementasikan oleh FSAccessRecord().
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c | c | c || c | c | }
+    \hline
+    \multicolumn{4}{ | c ||}{\bf{Input}}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{Operation} & \bf{Offset} & \bf{Length} & \bf{Data} & \bf{Memory} & \bf{Data}\\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Access Record}
+  \label{tabel-test-accessrecord}
+\end{table}
+
+Tabel \ref{tabel-test-accessrecord} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Access Record.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-accessrecord} menampilkan purwarupa dari implementasi fungsi File System Access Record.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FSAccessRecord\\
+    \hline\\
+    {\bf Input} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Operation (Read/Update/Append/Insert/Delete)
+    \item Record No. (for all operation except Append Record)
+    \item Lenght of record data (for all operation except Delete Record)
+    \item Record data (for all operation except Delete Record)
+    \end{itemize}
+    \\
+    \hline\\
+    {\bf Output} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Data readed (for Read Operation)
+    \item Status
+    \end{itemize}
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Access Record}
+  \label{tabel-accessrecord}
+\end{table}
+
+\subsection{Search File}
+
+Fungsi {\em Search File} dipanggil oleh fungsi-fungsi File System lainnya untuk menemukan file dengan FID yang diberikan. Fungsi ini akan diimplementasikan sebagai FSSearchFile, dan akan mengembalikan alamat block dari file header dari file yang dicari apabila ditemukan, atau NULL apabila file tidak ditemukan.
+
+\begin{figure}
+\centering
+\includegraphics[angle=90,scale=0.3]{fs_search_file.png}
+\caption{Algoritma fungsi Search File}
+\label{fig-search-file}
+\end{figure}
+
+Gambar \ref{fig-search-file} menampilkan prosedur yang dijalankan oleh fungsi Search File. Pencarian akan dilakukan dimulai dari parent file dari file yang sedang terpilih, dilanjutkan dengan memeriksa setiap sibling, dan berikutnya memeriksa seluruh child apabila file yang terpilih adalah sebuah DF. 
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c || c | c | }
+    \hline
+    \bf{Input}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{FID} & \bf{Address} & \bf{Return Value}\\
+    \hline
+    0x1234 & BLOCK ADDRESS & FS\_OK \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Search File}
+  \label{tabel-test-searchfile}
+\end{table}
+
+Tabel \ref{tabel-test-searchfile} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Search File.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-searchfile} menampilkan purwarupa dari implementasi fungsi File System Search File.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FSSearchFile\\
+    \hline\\
+    {\bf Input} & FID
+    \\
+    \hline\\
+    {\bf Output} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Block address of file header
+    \item Status (if Error)
+    \end{itemize}
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Search File}
+  \label{tabel-searchfile}
+\end{table}
+
+Listing \ref{list-searchfile} menampilkan potongan program yang mengimplementasi fungsi FS Search File.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Search File}, label={list-searchfile}]
+uint16_t FSSearchFID(uint16_t fid)
+{
+  uint16_t current, parent, sibling, child;
+  uint16_t tempFID;
+  uint8_t  tempTag;
+
+  current = State_GetCurrent();
+
+  //check parent
+  FS_GET_HEADER_PARENT(current, &parent);
+
+  FS_GET_HEADER_FID(parent, &tempFID);
+
+  if(tempFID == fid){
+    return parent;
+  }
+
+  //check sibling
+  FS_GET_HEADER_CHILD(parent, &sibling);
+
+  while(sibling != FS_NONE) {
+
+    FS_GET_HEADER_FID(sibling, &tempFID);
+
+    if(tempFID == fid){
+      return sibling;
+    }
+
+    FS_GET_HEADER_SIBLING(sibling, &sibling);
+
+  }
+
+  //check child
+
+  FS_GET_HEADER_TAG(current, &tempTag);
+
+  if(tempTag == FS_TAG_DF || tempTag == FS_TAG_MF) {
+
+    FS_GET_HEADER_CHILD(current, &child);
+
+    while (child != FS_NONE)
+    {
+
+      FS_GET_HEADER_FID(child, &tempFID);
+
+      if(tempFID == fid){
+        return child;
+      }
+
+      FS_GET_HEADER_SIBLING(child, &child);
+
+    }
+  }
+
+  return FS_NONE;
+}
+\end{lstlisting}
+
+
+\subsection{Create Header}
+
+Fungsi {\em Create Header} dipanggil oleh fungsi Create File untuk menghasilkan sebuah file header baru pada file table berdasarkan file descriptor yang diberikan. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{fs_create_header.png}
+\caption{Algoritma fungsi Create Header}
+\label{fig-create-header}
+\end{figure}
+
+Gambar \ref{fig-create-header} menampilkan prosedur yang dijalankan oleh fungsi Create Header. Pertama, fungsi akan mengalokasikan sejumlah block untuk header dengan memanggil fungsi Alloc Block(s). Apabila berhasil, dan sejumlah block telah dialokasikan, maka block tersebut akan diisi dengan struktur data file header sebagaimana yang telah dijelaskan pada bagian \nameref{file-table}. Tag dan FID yang digunakan diambil dari file descriptor, sementara parent merupakan file yang sedang dipilih sekarang yang diperoleh melalui State Manager. Child dan Sibling diisi nilai NULL karena file merupakan sebuah file baru sehingga tidak memiliki child dan sibling. Body pointer dibiarkan barena akan diisi kemudian setelah file body dihasilkan.
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c || c | c | }
+    \hline
+    \multicolumn{2}{ | c || }{\bf{Input}}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{TAG} & \bf{FID} & \bf{Memory value} & \bf{Return Value}\\
+    \hline
+    0x5f & 0x1234 $ & $HEADER\_TAG \to 0x5f$ & FS\_OK \\
+    & & $HEADER\_FID \to 0x1234$ &  \\
+    & & $HEADER\_PARENT \to PARENT$ &  \\
+    & & $HEADER\_CHILD \to 0x00$ & \\
+    & & $HEADER\_SIBLING \to 0x00$ &  \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Create Header}
+  \label{tabel-test-createheader}
+\end{table}
+
+Tabel \ref{tabel-test-createheader} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Create Header.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-createheader} menampilkan purwarupa dari implementasi fungsi File System Create Header. Fungsi ini akan diimplementasikan sebagai FSCreateHeader().
+
+\begin{table}[hp]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FSCreateHeader\\
+    \hline\\
+    {\bf Input} &
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Tag
+    \item FID
+    \end{itemize}
+    \\
+    \hline\\
+    {\bf Output} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Block address of header created
+    \item Status
+    \end{itemize}
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Create Header}
+  \label{tabel-createheader}
+\end{table}
+
+Listing \ref{list-format} menampilkan potongan program yang mengimplementasi fungsi FS Format.
+
+Listing \ref{list-createheader} menampilkan potongan program yang mengimplementasi fungsi FS Create Header.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Create Header}, label={list-createheader}]
+int FSCreateHeader(uint8_t tag, uint16_t fid, uint16_t * addr)
+{
+  uint16_t      current, currentChild, currentChildSibling, currentChildTemp;
+  uint16_t      headerBlock;
+  uint16_t      none16 = (uint16_t)FS_NONE;
+  int           status;
+
+  current = State_GetCurrent();
+
+  //alloc some space for header
+  status = FS_ALLOC_HEADER(&headerBlock);
+
+  if(status == FS_ERROR_INSUFFICIENT_SPACE){
+    return status;
+  }
+
+  //update header
+  FS_SET_HEADER_TAG(headerBlock, &tag);
+  FS_SET_HEADER_FID(headerBlock, &fid);
+  FS_SET_HEADER_PARENT(headerBlock, &current);
+  FS_SET_HEADER_CHILD(headerBlock, &none16);
+  FS_SET_HEADER_SIBLING(headerBlock, &none16);
+
+  //update parent/sibling DF header
+  FS_GET_HEADER_CHILD(current, &currentChild);
+
+  if (currentChild == none16) {
+    FS_SET_HEADER_CHILD(current, &headerBlock);
+  }
+  else {
+
+    while (currentChild != FS_NONE){
+
+      currentChildTemp = currentChild;
+
+      FS_GET_HEADER_SIBLING(currentChild, &currentChild);
+
+    }
+
+    currentChild = currentChildTemp;
+
+    FS_SET_HEADER_SIBLING(currentChild, &headerBlock);
+
+  }
+
+  *addr = headerBlock;
+
+  return FS_OK;
+}
+\end{lstlisting}
+
+\subsection{Alloc Block(s)}
+
+Fungsi {\em Alloc Block(s)} dipanggil oleh fungsi-fungsi lain untuk mengalokasikan sejumlah block untuk digunakan. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{fs_alloc_1.png}
+\caption{Algoritma fungsi Alloc Block(s)}
+\label{fig-alloc-1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{fs_alloc_2.png}
+\caption{Algoritma fungsi Alloc Block(s)}
+\label{fig-alloc-2}
+\end{figure}
+
+Gambar \ref{fig-alloc-1} menampilkan algoritma yang digunakan oleh fungsi Alloc Block(s). Untuk memudahkan memahami algoritma yang digunakan, pada Gambar \ref{fig-alloc-example} menampilkan contoh penggunaan fungsi Alloc Block(s) dengan parameter : 
+\begin{itemize}
+\item Begin Block = 1026
+\item End Block = 1037
+\item Length = 3
+\end{itemize}
+
+
+\begin{figure}
+\centering
+\includegraphics[angle=90,scale=0.5]{fs_alloc_example.png}
+\caption{Contoh penggunaan Alloc Block(s)}
+\label{fig-alloc-example}
+\end{figure}
+
+Block 1026 (begin block) ditunjuk oleh byte ke 256 (=1026/8) dan bit ke 2 (=1026\%8) pada Block Allocation Table (BAT). Sementara Block 1037 (end block) ditunjuk oleh byte ke 257 (=1037/8) dan bit ke 5 (=1037\%8). Karenanya, pencarian block yang bebas dimulai dari byte 256 (begin byte) bit ke-2 (begin bit) hingga byte 257 (end Byte) bit ke-5 (end Bit). 
+
+Pencarian akan menemukan bahwa 2 block pertama telah digunakan (warna merah) dan terdapat sejumlah block bebas (warna putih) yang cukup untuk memenuhi permintaan dimulai dari block 1028, yang ditunjuk oleh byte ke 256 dan bit ke-4 dari BAT. Fungsi Alloc Block(s) kemudian akan menandai ketiga block ini (warna hijau) sebagai block yang telah digunakan pada BAT, dan mengembalikan nilai 1028 sebagai awal block yang dialokasikan ke fungsi pemanggil.
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c | c || c | c | }
+    \hline
+    \multicolumn{3}{ | c ||}{\bf{Input}}  & \multicolumn{2}{ c | }{\bf{Output}} \\
+    \hline
+    \bf{Begin} & \bf{End} & \bf{Length} & \bf{Address} & \bf{Return Value}\\
+    \hline
+    0x0000 & 0x00ff & 0x0f & 0x0000 & FS\_OK \\
+    0x0000 & 0x000f & 0xff & 0x0000 & FS\_ERROR\_INSUFFICIENT \\
+    0x00ff & 0x01ff & 0xff & 0x00ff & FS\_OK \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Alloc Block}
+  \label{tabel-test-alloc}
+\end{table}
+
+Tabel \ref{tabel-test-alloc} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Alloc Block.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-alloc} menampilkan purwarupa dari implementasi fungsi File System Alloc Block. 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FSAlloc\\
+    \hline\\
+    {\bf Input} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Begin of Block to search for free blocks
+    \item End of Block to search for free blocks
+    \item Length of block to alloc
+    \end{itemize}
+    \\
+    \hline\\
+    {\bf Output} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Address of allocated block
+    \item Status (if ERROR)
+    \end{itemize}
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Alloc Block(s)}
+  \label{tabel-alloc}
+\end{table}
+
+Listing \ref{list-alloc} menampilkan potongan program yang mengimplementasi fungsi FS Alloc.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Alloc}, label={list-alloc}]
+int FSAlloc(uint16_t size, uint16_t startBlock, uint16_t endBlock, uint16_t * address)
+{
+  uint16_t i, j, k, m, n;
+  uint16_t startbyte, startbit, startSearchBit;
+  uint16_t stopbyte, stopbit, stopSearchBit;
+  uint16_t tempAddress;
+  uint16_t free = 0;
+  uint8_t temp = 0;
+  bool cont = 0;
+
+  for(i = (startBlock/8); i < (endBlock/8); i++) {
+
+    //read allocation table (byte -> 8 block)
+    temp = Memory_ReadByte(FS_START + FS_ALLOC_TABLE_OFFSET + i);
+
+    startSearchBit = (i == startBlock/8) ? startBlock%8 : 0;
+    stopSearchBit  = (i == (endBlock/8)-1) ? endBlock%8 : 8;
+
+    // bit per bit operation
+    for(j = startSearchBit; j < stopSearchBit; j++) {
+
+      //check if MSB = 0
+      if((temp & 0x80) == 0) {
+
+        //check if this the first 0
+        if(cont == 0) {
+
+          //make a mark and save the address
+          cont = 1;
+          tempAddress = (i*8)+j;
+          startbyte = i;
+          startbit = j;
+
+        }
+
+        //increment free block
+        free ++;
+
+        //if free block is sufficient
+        if(free == size) {
+
+          stopbyte = i;
+          stopbit = j;
+
+          k = startbyte;
+          while(k <= stopbyte) {
+
+            m = 0;
+            n = 8;
+
+            if(k == startbyte) m = startbit;
+            if(k == stopbyte) n = stopbit;
+
+            for(m;m<=n;m++){
+              temp = Memory_ReadByte(FS_START + FS_ALLOC_TABLE_OFFSET + k);
+              temp = temp | ((uint8_t)128>>m);
+              Memory_WriteByte(FS_START + FS_ALLOC_TABLE_OFFSET + k, temp);
+            }
+
+            k++;
+
+          }
+
+          //return the first address of free block
+          *address = tempAddress;
+
+          return FS_OK;
+
+        }
+
+      }
+      else {
+
+        //if the MSB == 1 and continue
+        if(cont == 1) {
+
+          cont = 0;
+          free = 0;
+
+        }
+
+      }
+
+      temp = temp << 1;
+
+    }
+
+  }
+
+  return FS_ERROR_INSUFFICIENT_SPACE;
+}
+\end{lstlisting}
+
+\subsection{Free Block(s)}
+
+Fungsi {\em Free Block(s)} merupakan kebalikan dari fungsi {\em Alloc Block(s)}, dimana sejumlah block yang telah dialokasikan (ditandai dengan nilai 1 pada bit yang bersesuaian di {\em block allocation table}) dibebaskan sehingga dapat dipergunakan kembali nantinya. Fungsi ini utamanya akan dipanggil oleh fungsi {\em Delete File}. Pembebasan dilakukan dengan mengubah nilai bit pada {\em block allocation table} menjadi 0 kembali.
+
+\subsubsection{Pengujian}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c || c | c | }
+    \hline
+    \multicolumn{2}{ | c ||}{\bf{Input}}  & {\bf{Output}} \\
+    \hline
+    \bf{Begin} & \bf{End} & \bf{Return Value}\\
+    \hline
+    0x0000 & 0x00ff & FS\_OK \\
+    \hline
+  \end{tabular}
+  \caption{Test Vector Fungsi File System Free Block}
+  \label{tabel-test-free}
+\end{table}
+
+Tabel \ref{tabel-test-free} menampilkan Test Vector yang digunakan untuk menguji fungsi File System Free Block.
+
+\subsubsection{Implementasi}
+
+Tabel \ref{tabel-free} menampilkan purwarupa dari implementasi fungsi File System Free Block. 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{p{2cm} p{8cm}}
+    \hline\\
+    {\bf Name} & FSAlloc\\
+    \hline\\
+    {\bf Input} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Begin of block to free
+    \item Length of block to free
+    \end{itemize}
+    \\
+    \hline\\
+    {\bf Output} & 
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item Status
+    \end{itemize}
+    \\
+    \hline
+  \end{tabular}
+  \caption{Prototype Fungsi Free Block(s)}
+  \label{tabel-free}
+\end{table}
+
+Listing \ref{list-free} menampilkan potongan program yang mengimplementasi fungsi FS Free.
+
+\begin{lstlisting}[caption={Listing Program Fungsi FS Free}, label={list-free}]
+int FSFree(uint16_t address, uint16_t length)
+{
+  uint16_t startbyte, stopbyte;
+  uint8_t startbit, stopbit;
+  uint8_t startXOR, stopXOR;
+  uint8_t temp, tempXOR;
+  int i,j;
+
+  startbyte = address/8;
+  startbit = address%8;
+  stopbyte = (address+length)/8;
+  stopbit = (address+length)%8;
+
+  for(i = startbyte; i <= stopbyte; i++){
+    temp = Memory_ReadByte(FS_START + FS_ALLOC_TABLE_OFFSET + i);
+
+    startXOR = (i == startbyte) ? startbit : 0;
+    stopXOR  = (i == stopbyte) ? stopbit : 8;
+
+    tempXOR = 0;
+
+    for(j = startXOR; j < stopXOR; j++)
+      tempXOR = tempXOR ^ (128 >> j);
+
+    temp = temp ^ tempXOR;
+
+    Mem_WriteByte(FS_START + FS_ALLOC_TABLE_OFFSET + i, temp);
+  }
+
+  return FS_OK;
+
+}
+\end{lstlisting}

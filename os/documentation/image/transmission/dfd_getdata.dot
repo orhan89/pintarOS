@@ -1,0 +1,26 @@
+digraph DFD_GetData {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+len [label="Length of Data\nto Get"];
+get_byte [label="Transmission\nGet Byte", shape="circle", fixedsize=true, width=1];
+get_data [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1];
+dst [label="Data Buffer"];
+
+len -> get_data
+get_byte -> get_data [label="byte received"]
+get_data -> dst
+
+}

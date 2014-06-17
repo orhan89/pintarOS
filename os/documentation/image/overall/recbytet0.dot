@@ -1,0 +1,52 @@
+digraph RecByte {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+setup_in [label="Setup Port IO as INPUT", shape="box"]
+wait_for_start [label="Wait for start bit", shape="parallelogram"]
+wait_0 [label="Wait 0.5 etu", shape="box"]
+wait_1 [label="Wait 0.5 etu", shape="box"]
+get_bit [label="Get bit", shape="parallelogram"]
+add_to_parity [label="add to parity", shape="box"]
+save_bit [label="save bit to temp and rotate left", shape="box"]
+already_9 [label="9 bit already ?", shape="diamond"]
+check_parity [label="Parity ?", shape="diamond"]
+wait_2 [label="wait 0.5 etu", shape="box"]
+return [label="return temp", shape="oval"]
+wait_3 [label="wait 0.5 etu", shape="box"]
+setup_out [label="Setup Port IO as OUTPUT", shape="box"]
+signal_low [label="give signal low", shape="parallelogram"]
+wait_4 [label="wait 1.5 etu", shape="box"]
+
+// relations
+start -> setup_in
+setup_in -> wait_for_start
+wait_for_start -> wait_0
+wait_0 -> wait_1
+wait_1 -> get_bit
+get_bit -> add_to_parity
+add_to_parity -> save_bit
+save_bit -> already_9
+already_9 -> wait_1 [label="No"]
+already_9 -> check_parity [label="Yes"]
+check_parity -> wait_2 [label="True"]
+wait_2 -> return
+check_parity -> wait_3 [label="False"]
+wait_3 -> setup_out
+setup_out -> signal_low
+signal_low -> wait_4
+wait_4 -> setup_in
+
+}

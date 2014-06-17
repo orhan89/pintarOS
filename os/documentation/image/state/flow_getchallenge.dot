@@ -1,0 +1,36 @@
+digraph Flow_GetChallenge {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+get_block [label="Get Block of Data"];
+get_key [label="Get Key"];
+encrypt_1 [label="Encrypt Block of Data\nwith Key"]
+save_key [label="Save Encrypted Block of Data\nas Key for Later"]
+encrypt_2 [label="Encrypt Again"]
+save_state [label="Save Encrypted Block of Data to\nStateManager.CurrentChallenge"]
+save_challenge [label="Save Encrypted Block of Data to\nChallenge buffer (output)"]
+end [label="End", shape="oval"];
+
+// relations
+start -> get_block
+get_block -> get_key
+get_key -> encrypt_1
+encrypt_1 -> save_key
+save_key -> encrypt_2
+encrypt_2 -> save_state
+save_state -> save_challenge
+save_challenge -> end
+
+}

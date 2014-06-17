@@ -1,0 +1,50 @@
+digraph DFD_VerifyKey {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+security_state [label="State Manager\nSecurityState[Key]"]
+{
+rank=same;
+retries [label="Retries"]
+key [label="Key"]
+}
+{
+rank=same;
+mem_readblock [label="Memory\nRead Block", shape="circle", fixedsize=true, width=1];
+mem_writeblock [label="Memory\nWrite Block", shape="circle", fixedsize=true, width=1];
+}
+crypt_encrypt [label="Crypt\nEncrypt", shape="circle", fixedsize=true, width=1];
+{
+rank=same;
+challenge [label="State Manager\nChallenge"]
+verify_key [label="State\nVerify PIN", shape="circle", fixedsize=true, width=1];
+encrypted_challenge [label="Given\nEncrypted Challenge"]
+}
+
+// relations
+mem_writeblock -> retries [dir=back]
+mem_readblock -> retries
+mem_readblock -> key
+key -> crypt_encrypt
+retries -> verify_key
+retries -> verify_key [dir=back]
+crypt_encrypt -> challenge [label="encrypted"]
+challenge -> crypt_encrypt [label="plain"]
+challenge -> verify_key
+verify_key -> encrypted_challenge [dir=back]
+verify_key -> security_state
+
+}

@@ -1,0 +1,24 @@
+digraph Flow_TxByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+data [label="Data byte to transmit"]
+txbyte [label="HAL\nTxByte", shape="circle", fixedsize=true, width=1];
+
+// relations
+data -> txbyte;
+
+}

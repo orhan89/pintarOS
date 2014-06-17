@@ -1,0 +1,60 @@
+digraph Flow_Verify {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+unset [label="Unset Security State"]
+get_retries [label="Get Retries"]
+check_retries [label="Retries > Max.\nRetries Allowed ?", shape="diamond", fixedsize=true, width=1.5]
+get_pin [label="Get Correct PIN"]
+check_pin [label="Given PIN ==\nCorrect PIN", shape="diamond", fixedsize=true, width=1.5]
+{
+rank=same;
+inc_retries [label="Increase Retries"];
+reset_retries [label="Reset Retries"];
+}
+save_retries [label="Save Retries"]
+set [label="Set New Security State"]
+blocked [label="return PIN Blocked"]
+end [label="End", shape="oval"];
+
+d1 [width=0, shape="point", label="."];
+d2 [width=0, shape="point", label="."];
+d3 [width=0, shape="point", label="."];
+d4 [width=0, shape="point", label="."];
+d5 [width=0, shape="point", label="."];
+d6 [width=0, shape="point", label="."];
+
+// relations
+start -> unset
+unset -> get_retries
+get_retries -> check_retries
+{rank=same; check_retries -> d1 [label="Yes", arrowhead=none];}
+d1 -> blocked;
+blocked -> d2 [arrowhead=none];
+check_retries -> get_pin [label="No"]
+get_pin -> check_pin
+{rank=same; check_pin -> d3 [label="No", arrowhead=none]}
+d3 -> inc_retries
+inc_retries -> d4 [arrowhead=none]
+check_pin -> set
+set -> reset_retries
+reset_retries -> d5 [arrowhead=none]
+{rank=same; d5 -> d4 [dir=back]}
+d5 -> save_retries
+save_retries -> d6 [arrowhead=none]
+{rank=same; d6 -> d2 [dir=back]}
+d6 -> end
+
+}

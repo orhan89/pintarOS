@@ -1,0 +1,104 @@
+\hypertarget{response_8h}{\section{include/response.h File Reference}
+\label{response_8h}\index{include/response.\-h@{include/response.\-h}}
+}
+
+
+Header file for response manager.  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{response_8h_a0b9384277369e8c36725467bb40194d8}{rspn\-\_\-type} \{ \\*
+{\bfseries Response\-\_\-\-O\-K}, 
+{\bfseries Response\-\_\-\-Normal}, 
+{\bfseries Response\-\_\-\-Warning\-\_\-\-Unchanged}, 
+{\bfseries Response\-\_\-\-Warning\-\_\-\-Data\-Corrupt}, 
+\\*
+{\bfseries Response\-\_\-\-Warning\-\_\-\-End\-Of\-File}, 
+{\bfseries Response\-\_\-\-Warning\-\_\-\-File\-Deactivated}, 
+{\bfseries Response\-\_\-\-Warning\-\_\-\-Changed}, 
+{\bfseries Response\-\_\-\-Warning\-\_\-\-Filled\-Up}, 
+\\*
+{\bfseries Response\-\_\-\-Warning\-\_\-\-Counter}, 
+{\bfseries Response\-\_\-\-Error\-\_\-\-Unchanged}, 
+{\bfseries Response\-\_\-\-Error\-\_\-\-Changed}, 
+{\bfseries Response\-\_\-\-Wrong\-Length}, 
+\\*
+{\bfseries Response\-\_\-\-Not\-Supported}, 
+{\bfseries Response\-\_\-\-Not\-Supported\-\_\-\-Logical\-Channel}, 
+{\bfseries Response\-\_\-\-Not\-Supported\-\_\-\-Secure\-Messaging}, 
+{\bfseries Response\-\_\-\-Not\-Supported\-\_\-\-Last\-Command\-Expected}, 
+\\*
+{\bfseries Response\-\_\-\-Not\-Supported\-\_\-\-Command\-Chain}, 
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed}, 
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-Incompatible\-\_\-\-F\-S}, 
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-Security\-Status}, 
+\\*
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-Auth\-Blocked}, 
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-Ref\-Data\-Not\-Usable}, 
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-Condition\-Not\-Satisfied}, 
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-No\-Current\-E\-F}, 
+\\*
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-Expect\-Secure\-Msg}, 
+{\bfseries Response\-\_\-\-Cmd\-Not\-Allowed\-\_\-\-Incorrect\-Secure\-Msg}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-Incorrect\-Data}, 
+\\*
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-Func\-Not\-Supported}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-File\-Not\-Found}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-Record\-Not\-Found}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-Not\-Enough\-Mem}, 
+\\*
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-N\-C\-Inconsistent\-T\-L\-V}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-Incorrect\-P1\-P2}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-N\-C\-Inconsistent\-P1\-P2}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-Ref\-Data\-Not\-Found}, 
+\\*
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-File\-Exist}, 
+{\bfseries Response\-\_\-\-Wrong\-P1\-P2\-\_\-\-D\-F\-Name\-Exist}, 
+{\bfseries Response\-\_\-\-I\-N\-S\-Not\-Supported}, 
+{\bfseries Response\-\_\-\-C\-L\-A\-Not\-Supported}, 
+\\*
+{\bfseries Response\-\_\-\-Fatal\-Error}
+ \}
+\begin{DoxyCompactList}\small\item\em response type enumeration \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{response_8h_aa8b19051485ea36c5e0d71ac83b5bff3}{Response\-\_\-\-Set\-S\-W} (uint8\-\_\-t response, uint8\-\_\-t xtra)
+\begin{DoxyCompactList}\small\item\em set up an appropriate response A\-P\-D\-U \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for response manager. \begin{DoxyAuthor}{Author}
+Ricky Hariady (\href{mailto:ricky.hariady@enter.web.id}{\tt ricky.\-hariady@enter.\-web.\-id})
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+7/10/2013 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{response_8h_aa8b19051485ea36c5e0d71ac83b5bff3}{\index{response.\-h@{response.\-h}!Response\-\_\-\-Set\-S\-W@{Response\-\_\-\-Set\-S\-W}}
+\index{Response\-\_\-\-Set\-S\-W@{Response\-\_\-\-Set\-S\-W}!response.h@{response.\-h}}
+\subsubsection[{Response\-\_\-\-Set\-S\-W}]{\setlength{\rightskip}{0pt plus 5cm}void Response\-\_\-\-Set\-S\-W (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{response, }
+\item[{uint8\-\_\-t}]{xtra}
+\end{DoxyParamCaption}
+)}}\label{response_8h_aa8b19051485ea36c5e0d71ac83b5bff3}
+
+
+set up an appropriate response A\-P\-D\-U 
+
+Call by Command\-Interpreter() when finish execute the command. Interpret response type from command handler to Return Code (S\-W1 S\-W2), then transmit response A\-P\-D\-U (Return Code plus Return data) over trans\-Tx()
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$apdu\-\_\-res} & pointer to apdu resources \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

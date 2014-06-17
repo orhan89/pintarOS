@@ -1,0 +1,255 @@
+\hypertarget{transmission_8h}{\section{include/transmission.h File Reference}
+\label{transmission_8h}\index{include/transmission.\-h@{include/transmission.\-h}}
+}
+
+
+Header file for transmission handler.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structt__config__struct}{t\-\_\-config\-\_\-struct}
+\begin{DoxyCompactList}\small\item\em structure of transmission configuration \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{transmission_8h_a0608320e36efced93fcda7c4dc6f4f0e}{\#define {\bfseries T\-R\-A\-N\-S\-M\-I\-S\-S\-I\-O\-N\-\_\-\-O\-K}~0}\label{transmission_8h_a0608320e36efced93fcda7c4dc6f4f0e}
+
+\item 
+\hypertarget{transmission_8h_aed2577dab98039f6fe658fed0be3c904}{\#define {\bfseries T\-R\-A\-N\-S\-M\-I\-S\-S\-I\-O\-N\-\_\-\-E\-R\-R\-O\-R}~1}\label{transmission_8h_aed2577dab98039f6fe658fed0be3c904}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{transmission_8h_a284b4a9e63d48cd157962b2447516b82}{t\-\_\-proto} \{ \hyperlink{transmission_8h_a284b4a9e63d48cd157962b2447516b82a7c2d86b6055480bd86bece1f6e5af208}{T0}, 
+\hyperlink{transmission_8h_a284b4a9e63d48cd157962b2447516b82a623238751deb7764bdebf4799fe30f07}{T1}
+ \}
+\begin{DoxyCompactList}\small\item\em Transmission protocol enumeration. \end{DoxyCompactList}\item 
+enum \hyperlink{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5}{t\-\_\-baudrate} \{ \hyperlink{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5a86d7bec7ffa5d95b1b73c494821e567f}{B9600}, 
+\hyperlink{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5af975fbd1b044c9494e3b8bc23c746560}{B19200}, 
+\hyperlink{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5accba157b6983e9577b802caa11c3f3a5}{B38400}, 
+\hyperlink{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5acc2daa508b31c15a10d5c8e33a3ef533}{B111600}
+ \}
+\begin{DoxyCompactList}\small\item\em Transmission Baudrate enumeration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{transmission_8h_a169c285ae63e3a225a8388865628f203}{Transmission\-\_\-\-Init} (struct \hyperlink{structt__config__struct}{t\-\_\-config\-\_\-struct} config)
+\begin{DoxyCompactList}\small\item\em Initialize the transmission handler. \end{DoxyCompactList}\item 
+void \hyperlink{transmission_8h_a11aea3db346de87d3f10f6c543ea7d53}{Transmission\-\_\-\-Get\-Header} ()
+\begin{DoxyCompactList}\small\item\em Receive the command A\-P\-D\-U header. \end{DoxyCompactList}\item 
+void \hyperlink{transmission_8h_ae86e1ed1e4012034de6440b5ada5651f}{Transmission\-\_\-\-Send\-A\-C\-K} ()
+\begin{DoxyCompactList}\small\item\em Acknowledge command. \end{DoxyCompactList}\item 
+void \hyperlink{transmission_8h_a4ef19da553a231c76b131514e481e5af}{Transmission\-\_\-\-Send\-N\-A\-C\-K} ()
+\begin{DoxyCompactList}\small\item\em N\-Acknowledge command. \end{DoxyCompactList}\item 
+void \hyperlink{transmission_8h_aa76628e6ec361d32bd388cc35934be4f}{Transmission\-\_\-\-Get\-Data} (uint8\-\_\-t $\ast$dst, uint8\-\_\-t len)
+\begin{DoxyCompactList}\small\item\em Get Command Data. \end{DoxyCompactList}\item 
+void \hyperlink{transmission_8h_afa41605f839fe40d6c435e77b2899712}{Transmission\-\_\-\-Send\-Data} (uint8\-\_\-t $\ast$src, uint8\-\_\-t len)
+\begin{DoxyCompactList}\small\item\em Sent Response Data. \end{DoxyCompactList}\item 
+void \hyperlink{transmission_8h_a057a7c10efc64e52bee8a95047357267}{Transmission\-\_\-\-Send\-S\-W} ()
+\begin{DoxyCompactList}\small\item\em Sent Response Status Word. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{transmission_8h_a474d88653b739c898a7437eff240e659}{uint8\-\_\-t {\bfseries header} \mbox{[}5\mbox{]}}\label{transmission_8h_a474d88653b739c898a7437eff240e659}
+
+\item 
+\hypertarget{transmission_8h_a40aa640cd32fc53807a4dc72f8826d71}{uint16\-\_\-t {\bfseries sw}}\label{transmission_8h_a40aa640cd32fc53807a4dc72f8826d71}
+
+\item 
+\hypertarget{transmission_8h_a002522bbea0df5d03dc136012c54d45b}{struct \hyperlink{structt__config__struct}{t\-\_\-config\-\_\-struct} \hyperlink{transmission_8h_a002522bbea0df5d03dc136012c54d45b}{tconfig}}\label{transmission_8h_a002522bbea0df5d03dc136012c54d45b}
+
+\begin{DoxyCompactList}\small\item\em transmission configuration \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for transmission handler. \begin{DoxyAuthor}{Author}
+Ricky Hariady (\href{mailto:ricky.hariady@enter.web.id}{\tt ricky.\-hariady@enter.\-web.\-id})
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+7/10/2013 
+\end{DoxyDate}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5}{\index{transmission.\-h@{transmission.\-h}!t\-\_\-baudrate@{t\-\_\-baudrate}}
+\index{t\-\_\-baudrate@{t\-\_\-baudrate}!transmission.h@{transmission.\-h}}
+\subsubsection[{t\-\_\-baudrate}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf t\-\_\-baudrate}}}\label{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5}
+
+
+Transmission Baudrate enumeration. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{B9600@{B9600}!transmission.\-h@{transmission.\-h}}\index{transmission.\-h@{transmission.\-h}!B9600@{B9600}}\item[{\em 
+\hypertarget{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5a86d7bec7ffa5d95b1b73c494821e567f}{B9600}\label{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5a86d7bec7ffa5d95b1b73c494821e567f}
+}]Baudrate 9.\-600 bit/s. \index{B19200@{B19200}!transmission.\-h@{transmission.\-h}}\index{transmission.\-h@{transmission.\-h}!B19200@{B19200}}\item[{\em 
+\hypertarget{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5af975fbd1b044c9494e3b8bc23c746560}{B19200}\label{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5af975fbd1b044c9494e3b8bc23c746560}
+}]Baudrate 19.\-200 bit/s. \index{B38400@{B38400}!transmission.\-h@{transmission.\-h}}\index{transmission.\-h@{transmission.\-h}!B38400@{B38400}}\item[{\em 
+\hypertarget{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5accba157b6983e9577b802caa11c3f3a5}{B38400}\label{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5accba157b6983e9577b802caa11c3f3a5}
+}]Baudrate 38.\-400 bit/s. \index{B111600@{B111600}!transmission.\-h@{transmission.\-h}}\index{transmission.\-h@{transmission.\-h}!B111600@{B111600}}\item[{\em 
+\hypertarget{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5acc2daa508b31c15a10d5c8e33a3ef533}{B111600}\label{transmission_8h_a5266b5ad080839acc7a5223b0ca0e1b5acc2daa508b31c15a10d5c8e33a3ef533}
+}]Baudrate 111.\-600 bit/s. \end{description}
+\end{Desc}
+\hypertarget{transmission_8h_a284b4a9e63d48cd157962b2447516b82}{\index{transmission.\-h@{transmission.\-h}!t\-\_\-proto@{t\-\_\-proto}}
+\index{t\-\_\-proto@{t\-\_\-proto}!transmission.h@{transmission.\-h}}
+\subsubsection[{t\-\_\-proto}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf t\-\_\-proto}}}\label{transmission_8h_a284b4a9e63d48cd157962b2447516b82}
+
+
+Transmission protocol enumeration. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{T0@{T0}!transmission.\-h@{transmission.\-h}}\index{transmission.\-h@{transmission.\-h}!T0@{T0}}\item[{\em 
+\hypertarget{transmission_8h_a284b4a9e63d48cd157962b2447516b82a7c2d86b6055480bd86bece1f6e5af208}{T0}\label{transmission_8h_a284b4a9e63d48cd157962b2447516b82a7c2d86b6055480bd86bece1f6e5af208}
+}]Using T0 Protocol. \index{T1@{T1}!transmission.\-h@{transmission.\-h}}\index{transmission.\-h@{transmission.\-h}!T1@{T1}}\item[{\em 
+\hypertarget{transmission_8h_a284b4a9e63d48cd157962b2447516b82a623238751deb7764bdebf4799fe30f07}{T1}\label{transmission_8h_a284b4a9e63d48cd157962b2447516b82a623238751deb7764bdebf4799fe30f07}
+}]Using T1 Protocol. \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{transmission_8h_aa76628e6ec361d32bd388cc35934be4f}{\index{transmission.\-h@{transmission.\-h}!Transmission\-\_\-\-Get\-Data@{Transmission\-\_\-\-Get\-Data}}
+\index{Transmission\-\_\-\-Get\-Data@{Transmission\-\_\-\-Get\-Data}!transmission.h@{transmission.\-h}}
+\subsubsection[{Transmission\-\_\-\-Get\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void Transmission\-\_\-\-Get\-Data (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{dst, }
+\item[{uint8\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{transmission_8h_aa76628e6ec361d32bd388cc35934be4f}
+
+
+Get Command Data. 
+
+Receive and save data from terminal
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & address where to save data received \\
+\hline
+{\em data} & len indicate how much data would be received (in byte) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{transmission_8h_a11aea3db346de87d3f10f6c543ea7d53}{\index{transmission.\-h@{transmission.\-h}!Transmission\-\_\-\-Get\-Header@{Transmission\-\_\-\-Get\-Header}}
+\index{Transmission\-\_\-\-Get\-Header@{Transmission\-\_\-\-Get\-Header}!transmission.h@{transmission.\-h}}
+\subsubsection[{Transmission\-\_\-\-Get\-Header}]{\setlength{\rightskip}{0pt plus 5cm}void Transmission\-\_\-\-Get\-Header (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{transmission_8h_a11aea3db346de87d3f10f6c543ea7d53}
+
+
+Receive the command A\-P\-D\-U header. 
+
+Call by main loop, then read 5 byte of data by \hyperlink{hal_8h_a136930f47e2cdb4cdd6bc147b9703b0f}{H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte()}. The command A\-P\-D\-U header received then saved in header variable
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{transmission_8h_a169c285ae63e3a225a8388865628f203}{\index{transmission.\-h@{transmission.\-h}!Transmission\-\_\-\-Init@{Transmission\-\_\-\-Init}}
+\index{Transmission\-\_\-\-Init@{Transmission\-\_\-\-Init}!transmission.h@{transmission.\-h}}
+\subsubsection[{Transmission\-\_\-\-Init}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t Transmission\-\_\-\-Init (
+\begin{DoxyParamCaption}
+\item[{struct {\bf t\-\_\-config\-\_\-struct}}]{config}
+\end{DoxyParamCaption}
+)}}\label{transmission_8h_a169c285ae63e3a225a8388865628f203}
+
+
+Initialize the transmission handler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & The initialization structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result\par
+ Success = T\-R\-A\-N\-S\-M\-I\-S\-S\-I\-O\-N\-\_\-\-O\-K\par
+ Not Success = T\-R\-A\-N\-S\-M\-I\-S\-S\-I\-O\-N\-\_\-\-E\-R\-R\-O\-R 
+\end{DoxyReturn}
+\hypertarget{transmission_8h_ae86e1ed1e4012034de6440b5ada5651f}{\index{transmission.\-h@{transmission.\-h}!Transmission\-\_\-\-Send\-A\-C\-K@{Transmission\-\_\-\-Send\-A\-C\-K}}
+\index{Transmission\-\_\-\-Send\-A\-C\-K@{Transmission\-\_\-\-Send\-A\-C\-K}!transmission.h@{transmission.\-h}}
+\subsubsection[{Transmission\-\_\-\-Send\-A\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}void Transmission\-\_\-\-Send\-A\-C\-K (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{transmission_8h_ae86e1ed1e4012034de6440b5ada5651f}
+
+
+Acknowledge command. 
+
+Send back I\-N\-S from header
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{transmission_8h_afa41605f839fe40d6c435e77b2899712}{\index{transmission.\-h@{transmission.\-h}!Transmission\-\_\-\-Send\-Data@{Transmission\-\_\-\-Send\-Data}}
+\index{Transmission\-\_\-\-Send\-Data@{Transmission\-\_\-\-Send\-Data}!transmission.h@{transmission.\-h}}
+\subsubsection[{Transmission\-\_\-\-Send\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void Transmission\-\_\-\-Send\-Data (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{src, }
+\item[{uint8\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{transmission_8h_afa41605f839fe40d6c435e77b2899712}
+
+
+Sent Response Data. 
+
+Sent Response Data to terminal
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & address where data to be sent are saved \\
+\hline
+{\em data} & len indicate how much data would be sent (in byte) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{transmission_8h_a4ef19da553a231c76b131514e481e5af}{\index{transmission.\-h@{transmission.\-h}!Transmission\-\_\-\-Send\-N\-A\-C\-K@{Transmission\-\_\-\-Send\-N\-A\-C\-K}}
+\index{Transmission\-\_\-\-Send\-N\-A\-C\-K@{Transmission\-\_\-\-Send\-N\-A\-C\-K}!transmission.h@{transmission.\-h}}
+\subsubsection[{Transmission\-\_\-\-Send\-N\-A\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}void Transmission\-\_\-\-Send\-N\-A\-C\-K (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{transmission_8h_a4ef19da553a231c76b131514e481e5af}
+
+
+N\-Acknowledge command. 
+
+Send back negation of I\-N\-S from header
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{transmission_8h_a057a7c10efc64e52bee8a95047357267}{\index{transmission.\-h@{transmission.\-h}!Transmission\-\_\-\-Send\-S\-W@{Transmission\-\_\-\-Send\-S\-W}}
+\index{Transmission\-\_\-\-Send\-S\-W@{Transmission\-\_\-\-Send\-S\-W}!transmission.h@{transmission.\-h}}
+\subsubsection[{Transmission\-\_\-\-Send\-S\-W}]{\setlength{\rightskip}{0pt plus 5cm}void Transmission\-\_\-\-Send\-S\-W (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{transmission_8h_a057a7c10efc64e52bee8a95047357267}
+
+
+Sent Response Status Word. 
+
+Sent Response status word to terminal
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & address where to save data received \\
+\hline
+{\em data} & len indicate how much data would be received (in byte) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

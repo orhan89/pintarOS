@@ -1,0 +1,23 @@
+digraph Trans_GetHeader {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+hal_io_tx [label="HAL\nTx Byte", shape="circle"];
+sendsw [label="Transmission\nSend SW", shape="circle"];
+sw [label="Status Word"];
+
+sw -> sendsw
+sendsw -> hal_io_tx [label="byte transmitting"]
+
+}

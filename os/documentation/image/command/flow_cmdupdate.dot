@@ -1,0 +1,53 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+check_ac [label="Check AC ?", shape="diamond", fixedsize=true, width=1.5]
+getoffset [label="Get Offset from P1P2", shape="box", fixedsize=true, width=1.5]
+getlength [label="Get Length from P3", shape="box", fixedsize=true, width=1.5]
+getdata [label="Transmission\nGet Data", shape="box", fixedsize=true, width=1.5]
+access [label="FS Access\nUpdate Data", shape="box", fixedsize=true, width=1.5]
+{
+rank=same;
+set_sw1 [label="Set Response\nNormal", shape="box", fixedsize=true, width=1.5]
+set_sw2 [label="Set Response\nNot Allowed", shape="box", fixedsize=true, width=1.5]
+}
+
+end [label="End", shape="oval"];
+
+// relations
+start -> check_ac
+
+c0b [width=0, shape="point", label="."];
+check_ac -> getoffset [label="Allowed"]
+getoffset -> getlength
+getlength -> getdata
+getdata -> access
+access -> set_sw1
+set_sw1 -> c0b [arrowhead=none]
+
+c1a [width=0, shape="point", label="."];
+c1b [width=0, shape="point", label="."];
+{rank=same; check_ac -> c1a [label="Not Allowed", arrowhead=none];}
+c1a -> set_sw2
+set_sw2 -> c1b [arrowhead=none]
+
+{
+rank=same
+c0b -> c1b [dir=back]
+}
+c0b -> end
+
+}

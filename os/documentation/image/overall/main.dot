@@ -1,0 +1,30 @@
+digraph Main {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+hal_init [label="Initialize HW", shape="box"];
+send_ATR [label="Send ATR", shape="parallelogram"];
+state_init [label="Initialize State Manage", shape="box"];
+fs_init  [label="Initialize File System", shape="box"];
+main_loop [label="Enter Main Loop", shape="box"];
+
+// relations
+start -> hal_init;
+hal_init -> send_ATR;
+send_ATR -> state_init;
+state_init -> fs_init;
+fs_init -> main_loop;
+
+}

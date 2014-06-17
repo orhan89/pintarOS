@@ -1,0 +1,401 @@
+\hypertarget{command_8h}{\section{include/command.h File Reference}
+\label{command_8h}\index{include/command.\-h@{include/command.\-h}}
+}
+
+
+Header file for command interpreter and I\-S\-O command handler.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{command_8h_a10172e55272b59032d349ee377429480}{\#define {\bfseries D\-E\-B\-U\-G\-\_\-\-W\-R\-I\-T\-E}~0x02}\label{command_8h_a10172e55272b59032d349ee377429480}
+
+\item 
+\hypertarget{command_8h_ab6d584586af2df0943c2bdd6f37ac7b5}{\#define {\bfseries D\-E\-B\-U\-G\-\_\-\-R\-E\-A\-D}~0x04}\label{command_8h_ab6d584586af2df0943c2bdd6f37ac7b5}
+
+\item 
+\hypertarget{command_8h_af2523a8d1e85f87f9228691e49d8a223}{\#define {\bfseries D\-E\-B\-U\-G\-\_\-\-G\-E\-T\-C\-U\-R\-R\-E\-N\-T}~0x22}\label{command_8h_af2523a8d1e85f87f9228691e49d8a223}
+
+\item 
+\hypertarget{command_8h_a55303a533f53ece61a7a30039b64b553}{\#define {\bfseries D\-E\-B\-U\-G\-\_\-\-G\-E\-T\-S\-E\-C\-U\-R\-I\-T\-Y}~0x24}\label{command_8h_a55303a533f53ece61a7a30039b64b553}
+
+\item 
+\hypertarget{command_8h_a104b82b206a718b953caebfe39262e72}{\#define {\bfseries D\-E\-B\-U\-G\-\_\-\-G\-E\-T\-C\-H\-A\-L\-L\-E\-N\-G\-E}~0x28}\label{command_8h_a104b82b206a718b953caebfe39262e72}
+
+\item 
+\hypertarget{command_8h_afd35319b6647d1f9b82ac882ffdb9902}{\#define {\bfseries D\-E\-B\-U\-G\-\_\-\-E\-N\-C\-R\-Y\-P\-T}~0x26}\label{command_8h_afd35319b6647d1f9b82ac882ffdb9902}
+
+\item 
+\hypertarget{command_8h_a257dbde61ee37fc98055cc973c5bffc1}{\#define {\bfseries D\-E\-B\-U\-G\-\_\-\-F\-O\-R\-M\-A\-T}~0x0a}\label{command_8h_a257dbde61ee37fc98055cc973c5bffc1}
+
+\item 
+\hypertarget{command_8h_a3c27c0086a2159232fa5439dc65bcfd6}{\#define \hyperlink{command_8h_a3c27c0086a2159232fa5439dc65bcfd6}{I\-S\-O\-\_\-\-S\-E\-L\-E\-C\-T}~0x\-A4}\label{command_8h_a3c27c0086a2159232fa5439dc65bcfd6}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 S\-E\-L\-E\-C\-T Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a69ebb90e504f144e32a1dbf8bba21bd6}{\#define \hyperlink{command_8h_a69ebb90e504f144e32a1dbf8bba21bd6}{I\-S\-O\-\_\-\-R\-E\-A\-D\-\_\-\-B\-I\-N\-A\-R\-Y}~0x\-B0}\label{command_8h_a69ebb90e504f144e32a1dbf8bba21bd6}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 R\-E\-A\-D B\-I\-N\-A\-R\-Y Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_ab4f814f09be08cda5b6685bb2bd34dc9}{\#define \hyperlink{command_8h_ab4f814f09be08cda5b6685bb2bd34dc9}{I\-S\-O\-\_\-\-U\-P\-D\-A\-T\-E\-\_\-\-B\-I\-N\-A\-R\-Y}~0x\-D6}\label{command_8h_ab4f814f09be08cda5b6685bb2bd34dc9}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 U\-P\-D\-A\-T\-E B\-I\-N\-A\-R\-Y Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_aed35f89fcd7896aadd20986fdf7770f8}{\#define \hyperlink{command_8h_aed35f89fcd7896aadd20986fdf7770f8}{I\-S\-O\-\_\-\-R\-E\-A\-D\-\_\-\-R\-E\-C\-O\-R\-D}~0x\-B2}\label{command_8h_aed35f89fcd7896aadd20986fdf7770f8}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 R\-E\-A\-D R\-E\-C\-O\-R\-D Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_ab90f82962da33c6367cef20a21788655}{\#define \hyperlink{command_8h_ab90f82962da33c6367cef20a21788655}{I\-S\-O\-\_\-\-U\-P\-D\-A\-T\-E\-\_\-\-R\-E\-C\-O\-R\-D}~0x\-D\-C}\label{command_8h_ab90f82962da33c6367cef20a21788655}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 U\-P\-D\-A\-T\-E R\-E\-C\-O\-R\-D Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a6e680768c82bd301cd229c3de5008175}{\#define \hyperlink{command_8h_a6e680768c82bd301cd229c3de5008175}{I\-S\-O\-\_\-\-A\-P\-P\-E\-N\-D\-\_\-\-R\-E\-C\-O\-R\-D}~0x\-E2}\label{command_8h_a6e680768c82bd301cd229c3de5008175}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 A\-P\-P\-E\-N\-D R\-E\-C\-O\-R\-D Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_ab103a2ad5707dd4ac205d673901faf16}{\#define \hyperlink{command_8h_ab103a2ad5707dd4ac205d673901faf16}{I\-S\-O\-\_\-\-C\-R\-E\-A\-T\-E\-\_\-\-F\-I\-L\-E}~0x\-E0}\label{command_8h_ab103a2ad5707dd4ac205d673901faf16}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 C\-R\-E\-A\-T\-E F\-I\-L\-E Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a7e9ba7985f1ad81c44c963ce76a808d7}{\#define \hyperlink{command_8h_a7e9ba7985f1ad81c44c963ce76a808d7}{I\-S\-O\-\_\-\-D\-E\-L\-E\-T\-E\-\_\-\-F\-I\-L\-E}~0x\-E4}\label{command_8h_a7e9ba7985f1ad81c44c963ce76a808d7}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 D\-E\-L\-E\-T\-E F\-I\-L\-E Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a536b66cb51606b87a785cfb1c28c4d2c}{\#define \hyperlink{command_8h_a536b66cb51606b87a785cfb1c28c4d2c}{I\-S\-O\-\_\-\-V\-E\-R\-I\-F\-Y}~0x20}\label{command_8h_a536b66cb51606b87a785cfb1c28c4d2c}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 V\-E\-R\-I\-F\-Y Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a0a8c37fb75f0ae4f1ea07969192fd933}{\#define \hyperlink{command_8h_a0a8c37fb75f0ae4f1ea07969192fd933}{I\-S\-O\-\_\-\-E\-X\-T\-\_\-\-A\-U\-T\-H}~0x82}\label{command_8h_a0a8c37fb75f0ae4f1ea07969192fd933}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 E\-X\-T\-E\-R\-N\-A\-L\-\_\-\-A\-U\-T\-H Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a8a00d4205f23d82835358d3826ef43c8}{\#define \hyperlink{command_8h_a8a00d4205f23d82835358d3826ef43c8}{I\-S\-O\-\_\-\-I\-N\-T\-\_\-\-A\-U\-T\-H}~0x88}\label{command_8h_a8a00d4205f23d82835358d3826ef43c8}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 I\-N\-T\-E\-R\-N\-A\-L\-\_\-\-A\-U\-T\-H Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a155872a14cfa442f19e9c19c7469a4cd}{\#define \hyperlink{command_8h_a155872a14cfa442f19e9c19c7469a4cd}{I\-S\-O\-\_\-\-G\-E\-T\-\_\-\-C\-H\-A\-L\-L\-E\-N\-G\-E}~0x84}\label{command_8h_a155872a14cfa442f19e9c19c7469a4cd}
+
+\begin{DoxyCompactList}\small\item\em I\-N\-S byte\-: Get Challenge. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_afad5cae6acdc7d5c3b3bb818efa49139}{\#define \hyperlink{command_8h_afad5cae6acdc7d5c3b3bb818efa49139}{I\-S\-O\-\_\-\-L\-O\-A\-D}~0x\-D\-C}\label{command_8h_afad5cae6acdc7d5c3b3bb818efa49139}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 L\-O\-A\-D Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_ae06690caa58fcf64b990636bd2c82279}{\#define \hyperlink{command_8h_ae06690caa58fcf64b990636bd2c82279}{I\-S\-O\-\_\-\-I\-N\-S\-T\-A\-L\-L}~0x\-D\-C}\label{command_8h_ae06690caa58fcf64b990636bd2c82279}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 I\-N\-S\-T\-A\-L\-L Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_a93c88d8a82fa646cdf80bce8a8170e3f}{\#define \hyperlink{command_8h_a93c88d8a82fa646cdf80bce8a8170e3f}{I\-S\-O\-\_\-\-D\-E\-L\-E\-T\-E}~0x\-D\-C}\label{command_8h_a93c88d8a82fa646cdf80bce8a8170e3f}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 D\-E\-L\-E\-T\-E Instruction code. \end{DoxyCompactList}\item 
+\hypertarget{command_8h_ad1b8d33cb8f4feab7493577f1b88763e}{\#define \hyperlink{command_8h_ad1b8d33cb8f4feab7493577f1b88763e}{I\-S\-O\-\_\-\-G\-E\-T\-\_\-\-R\-E\-S\-P\-O\-N\-S\-E}~0x\-C0}\label{command_8h_ad1b8d33cb8f4feab7493577f1b88763e}
+
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 G\-E\-T R\-E\-S\-P\-O\-N\-S\-E Instruction code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{command_8h_ae80ba72ed08c11a9ce08702dadbf0fa3}{Command\-\_\-\-Interpreter} ()
+\begin{DoxyCompactList}\small\item\em Interpret command A\-P\-D\-U and call appropriate command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a574398462bb87959eb9df7586669843c}{Command\-\_\-\-Select} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 S\-E\-L\-E\-C\-T command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a8030cdbe0ad5cd8b36164147a2d4a3cc}{Command\-\_\-\-Read\-Binary} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 R\-E\-A\-D B\-I\-N\-A\-R\-Y command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_ab0d6acbb997b0f8fddaba16d2dfe92d6}{Command\-\_\-\-Update\-Binary} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 U\-P\-D\-A\-T\-E B\-I\-N\-A\-R\-Y command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_ac18c20afe38175573a6fc6e97b1516eb}{Command\-\_\-\-Read\-Record} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 R\-E\-A\-D R\-E\-C\-O\-R\-D command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a36a412a5d9fe2d9d84c018f484586660}{Command\-\_\-\-Update\-Record} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 U\-P\-D\-A\-T\-E R\-E\-C\-O\-R\-D command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a8f8bc96429f97294f5c70c9d3d25f55e}{Command\-\_\-\-Append\-Record} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 A\-P\-P\-E\-N\-D R\-E\-C\-O\-R\-D command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_ab0fffd055068cf5e95b16290678821f0}{Command\-\_\-\-Create\-File} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 C\-R\-E\-A\-T\-E F\-I\-L\-E command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a6f140f75193a0588351eb754a7a120be}{Command\-\_\-\-Delete\-File} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 D\-E\-L\-E\-T\-E F\-I\-L\-E command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a756c9456e6848064f619102fb09b1834}{Command\-\_\-\-Verify} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 V\-E\-R\-I\-F\-Y command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_af2b4480c24611cbf33f4d0846c3e29c5}{Command\-\_\-\-Internal\-Auth} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 I\-N\-T\-E\-R\-N\-A\-L\-\_\-\-A\-U\-T\-H command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_aaeea089a78452852cffa694d230783f4}{Command\-\_\-\-External\-Auth} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 I\-N\-T\-E\-R\-N\-A\-L\-\_\-\-A\-U\-T\-H command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a3b51f330868e469212300b68b462e5b1}{Command\-\_\-\-Get\-Challenge} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 G\-E\-T R\-E\-S\-P\-O\-N\-S\-E command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_ac7b94cbf3c426e64bf360955b4369623}{Command\-\_\-\-Load} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 L\-O\-A\-D command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_ad36cf4c26f564e47e18383d6c0b4b623}{Command\-\_\-\-Install} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 I\-N\-S\-T\-A\-L\-L command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_a8b1b052eccdc8baab4271b9bbba69834}{Command\-\_\-\-Delete} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 D\-E\-L\-E\-T\-E command handler. \end{DoxyCompactList}\item 
+void \hyperlink{command_8h_aef2b8cfce823e4a4a1c253d2f9008ee4}{Command\-\_\-\-Get\-Response} ()
+\begin{DoxyCompactList}\small\item\em I\-S\-O 7816-\/4 G\-E\-T R\-E\-S\-P\-O\-N\-S\-E command handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for command interpreter and I\-S\-O command handler. \begin{DoxyAuthor}{Author}
+Ricky Hariady (\href{mailto:ricky.hariady@enter.web.id}{\tt ricky.\-hariady@enter.\-web.\-id})
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+7/10/2013 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{command_8h_a8f8bc96429f97294f5c70c9d3d25f55e}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Append\-Record@{Command\-\_\-\-Append\-Record}}
+\index{Command\-\_\-\-Append\-Record@{Command\-\_\-\-Append\-Record}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Append\-Record}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Append\-Record (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a8f8bc96429f97294f5c70c9d3d25f55e}
+
+
+I\-S\-O 7816-\/4 A\-P\-P\-E\-N\-D R\-E\-C\-O\-R\-D command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_ab0fffd055068cf5e95b16290678821f0}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Create\-File@{Command\-\_\-\-Create\-File}}
+\index{Command\-\_\-\-Create\-File@{Command\-\_\-\-Create\-File}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Create\-File}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Create\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_ab0fffd055068cf5e95b16290678821f0}
+
+
+I\-S\-O 7816-\/4 C\-R\-E\-A\-T\-E F\-I\-L\-E command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_a8b1b052eccdc8baab4271b9bbba69834}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Delete@{Command\-\_\-\-Delete}}
+\index{Command\-\_\-\-Delete@{Command\-\_\-\-Delete}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Delete}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Delete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a8b1b052eccdc8baab4271b9bbba69834}
+
+
+I\-S\-O 7816-\/4 D\-E\-L\-E\-T\-E command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_a6f140f75193a0588351eb754a7a120be}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Delete\-File@{Command\-\_\-\-Delete\-File}}
+\index{Command\-\_\-\-Delete\-File@{Command\-\_\-\-Delete\-File}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Delete\-File}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Delete\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a6f140f75193a0588351eb754a7a120be}
+
+
+I\-S\-O 7816-\/4 D\-E\-L\-E\-T\-E F\-I\-L\-E command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_aaeea089a78452852cffa694d230783f4}{\index{command.\-h@{command.\-h}!Command\-\_\-\-External\-Auth@{Command\-\_\-\-External\-Auth}}
+\index{Command\-\_\-\-External\-Auth@{Command\-\_\-\-External\-Auth}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-External\-Auth}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-External\-Auth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_aaeea089a78452852cffa694d230783f4}
+
+
+I\-S\-O 7816-\/4 I\-N\-T\-E\-R\-N\-A\-L\-\_\-\-A\-U\-T\-H command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_a3b51f330868e469212300b68b462e5b1}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Get\-Challenge@{Command\-\_\-\-Get\-Challenge}}
+\index{Command\-\_\-\-Get\-Challenge@{Command\-\_\-\-Get\-Challenge}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Get\-Challenge}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Get\-Challenge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a3b51f330868e469212300b68b462e5b1}
+
+
+I\-S\-O 7816-\/4 G\-E\-T R\-E\-S\-P\-O\-N\-S\-E command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_aef2b8cfce823e4a4a1c253d2f9008ee4}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Get\-Response@{Command\-\_\-\-Get\-Response}}
+\index{Command\-\_\-\-Get\-Response@{Command\-\_\-\-Get\-Response}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Get\-Response}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Get\-Response (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_aef2b8cfce823e4a4a1c253d2f9008ee4}
+
+
+I\-S\-O 7816-\/4 G\-E\-T R\-E\-S\-P\-O\-N\-S\-E command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_ad36cf4c26f564e47e18383d6c0b4b623}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Install@{Command\-\_\-\-Install}}
+\index{Command\-\_\-\-Install@{Command\-\_\-\-Install}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Install}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Install (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_ad36cf4c26f564e47e18383d6c0b4b623}
+
+
+I\-S\-O 7816-\/4 I\-N\-S\-T\-A\-L\-L command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_af2b4480c24611cbf33f4d0846c3e29c5}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Internal\-Auth@{Command\-\_\-\-Internal\-Auth}}
+\index{Command\-\_\-\-Internal\-Auth@{Command\-\_\-\-Internal\-Auth}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Internal\-Auth}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Internal\-Auth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_af2b4480c24611cbf33f4d0846c3e29c5}
+
+
+I\-S\-O 7816-\/4 I\-N\-T\-E\-R\-N\-A\-L\-\_\-\-A\-U\-T\-H command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_ae80ba72ed08c11a9ce08702dadbf0fa3}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Interpreter@{Command\-\_\-\-Interpreter}}
+\index{Command\-\_\-\-Interpreter@{Command\-\_\-\-Interpreter}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Interpreter}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Interpreter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_ae80ba72ed08c11a9ce08702dadbf0fa3}
+
+
+Interpret command A\-P\-D\-U and call appropriate command handler. 
+
+Call by main loop when finish receiving command A\-P\-D\-U header,
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_ac7b94cbf3c426e64bf360955b4369623}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Load@{Command\-\_\-\-Load}}
+\index{Command\-\_\-\-Load@{Command\-\_\-\-Load}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Load}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_ac7b94cbf3c426e64bf360955b4369623}
+
+
+I\-S\-O 7816-\/4 L\-O\-A\-D command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_a8030cdbe0ad5cd8b36164147a2d4a3cc}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Read\-Binary@{Command\-\_\-\-Read\-Binary}}
+\index{Command\-\_\-\-Read\-Binary@{Command\-\_\-\-Read\-Binary}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Read\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Read\-Binary (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a8030cdbe0ad5cd8b36164147a2d4a3cc}
+
+
+I\-S\-O 7816-\/4 R\-E\-A\-D B\-I\-N\-A\-R\-Y command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_ac18c20afe38175573a6fc6e97b1516eb}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Read\-Record@{Command\-\_\-\-Read\-Record}}
+\index{Command\-\_\-\-Read\-Record@{Command\-\_\-\-Read\-Record}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Read\-Record}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Read\-Record (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_ac18c20afe38175573a6fc6e97b1516eb}
+
+
+I\-S\-O 7816-\/4 R\-E\-A\-D R\-E\-C\-O\-R\-D command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_a574398462bb87959eb9df7586669843c}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Select@{Command\-\_\-\-Select}}
+\index{Command\-\_\-\-Select@{Command\-\_\-\-Select}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Select}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Select (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a574398462bb87959eb9df7586669843c}
+
+
+I\-S\-O 7816-\/4 S\-E\-L\-E\-C\-T command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and set corresponding response (status word)
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_ab0d6acbb997b0f8fddaba16d2dfe92d6}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Update\-Binary@{Command\-\_\-\-Update\-Binary}}
+\index{Command\-\_\-\-Update\-Binary@{Command\-\_\-\-Update\-Binary}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Update\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Update\-Binary (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_ab0d6acbb997b0f8fddaba16d2dfe92d6}
+
+
+I\-S\-O 7816-\/4 U\-P\-D\-A\-T\-E B\-I\-N\-A\-R\-Y command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_a36a412a5d9fe2d9d84c018f484586660}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Update\-Record@{Command\-\_\-\-Update\-Record}}
+\index{Command\-\_\-\-Update\-Record@{Command\-\_\-\-Update\-Record}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Update\-Record}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Update\-Record (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a36a412a5d9fe2d9d84c018f484586660}
+
+
+I\-S\-O 7816-\/4 U\-P\-D\-A\-T\-E R\-E\-C\-O\-R\-D command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{command_8h_a756c9456e6848064f619102fb09b1834}{\index{command.\-h@{command.\-h}!Command\-\_\-\-Verify@{Command\-\_\-\-Verify}}
+\index{Command\-\_\-\-Verify@{Command\-\_\-\-Verify}!command.h@{command.\-h}}
+\subsubsection[{Command\-\_\-\-Verify}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-\_\-\-Verify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{command_8h_a756c9456e6848064f619102fb09b1834}
+
+
+I\-S\-O 7816-\/4 V\-E\-R\-I\-F\-Y command handler. 
+
+Call by Command\-Interpreter(). Executed the selected command and return the response type and data back to apdu\-\_\-res
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

@@ -1,0 +1,78 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+check_cla [label="Check CLA?", shape="diamond", fixedsize=true, width=1.5]
+check_ins [label="INS?", shape="diamond", fixedsize=true, width=1.5]
+select [label="Command\nSelect", shape="box", fixedsize=true, width=1.5]
+read [label="Command\nReadBinary", shape="box", fixedsize=true, width=1.5]
+update [label="Command\nUpdateBinary", shape="box", fixedsize=true, width=1.5]
+etc [label="Command\nHandler", shape="box3d", fixedsize=true, width=1.5]
+
+ins_not_supported [label="INS Not Supported", shape="box", fixedsize=true, width=1.5]
+
+cla_not_supported [label="CLA Not Supported", shape="box", fixedsize=true, width=1.5]
+
+end [label="End", shape="oval"];
+
+// relations
+start -> check_cla
+check_cla -> check_ins [label="OK"]
+
+check_ins -> select [label="0xA4"]
+d0b [width=0, shape="point", label="."];
+select -> d0b [arrowhead=none]
+
+d1a [width=0, shape="point", label="."];
+d1b [width=0, shape="point", label="."];
+{rank=same; check_ins -> d1a [arrowhead=none];}
+d1a -> read [label="0xB0"]
+read -> d1b [arrowhead=none]
+{rank=same; d0b -> d1b [dir=back]}
+
+d2a [width=0, shape="point", label="."];
+d2b [width=0, shape="point", label="."];
+{rank=same; d1a -> d2a [arrowhead=none];}
+d2a -> update [label="0xD6"]
+update -> d2b [arrowhead=none]
+{rank=same; d1b -> d2b [dir=back, arrowtail=none]}
+
+d3a [width=0, shape="point", label="."];
+d3b [width=0, shape="point", label="."];
+{rank=same; d2a -> d3a [arrowhead=none];}
+d3a -> etc [label="0xXX", style=dashed]
+etc -> d3b [arrowhead=none, style=dashed]
+{rank=same; d2b -> d3b [dir=back, arrowtail=none]}
+
+d4a [width=0, shape="point", label="."];
+d4b [width=0, shape="point", label="."];
+{rank=same; d3a -> d4a [arrowhead=none];}
+d4a -> ins_not_supported [label="not found"]
+ins_not_supported -> d4b [arrowhead=none]
+{rank=same; d3b -> d4b [dir=back, arrowtail=none, style=dashed]}
+
+c0b [width=0, shape="point", label="."];
+d0b -> c0b [arrowhead=none]
+
+c1a [width=0, shape="point", label="."];
+c1b [width=0, shape="point", label="."];
+{rank=same; check_cla -> c1a [label="Not OK", arrowhead=none];}
+c1a -> cla_not_supported
+cla_not_supported -> c1b [arrowhead=none]
+{rank=same; c0b -> c1b [dir=back]}
+
+c0b -> end
+
+}

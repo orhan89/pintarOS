@@ -1,0 +1,24 @@
+digraph Flow_SetCurrentFile {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+set_currentfile [label="CurrentFile <- New File", shape="box", fixedsize=true, width=2.5]
+end [label="End", shape="oval"];
+
+// relations
+start -> set_currentfile
+set_currentfile -> end
+
+}

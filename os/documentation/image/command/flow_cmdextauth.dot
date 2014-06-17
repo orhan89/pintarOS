@@ -1,0 +1,60 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+
+getencrypted [label="Transmission\nGet Encrypted Challenge", shape="box", fixedsize=true, width=1.5]
+
+state_verifyauth [label="State Verify Key", shape="box", fixedsize=true, width=1.5]
+success [label="Status?", shape="diamond", fixedsize=true, width=1.5]
+{
+rank=same;
+set_sw1 [label="Set Response\nOK", shape="box", fixedsize=true, width=1.5]
+set_sw2 [label="Set Response\nBlocked", shape="box", fixedsize=true, width=1.5]
+set_sw3 [label="Set Response\nCounter", shape="box", fixedsize=true, width=1.5]
+}
+
+end [label="End", shape="oval"];
+
+// relations
+start -> getencrypted
+getencrypted -> state_verifyauth
+state_verifyauth -> success
+
+d0b [width=0, shape="point", label="."];
+success -> set_sw1 [label="Yes"]
+set_sw1 -> d0b [arrowhead=none]
+
+d1a [width=0, shape="point", label="."];
+d1b [width=0, shape="point", label="."];
+{rank=same; success -> d1a [arrowhead=none];}
+d1a -> set_sw2 [label="Blocked"]
+set_sw2 -> d1b [arrowhead=none]
+
+d2a [width=0, shape="point", label="."];
+d2b [width=0, shape="point", label="."];
+{rank=same; d1a -> d2a [arrowhead=none];}
+d2a -> set_sw3 [label="Wrong"]
+set_sw3 -> d2b [arrowhead=none]
+
+{
+rank=same
+d0b -> d1b [dir=back]
+d1b -> d2b [dir=back,arrowtail=none]
+}
+
+d0b -> end
+
+}

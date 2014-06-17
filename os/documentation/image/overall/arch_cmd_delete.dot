@@ -1,0 +1,34 @@
+digraph Command_Select {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header\n(from Transmission)"];
+get_data [label="Transmission\nGetData", shape="circle", fixedsize=true, width=1];
+delete [label="Command\nDelete", shape="circle", fixedsize=true, width=1]; 
+fs_check [label="FS\nCheckAC", shape="circle", fixedsize=true, width=1];
+fs_delete [label="FS\nDelete File", shape="circle", fixedsize=true, width=1];
+set_sw [label="Response\nSetSW", shape="circle", fixedsize=true, width=1];
+
+// relations
+header -> delete
+get_data -> delete [label="Command Data"]
+delete -> fs_check [label="operation (DELETE)"]
+fs_check -> delete [label="access right"]
+delete -> fs_delete [label="fid"]
+fs_delete -> delete [label="result status"]
+delete -> set_sw [label="Response Type"]
+
+}

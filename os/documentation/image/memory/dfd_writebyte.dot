@@ -1,0 +1,32 @@
+digraph DFD_WriteByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+config [label="INTERNAL_EEPROM_SIZE"]
+hal_writeinternal [label="HAL Write\nInternal", shape="circle", fixedsize=true, width=1];
+hal_writeexternal [label="HAL Write\nExternal", shape="circle", fixedsize=true, width=1];
+writebyte [label="Memory\nWrite Byte", shape="circle", fixedsize=true, width=1];
+data [label="Data to write"]
+address [label="memory address\nto be writen"]
+
+// relations
+config -> writebyte
+data -> writebyte;
+address -> writebyte;
+writebyte -> hal_writeinternal [label="databyte, address"]
+writebyte -> hal_writeexternal [label="databyte, address"]
+
+}

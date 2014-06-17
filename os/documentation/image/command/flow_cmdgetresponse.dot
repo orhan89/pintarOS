@@ -1,0 +1,47 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+
+check_length [label="P3 > Response Length ?", shape="diamond", fixedsize=true, width=2]
+
+senddata [label="Transmission\nSend Response\nmin(P3, Response Length)", shape="box", fixedsize=true, width=1.6]
+
+{
+rank=same;
+set_sw1 [label="Set Response\nOK", shape="box", fixedsize=true, width=1.5]
+set_sw2 [label="Set Response\nWrong Length", shape="box", fixedsize=true, width=1.5]
+}
+
+end [label="End", shape="oval"];
+
+// relations
+start -> check_length
+check_length -> senddata [label=No]
+senddata -> set_sw1
+c0b [width=0, shape="point", label="."];
+set_sw1 -> c0b [arrowhead=none]
+
+c1a [width=0, shape="point", label="."];
+c1b [width=0, shape="point", label="."];
+
+{rank=same; check_length -> c1a [label=Yes,arrowhead=none];}
+c1a -> set_sw2
+set_sw2 -> c1b [arrowhead=none]
+
+{rank=same; c0b -> c1b [dir=back,arrowtail=none]}
+c0b -> end
+
+}

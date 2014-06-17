@@ -1,0 +1,33 @@
+digraph Command_ReadBinary {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header\n(from Transmission)"];
+get_io [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1];
+update [label="Command\nUpdateBinary", shape="circle", fixedsize=true, width=1]; 
+fs_check [label="FS\nCheckAC", shape="circle", fixedsize=true, width=1];
+fs_access [label="FS\nAccessBinary", shape="circle", fixedsize=true, width=1];
+set_sw [label="Response\nSetSW", shape="circle", fixedsize=true, width=1];
+
+// relations
+header -> update
+get_io -> update [label="Command data"]
+update -> fs_check [label="operation (UPDATE)"]
+fs_check -> update [label="access right"]
+update -> fs_access [label="operation (UPDATE),\noffset,\nlength,\nFile Data"]
+update -> set_sw [label="Response Type"]
+
+}

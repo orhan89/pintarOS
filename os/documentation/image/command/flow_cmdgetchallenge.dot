@@ -1,0 +1,35 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+
+state_getchallenge [label="State Get Challenge", shape="box", fixedsize=true, width=1.5]
+
+senddata [label="Transmission\nSend Challenge", shape="box", fixedsize=true, width=1.5]
+
+{
+rank=same;
+set_sw1 [label="Set Response\nNormal", shape="box", fixedsize=true, width=1.5]
+}
+
+end [label="End", shape="oval"];
+
+// relations
+start -> state_getchallenge
+state_getchallenge -> senddata
+senddata -> set_sw1
+set_sw1 -> end
+
+}

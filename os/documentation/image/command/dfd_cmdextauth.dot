@@ -1,0 +1,45 @@
+digraph DFD_CommandInterpreter {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+
+extauth [label="Command Handler\nExternal Auth", shape="circle", fixedsize=true, width=1.2];
+
+getdata [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1.2]
+
+state_verifyauth [label="State\nVerify Auth", shape="circle", fixedsize=true, width=1.2]
+
+encrypted_challenge [label="Encrypted Challenge"]
+
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+sw [label="SW"]
+
+
+// relations
+header -> extauth
+
+getdata -> encrypted_challenge
+
+encrypted_challenge -> state_verifyauth
+
+state_verifyauth -> extauth [label=status]
+
+extauth -> set_sw
+
+set_sw -> sw
+
+}

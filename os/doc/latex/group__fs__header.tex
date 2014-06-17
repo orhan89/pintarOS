@@ -1,0 +1,63 @@
+\hypertarget{group__fs__header}{\section{File Header Structure}
+\label{group__fs__header}\index{File Header Structure@{File Header Structure}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__fs__header_ga499f64a7727690bf0d5281e16539a95a}{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-T\-A\-G\-\_\-\-S\-I\-Z\-E}~1
+\item 
+\#define \hyperlink{group__fs__header_ga9ebf8374931fc290233a3fd175a1593c}{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-F\-I\-D\-\_\-\-S\-I\-Z\-E}~2
+\item 
+\#define \hyperlink{group__fs__header_gae31c4ce686bea764e72c6ba0f49ed672}{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-S\-I\-Z\-E}~2
+\item 
+\#define \hyperlink{group__fs__header_gaa8acbe7b4b0c8c5e9213afa90b528142}{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-C\-H\-I\-L\-D\-\_\-\-S\-I\-Z\-E}~2
+\item 
+\#define \hyperlink{group__fs__header_ga7e470e354b3fa15e3880ecdb8784c6a2}{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-B\-L\-I\-N\-G\-\_\-\-S\-I\-Z\-E}~2
+\item 
+\#define \hyperlink{group__fs__header_ga4aecac06373354147de5dfec4ba14ca9}{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}~2
+\item 
+\#define \hyperlink{group__fs__header_ga1031facaa31a457c28f86cf221f16bc0}{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-Z\-E}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File Header Structure
+
+pintar\-O\-S file system consist of three section \-: Block Allocation Table, File Table and File Body All value given as byte 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__fs__header_ga4aecac06373354147de5dfec4ba14ca9}{\index{File Header Structure@{File Header Structure}!F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}!File Header Structure@{File Header Structure}}
+\subsubsection[{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E~2}}\label{group__fs__header_ga4aecac06373354147de5dfec4ba14ca9}
+size of pointer to body (in byte) \hypertarget{group__fs__header_gaa8acbe7b4b0c8c5e9213afa90b528142}{\index{File Header Structure@{File Header Structure}!F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-C\-H\-I\-L\-D\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-C\-H\-I\-L\-D\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-C\-H\-I\-L\-D\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-C\-H\-I\-L\-D\-\_\-\-S\-I\-Z\-E}!File Header Structure@{File Header Structure}}
+\subsubsection[{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-C\-H\-I\-L\-D\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-C\-H\-I\-L\-D\-\_\-\-S\-I\-Z\-E~2}}\label{group__fs__header_gaa8acbe7b4b0c8c5e9213afa90b528142}
+size of child section (in byte) \hypertarget{group__fs__header_ga9ebf8374931fc290233a3fd175a1593c}{\index{File Header Structure@{File Header Structure}!F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-F\-I\-D\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-F\-I\-D\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-F\-I\-D\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-F\-I\-D\-\_\-\-S\-I\-Z\-E}!File Header Structure@{File Header Structure}}
+\subsubsection[{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-F\-I\-D\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-F\-I\-D\-\_\-\-S\-I\-Z\-E~2}}\label{group__fs__header_ga9ebf8374931fc290233a3fd175a1593c}
+size of F\-I\-D section (in byte) \hypertarget{group__fs__header_gae31c4ce686bea764e72c6ba0f49ed672}{\index{File Header Structure@{File Header Structure}!F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-S\-I\-Z\-E}!File Header Structure@{File Header Structure}}
+\subsubsection[{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-S\-I\-Z\-E~2}}\label{group__fs__header_gae31c4ce686bea764e72c6ba0f49ed672}
+size of parent section (in byte) \hypertarget{group__fs__header_ga7e470e354b3fa15e3880ecdb8784c6a2}{\index{File Header Structure@{File Header Structure}!F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-B\-L\-I\-N\-G\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-B\-L\-I\-N\-G\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-B\-L\-I\-N\-G\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-B\-L\-I\-N\-G\-\_\-\-S\-I\-Z\-E}!File Header Structure@{File Header Structure}}
+\subsubsection[{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-B\-L\-I\-N\-G\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-B\-L\-I\-N\-G\-\_\-\-S\-I\-Z\-E~2}}\label{group__fs__header_ga7e470e354b3fa15e3880ecdb8784c6a2}
+size of sibling section (in byte) \hypertarget{group__fs__header_ga1031facaa31a457c28f86cf221f16bc0}{\index{File Header Structure@{File Header Structure}!F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-Z\-E}!File Header Structure@{File Header Structure}}
+\subsubsection[{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-S\-I\-Z\-E}}\label{group__fs__header_ga1031facaa31a457c28f86cf221f16bc0}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\hyperlink{group__fs__header_ga499f64a7727690bf0d5281e16539a95a}{FS\_HEADER\_TAG\_SIZE} + \hyperlink{group__fs__header_ga9ebf8374931fc290233a3fd175a1593c}{\(\backslash\)}
+\hyperlink{group__fs__header_ga9ebf8374931fc290233a3fd175a1593c}{                           FS\_HEADER\_FID\_SIZE} + 
+      \hyperlink{group__fs__header_gae31c4ce686bea764e72c6ba0f49ed672}{\(\backslash\)}
+\hyperlink{group__fs__header_gae31c4ce686bea764e72c6ba0f49ed672}{                           FS\_HEADER\_PARENT\_SIZE} + 
+      \hyperlink{group__fs__header_gaa8acbe7b4b0c8c5e9213afa90b528142}{\(\backslash\)}
+\hyperlink{group__fs__header_gaa8acbe7b4b0c8c5e9213afa90b528142}{                           FS\_HEADER\_CHILD\_SIZE} + 
+      \hyperlink{group__fs__header_ga7e470e354b3fa15e3880ecdb8784c6a2}{\(\backslash\)}
+\hyperlink{group__fs__header_ga7e470e354b3fa15e3880ecdb8784c6a2}{                           FS\_HEADER\_SIBLING\_SIZE} + 
+      \hyperlink{group__fs__header_ga4aecac06373354147de5dfec4ba14ca9}{\(\backslash\)}
+\hyperlink{group__fs__header_ga4aecac06373354147de5dfec4ba14ca9}{                           FS\_HEADER\_BODY\_SIZE}
+\end{DoxyCode}
+total size of file header \hypertarget{group__fs__header_ga499f64a7727690bf0d5281e16539a95a}{\index{File Header Structure@{File Header Structure}!F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-T\-A\-G\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-T\-A\-G\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-T\-A\-G\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-T\-A\-G\-\_\-\-S\-I\-Z\-E}!File Header Structure@{File Header Structure}}
+\subsubsection[{F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-T\-A\-G\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-H\-E\-A\-D\-E\-R\-\_\-\-T\-A\-G\-\_\-\-S\-I\-Z\-E~1}}\label{group__fs__header_ga499f64a7727690bf0d5281e16539a95a}
+size of tag section (in byte) 

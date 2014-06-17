@@ -1,0 +1,329 @@
+\documentclass[a4paper, 12pt]{report}
+\pagestyle{headings}
+
+\usepackage{multirow}
+\usepackage{array}
+
+\usepackage{graphicx}
+\graphicspath{ {image} }
+
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{nameref}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{frame=tb,
+  language=c,
+  frame=none,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  backgroundcolor=\color{backcolour},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  captionpos=b,
+}
+
+\newcounter{magicrownumbers}
+
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+
+\newenvironment{mydescription}[1]
+  {\begin{list}{}%
+   {\renewcommand\makelabel[1]{##1:\hfill}%
+   \settowidth\labelwidth{\makelabel{#1}}%
+   \setlength\leftmargin{\labelwidth}
+   \addtolength\leftmargin{\labelsep}}}
+  {\end{list}}
+
+%\renewcommand{\descriptionlabel}[1]{\hspace{1cm}\textsf{#1}\hfill}
+
+\begin{document}
+\chapter{Sistem Operasi Smartcard}
+\label{chap_introduction}
+
+\section{Pengenalan SmartCard}
+
+Smart Card merupakan sebuah kartu plastik yang ditanamkan sebuah chip komputer dan dapat digunanakan utuk penyimpanan dan pertukaran data \cite{SCManagement:mohandes}. Saat ini, smartcard digunakan secara luas pada pemerintahan, perbankan, telekomunikasi, transportasi, hiburan, dll. Smartcard menjadi populer karena menyediakan mobilitas, robustness, serta keamanan bagi penggunanya. Ketahanannya terhadap kerusakan juga menjadikannya sebagai pilihan dalam perangkat komputasi bergerak \cite{SCOSPastPresentFuture:deville}.
+
+Smartcard pada dasarnya merupakan sebuah sistem komputer lengkap, meskipun pada umumnya memiliki kemampuan komputasi yang terbatas. Smartcard memiliki microprosesor, sistem memory, serta IO untuk berkomunikasi dengan perangkat luar. Beberapa smartcard bahkan memiliki co-processor untuk membantu mikroprosesor utama dalam mengerjakan fungsi-fungsi khusus, seperti kriptografi. \cite{SCHandbook}. 
+
+Perbedaan yang paling mendasar antara smartcard dengan komputer biasa seperti PC adalah bahwa smartcard tidak memiliki human-machine interface sendiri sehingga tidak dapat berinteraksi langsung dengan pengguna. Interaksi dengan smartcard hanya dapat dilakukan melalui komputer lainnya yang bertindak sebagai host menggunakan perangkat khusus yang disebut card reader. Komputer yang bertindak sebagai host ini dalam istilah smartcard dinamakan juga sebagai terminal Terminal.
+
+Terminal berkomunikasi dengan smartcard melalui protokol komunikasi khusus. Dua protokol komunikasi yang paling banyak digunakan untuk keperluan ini adalah protokol T=0 dan T=1 \cite{SWHWIssue:selimis}. Komunikasi antara terminal dengan smartcard sendiri bersifat master dan slave \cite{SCOS:yuqiang}. Komunikasi diinisiasi oleh terminal dengan mengirimkan pesan Command ke smartcard, dan smartcard membalas dengan mengirimkan pesan Response kembali ke terminal.
+
+\subsection{Penggunaan Smartcard}
+
+Smartcard telah digunakan pada berbagai bidang yang membutuhkan penyimpanan data yang ringkas.
+
+\begin{itemize}
+
+\item Administrasi Kependudukan
+
+Smartcard telah digunakan sebagai kartu identitas pada banyak negara. Salah satu negara yang mengadopsi smartcard sebagai kartu identitas adalah Indonesia melalui kartu e-KTP. 
+
+Selain kartu identitas, smartcard juga digunakan pada Passport oleh beberapa negara termasuk Indonesia (khusus wilayah Batam).
+
+Pada beberapa negara, smartcard digunakan sebagai kartu izin mengemudi. Negara yang telah mengadopsi sistem ini misalnya Argentina.
+
+\item Keuangan
+
+Smartcard telah sejak lama digunakan sebagai media untuk melakukan transaksi perbankan (pembayaran) melalui kartu debit/kredit. 
+
+Selain itu juga terdapat pada dompet elektronik yang dapat digunakan pada beberapa toko (merchant) atau \emph{vending machine}. Untuk dompet elektronik ini tidak diperlukan sama sekali sambungan ke bank. 
+
+\item Telekomunikasi
+
+Sebagian besar telepon selular menggunakan smartcard untuk identifikasi pengguna melalui k
+artu SIM.
+
+\item Transportasi
+
+Smartcard banyak digunakan pada sistem transportasi massal diseluruh dunia sebagai media pembayaran. Layanan TransJakarta dan KRL Commuter Jabodetabek telah mulai mengadopsi sistem berbasi smartcard ini.
+
+\item Pendidikan
+
+Smartcard telah digunakan pada beberapa sekolah/perguruan tinggi untuk absensi siswa, sekaligus untuk media pembayaran pada kantin, transportasi, serta layanan umum lainnya. Pemerintahan Kota Jakarta telah menerapkan Kartu Jakarta Pintar sebagai media penyalur bantuan bagi siswa.
+
+\item Kesehatan
+
+Smartcard juga telah digunakan pada bidang kesehatan untuk menyimpan riwayat kesehatan pasien, menggantikan model konvensional menggunakan kertas, menjadikannya lebih ringkas.
+
+\item Perkantoran/Hotel
+
+Smartcard telah banyak diterapkan sebagai kendali akses pada ruang-ruang tertentu pada gedung perkantoran ataupun pada kamar-kamar di Hotel.
+
+\end{itemize}
+
+\subsection{Standarisasi Smartcard}
+
+Penggunaan smartcard yang terus berkembang dan semakin besar mengharuskan adanya standar yang mengatur penggunaan dan metode-metode yang digunakan pada smartcard. Beberapa standard yang mengatur hal ini diantaranya:
+
+\begin{itemize}
+
+\item ISO/IEC 7810 
+
+Mengatur karakteristik fisik dari kartu identifikasi, yang digunakan juga pada smartcard
+
+\item ISO 7816
+
+Mengatur spesifikasi kartu identitas elektronik dengan \emph{contact}. Standard ini terdiri dari sejumlah seri, dimulai dari 7816-1 hingga 7816-15. Penjelasan dari setiap seri ini diberikan pada Tabel \ref{tabel-standard-7816}.
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c |}
+    \hline
+    \bf{Seri} & \bf{Keterangan} \\
+    \hline
+    7816-1 & Karakteristik fisik \\
+    7816-2 & Dimensi dan lokasi \emph{contact} \\
+    7816-3 & Antarmuka elektrik dan protokol transmisi \\
+    7816-4 & Organisasi, Keamanan dan Command untuk pertukaran \\
+    7816-5 & Registrasi Penyedia Aplikasi \\
+    7816-6 & Elemen data antar-industri untuk pertukaran \\
+    7816-7 & Command antar-industri untuk Structured Card Query Language (SCQL) \\
+    7816-8 & Command untuk operasi keamanan/kerahasiaan \\
+    7816-9 & Command untuk manajemen kartu \\
+    7816-10 & Sinyal elektrik dan ATR untuk kartu synchronous \\
+    7816-11 & Verifikasi personal melalui metode biometrik \\
+    7816-12 & Antarmuka elektrik dan prosedur operasi untuk USB \\
+    7816-13 & Command untuk manajemen aplikasi \\
+    7816-15 & Aplikasi Kriptografi Informasi \\
+    \hline
+  \end{tabular}
+  \caption{Seri-seri Standard ISO/IEC 7816}
+  \label{tabel-standard-7816}
+\end{table}
+
+\item ISO/IEC 14443
+
+Mengatur spesifikasi kartu identitas elektronik tanpa \emph{contact} atau \emph{proximity card}. Standard ini terdiri dari sejumlah seri, dimulai dari 14443-1 hingga 14443-4. Penjelasan dari setiap seri ini diberikan pada Tabel \ref{tabel-standard-14443}.
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c |}
+    \hline
+    \bf{Seri} & \bf{Keterangan} \\
+    \hline
+    14443-1 & Karakteristik fisik \\
+    14443-2 & Daya Frekuensi Radio dan antarmuka sinyal \\
+    14443-3 & Initialisasi dan anti-\emph{collision} \\
+    14443-4 & Protokol Transmisi \\
+    \hline
+  \end{tabular}
+  \caption{Seri-seri Standard ISO/IEC 14443}
+  \label{tabel-standard-14443}
+\end{table}
+
+\item GSM 11.11-11-12
+
+Digunakan sistem telekomunikasi selular digital di Eropa, namun digunakan juga dibelahan dunia lainnya. 
+
+\item Europay, MasterCard, and Visa (EMV)
+
+Mengatur penggunaan smartcard untuk sistem pembayaran
+
+\item International Airline Transportation Association (IATA) Resolution 791
+
+Mengatur penggunaan smartcard sebagai tiket elektronik
+
+\item PC/SC
+
+Mengatur spesifikasi hubungan antara smartcard reader dengan PC yang menjalankan sistem operasi windows
+
+\item G7
+
+Dikeluarkan oleh International Health Organization, mengatur penggunaan smartcard pada bidang kesehatan.
+
+\end{itemize}
+
+\section{Pengenalan Sistem Operasi SmartCard}
+
+Sebagaimana pada sistem komputer lainnya, smartcard membutuhkan perangkat lunak untuk dapat bekerja. Tanpanya perangkat lunak, smartcard hanyalah sepotong plastik dengan mikroprosesor yang tertanam didalamnya. 
+
+Meskipun tidak seperti sistem operasi lengkap layaknya Windows ataupun Unix, sistem operasi smartcard merupakan bagian yang sangat penting karena sistem operasi ini akan mengendalikan operasi-operasi dasar dari smartcard dan menjamin smartcard melaksanakan fungsinya dengan benar.
+
+
+\subsection{Trend dan Perkembangan Sistem Operasi Smartcard}
+
+Pada awal pengembangan smartcard di tahun 1980-an, perangkat lunak ini ditanamkan langsung kedalam EEPROM dari smartcard dan proses ini berlangsung pada saat pembuatan semikonduktor. Akibatnya, menjadi sulit (atau bahkan tidak mungkin sama sekali) melakukan perbaikan atau pengembangan apabila ditemukan kesalahan (bugs) atau kerentanan (vulnerability) pada perangkat lunak. Tidak ada pemisahan antara aplikasi dengan sistem operasi sehingga dibutuhkan perangkat lunak khusus untuk setiap aplikasi. Hal ini menyebabkan proses pengembangan aplikasi menjadi sulit dan tidak efisien.
+
+\subsection{Fungsi-fungsi utama sistem operasi smartcard}
+\label{fungsi-utama-cos}
+
+Secara umum, sistem operasi smart card bertanggung jawab dalam menangani \cite{SCHandbook}:
+
+\begin{itemize}
+\item mengirim dan menerima data dari dan ke smartcard.
+\item mengendalikan eksekusi command
+\item mengelola file
+\item mengelola dan mengeksekusi fungsi-fungsi kriptografi
+\item mengelola dan mengeksekusi kode program  
+\item mengelola penggunaan kartu
+\end{itemize}
+
+lebih jauh lagi, sistem operasi smart card juga bertanggung jawab pada kendali akses, menjamin integritas data, serta pengelolaan kartu.
+
+\subsection{Jenis-jenis smartcard berdasarkan command sets}
+
+Berdasarkan command sets yang digunakan, sistem operasi smartcard dapat dibagi menjadi dua jenis, yaitu:
+
+\begin{itemize}
+\item sistem operasi smartcard penggunaan umum (general purpose), menyediakan sets command yang umum
+\item sistem operasi smartcard penggunaan khusus (dedicated), dengan command yang dirancang khusus hanya untuk suatu aplikasi tertentu
+\end{itemize}
+
+\subsection{Tantangan dalam perancangan sistem operasi smartcard}
+
+Dengan keterbatasan yang dimiliki smartcard, berarti sistem operasinya juga harus dioptimasi sesuai dengan penggunaannya. 
+
+\begin{itemize}
+
+\item Ruang Penyimpanan (memory) yang kecil
+
+Smartcard umumnya memiliki ruang penyimpanan (memory) yang kecil. Karenanya, sistem operasi untuk smart card harus dirancang se-efisien mungkin untuk menghasilkan kode program dengan ukuran (footprint) yang kecil. Pada smartcard generasi awal, memory ini sangat kecil, hingga sistem operasi-nya harus ditulis dalam bahasa Assembly. Saat ini, memory smartcard telah semakin besar, dan memungkinkan penggunaan bahasa level yang lebih tinggi seperti C atau bahkan Java. Sistem operasi smart card terbaru saat ini umumnya diimplementasikan dalam bahasa C, dan bahasa ini juga yang akan digunakan dalam thesis ini.
+
+\item Robust dan reliable
+
+Selain itu, smart card harus dirancang agar robust and reliable. Hal ini disebabkan smart card seringkali digunakan dalam lingkungan yang tidak aman (sterile) sehingga dapat dengan mudah menyebabkan kerusakan ataupun interferensi pada hardwarenya. Sebagian besar dari sistem operasi smart card yang ada juga disimpan di dalam ROM, sehingga menjadi tidak mungkin (sulit) untuk memperbaikinya apabila terjadi kesalahan setelah manufacture.
+
+\item Aman
+
+Smart card juga seringkali harus digunakan pada domain yang menuntut keamanan tinggi. Untuk itu sistem operasi smart card juga harus dirancang dengan teliti untuk bebas dari celah dan keamanan dan kerentanan dari serangan. security during program execution and protected access to data have the highest priority. Keamanan selama eksekusi program dan akses ke data terproteksi manjadi prioritas utama. Hal ini seringkali mengharuskan rancangan dan implementasi sistem operasi smartcard menjadi tergantung pada hardware yang digunakan, seperti dalam menangani state  EEPROM untuk menjamin integritas dari data yang disimpan. Akibatnya, perancangan smart card OS tidak pernah bisa hardware-independent secara penuh, sebagaimana diinginkan oleh pembuat software.
+
+\item Kemampuan Komputasi yang rendah
+
+Keterbatasan lainnya yang dimiliki smart card adalah kemampuan pemrosesan data dari mikroprosesor yang relatif rendah. Sebaliknya, smartcard diharapkan untuk dapat melayani permintaan dengan segera (tidak lebih dari 5 detik sesuai standar yang banyak digunakan). Untuk itu kode program harus ditulis menggunakan algoritma yang efektif. Bagian yang membutuhkan waktu pemrosesan yang relatif lama biasanya adalah pada algoritma kriptografi. Untuk itu smartcard terbaru biasanya telah dilengkapi dengan co-processor kriptografi.
+
+\end{itemize}
+
+\subsection{Sistem Operasi Smartcard - Beberapa Contoh}
+
+Tabel \ref{tabel-contoh-scos} menampilkan beberap contoh sistem operasi smarcard beserta pembuatnya \cite{SCHandbook} \cite 
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{ | c | c |}
+    \hline
+    \bf{Sistem Operasi} & \bf{Pembuar} \\
+    \hline
+    GemXpresso (Javacard), GPK, MPCOS & Gemplus \\
+    STARCOS, STARSIM, STARDC & Giesecke & Devrient \\
+    Multos & Maosco \\
+    AuthentIC, SIMphonic & Oberthur \\
+    Micardo & Orga \\
+    Cyberflex (Javacard), Multiflex, Payflex & Schlumberger \\
+    CardOS & Siemens \\
+    TCOS & Telesec \\
+    \hline
+  \end{tabular}
+  \caption{Beberapa contoh sistem operasi smartcard yang banyak ditemui}
+  \label{tabel-contoh-scos}
+\end{table}
+
+Hampir semua sistem operasi smartcard bersifat \emph{proprietary}, sehingga sulit untuk mengetahui internal dari sistemnya. Namun beberapa vendor memberikan penjelasan singkat mengenai sistem operasi mereka.
+
+\subsubsection{Javacard}
+
+\subsubsection{MultOS \cite{Multos}} 
+
+MULTOS adalah sistem operasi smartcard yang dapat dipakai untuk berbagai aplikasi. MULTOS sendiri adalah standard terbuka yang pengembangannya diawasi oleh MULTOS Consortium. Satu hal yang membedakan MULTOS dari sistem operasi smartcard lainnya adalah bahwa ia mengimplementasikan mekanisme berbasis kriptografi kunci publik yang telah dipatenkan, dimana pembuatan, penerbitan, dan pembaruan seluruh MULTOS berada dibawah kendali penerbit menggunakan sertifikat digital.
+
+Kendali dilakukan melalui Key Management Authority (KMA), sebuah \emph{certificate authority} (CA) khusus. KMA akan memberikan informasi kriptografi yang diperlukan kepada penerbit kartu yang akan mengikat kartu pada penerbit, menginisialisasi penggunaannya, dan menghasilkan sertifikat untuk izin \emph{loading} dan \emph{deleting} aplikasi dibawah kendali penerbit kartu. Pembuat aplikasi dapat meminta dan mem-verifikasi sertifikat kunci publik dari setiap penerbit kartu, dan meng-enkripsi kode aplikasi mereka serta data personalisasi menggunakan kunci tersebut, yang lalu ditanda tangani secara digital menggunakan kunci privat dari pembuat aplikasi. KMA, atas permintaan penerbit kartu, akan menanda tangani kunci publik pembuat aplikasi serta kode aplikasinya, dan membuat sertifikat untuk meng-otorisasi aplikasi pada kartu yang akan diterbitkan. Dengan metode ini, aplikasi menjadi terjaga baik integritasnya maupun kerahasiaannya, dan dapat di-\emph{load} ke kartu tanpa perlu kunci simetrik apapun. 
+
+Terdapat mesin virtual (VM) pada implementasi MULTOS yang berfungsi menyediakan:
+
+\begin{itemize}
+\item Application Runtime Environment
+
+\item Memory Management
+\item Application Loading and Deleting
+\end{itemize}
+
+\begin{thebibliography}{1}
+
+\bibitem{SCOS:yuqiang}
+Chen Yuqiang, Guo Jianlan, Hu Xuanzi, and Liu Liang,''Design and Implementation of Smart Card COS,''\emph{Computer Application and System Modelling(ICCASM), 2010 International Conference on},22-24 Oct. 2010.
+
+\bibitem{SCOSPastPresentFuture:deville}
+Damien Deville, Antoine Galland, Gilles Grimaud, Sebastien Jean,''Smart Card Operating Systems: Past, Present and Future,''\emph{5 th NORDU/USENIX Conference, In Proceedings of the}, 2003.
+
+\bibitem{SWHWIssue:selimis}
+George Selimis, Apostolos Faournaris, George Kostopoulos, and Odysseas Koufopavlou,''Software and Hardware Issue in Smart Card Technology,''\emph{Communications Surveys \& Tutorial, IEEE},3rd Quarter 2009.
+
+\bibitem{SCandTheirOS:hengguo}
+Heng Guo,''Smart Cards and their Operating Systems.''
+
+\bibitem{SCManagement:mohandes}
+Mohamed Mohandes,''A Smart Card Management and Application System,''\emph{Progress in Informatics and Computing (PIC), 2010 IEEE International Conference on}, 10-12 Dec. 2010.
+
+\bibitem{SCHandbook}
+R. Wolfgang and E. Wolfgang, \emph{Smart Card Handbook}, John Wiley and Sons, 3rd Edition, 2004.
+
+\bibitem{SCApplications}
+R. Wolfgang, \emph{Smart Card Applications: Design models for using and programming smart cards}, John Wiley and Sons, 2007.
+
+\bibitem{SCCaseStudy}
+Jorge Ferrari, Robert Mackinnon, Susan Poh, Lakshman Yatawara, \emph{Smart Cards: A Case Study}, IBM International Technical Support Organization, 1998.
+
+\bibitem{Multos}
+_, \emph{MultOS}, _, _.
+
+\end{thebibliography}
+
+\end{document}

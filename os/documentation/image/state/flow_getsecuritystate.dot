@@ -1,0 +1,24 @@
+digraph Flow_GetSecurityState {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+get_securitystate [label="return state_mng.SecurityState", shape="box", fixedsize=true, width=2.5]
+end [label="End", shape="oval"];
+
+// relations
+start -> get_securitystate
+get_securitystate -> end
+
+}

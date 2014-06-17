@@ -1,0 +1,38 @@
+digraph DFD_GetCurrentFile {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+state_mng [label="State Manager\nSecurityState"]
+retries [label="Retries"]
+correct_pin [label="Correct PIN"]
+given_pin [label="Given PIN"]
+{rank=same;
+mem_readblock [label="Memory\nRead Block", shape="circle", fixedsize=true, width=1];
+mem_writeblock [label="Memory\nWrite Block", shape="circle", fixedsize=true, width=1];
+}
+verify_pin [label="State\nVerify PIN", shape="circle", fixedsize=true, width=1];
+
+// relations
+mem_writeblock -> retries [dir=back]
+mem_readblock -> retries
+mem_readblock -> correct_pin
+retries -> verify_pin
+retries -> verify_pin [dir=back]
+correct_pin -> verify_pin
+given_pin -> verify_pin
+verify_pin -> state_mng
+
+}

@@ -1,0 +1,30 @@
+digraph DFD_WriteBlock {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+length [label="Length"]
+writebyte [label="Memory\nWrite Byte", shape="circle", fixedsize=true, width=1];
+writeblock [label="Memory\nWrite Block", shape="circle", fixedsize=true, width=1];
+data [label="Buffer (src)"]
+address [label="Memory address\nto be read"]
+
+// relations
+address -> writeblock
+length -> writeblock
+data -> writeblock
+writeblock -> writebyte [label="databyte, address"]
+
+}

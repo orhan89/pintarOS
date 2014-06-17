@@ -1,0 +1,238 @@
+\hypertarget{state_8h}{\section{include/state.h File Reference}
+\label{state_8h}\index{include/state.\-h@{include/state.\-h}}
+}
+
+
+Main header file, contain all global definition, data structure, and function.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structstate__struct}{state\-\_\-struct}
+\begin{DoxyCompactList}\small\item\em structure of Card State Manager \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{state_8h_a35937514c20ebac19d6598f04416db7e}{\#define {\bfseries S\-T\-A\-T\-E\-\_\-\-O\-K}~0}\label{state_8h_a35937514c20ebac19d6598f04416db7e}
+
+\item 
+\hypertarget{state_8h_a7bf0c086c7c41c12cc63324327932d91}{\#define {\bfseries S\-T\-A\-T\-E\-\_\-\-E\-R\-R\-O\-R}~1}\label{state_8h_a7bf0c086c7c41c12cc63324327932d91}
+
+\item 
+\hypertarget{state_8h_ad695a7f75df6ff2c4f1d5a630a93e7c5}{\#define {\bfseries S\-T\-A\-T\-E\-\_\-\-W\-R\-O\-N\-G}~2}\label{state_8h_ad695a7f75df6ff2c4f1d5a630a93e7c5}
+
+\item 
+\hypertarget{state_8h_a34781bb4f876dfe1b80bc460ab33e31b}{\#define {\bfseries S\-T\-A\-T\-E\-\_\-\-B\-L\-O\-C\-K\-E\-D}~3}\label{state_8h_a34781bb4f876dfe1b80bc460ab33e31b}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{state_8h_ae101467a47dda550dcef26f05b434481}{State\-\_\-\-Init} ()
+\begin{DoxyCompactList}\small\item\em Initialize State Manager. \end{DoxyCompactList}\item 
+int \hyperlink{state_8h_a41c8092995bb8b188084202beb1e0b0e}{State\-\_\-\-Change\-State} (int new\-State)
+\begin{DoxyCompactList}\small\item\em verify security state with P\-I\-N \end{DoxyCompactList}\item 
+int \hyperlink{state_8h_a4ca0a5601d8d5ea16c22289dc3d87222}{State\-\_\-\-Verify} (uint8\-\_\-t $\ast$P\-I\-N)
+\begin{DoxyCompactList}\small\item\em verify security state with P\-I\-N \end{DoxyCompactList}\item 
+\hypertarget{state_8h_a299905ff510951310f14b10bc35c1ee3}{void {\bfseries State\-\_\-\-Get\-Challenge} (uint8\-\_\-t $\ast$buffer)}\label{state_8h_a299905ff510951310f14b10bc35c1ee3}
+
+\item 
+uint8\-\_\-t \hyperlink{state_8h_a0dac935fe070faf2365d6061a72279d4}{State\-\_\-\-Verify\-Auth} (uint8\-\_\-t $\ast$encrypted)
+\begin{DoxyCompactList}\small\item\em verify security state with External Authenticate \end{DoxyCompactList}\item 
+int \hyperlink{state_8h_abdcb1cbd0922476b3d7f882d04cbe345}{State\-\_\-\-Set\-Current} (uint16\-\_\-t newfile)
+\begin{DoxyCompactList}\small\item\em Set current file. \end{DoxyCompactList}\item 
+int \hyperlink{state_8h_a929190b9305f805a80adcf4854455572}{State\-\_\-\-Set\-Current\-Key} (uint16\-\_\-t new\-Key)
+\begin{DoxyCompactList}\small\item\em Set current E\-F\-Key. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{state_8h_aaa85d3ce76908f6b6717f8f97acda925}{State\-\_\-\-Get\-Current} ()
+\begin{DoxyCompactList}\small\item\em Get current file. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{state_8h_afd31c5608e2aababd8efff1f170c1b2e}{State\-\_\-\-Get\-Current\-Security} ()
+\begin{DoxyCompactList}\small\item\em Get current security state. \end{DoxyCompactList}\item 
+void \hyperlink{state_8h_a90c042f2a0e18f28efd80da4f488e60e}{State\-\_\-\-Get\-Current\-Challenge} (uint8\-\_\-t $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Get current challenge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main header file, contain all global definition, data structure, and function. \begin{DoxyAuthor}{Author}
+Ricky Hariady (\href{mailto:ricky.hariady@enter.web.id}{\tt ricky.\-hariady@enter.\-web.\-id})
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+7/10/2013 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{state_8h_a41c8092995bb8b188084202beb1e0b0e}{\index{state.\-h@{state.\-h}!State\-\_\-\-Change\-State@{State\-\_\-\-Change\-State}}
+\index{State\-\_\-\-Change\-State@{State\-\_\-\-Change\-State}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Change\-State}]{\setlength{\rightskip}{0pt plus 5cm}int State\-\_\-\-Change\-State (
+\begin{DoxyParamCaption}
+\item[{int}]{new\-State}
+\end{DoxyParamCaption}
+)}}\label{state_8h_a41c8092995bb8b188084202beb1e0b0e}
+
+
+verify security state with P\-I\-N 
+
+Verify security state using P\-I\-N
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\-State} & the number of state to be activated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{state_8h_aaa85d3ce76908f6b6717f8f97acda925}{\index{state.\-h@{state.\-h}!State\-\_\-\-Get\-Current@{State\-\_\-\-Get\-Current}}
+\index{State\-\_\-\-Get\-Current@{State\-\_\-\-Get\-Current}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Get\-Current}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t State\-\_\-\-Get\-Current (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{state_8h_aaa85d3ce76908f6b6717f8f97acda925}
+
+
+Get current file. 
+
+Get index of current selected file
+
+\begin{DoxyReturn}{Returns}
+current D\-F index 
+\end{DoxyReturn}
+\hypertarget{state_8h_a90c042f2a0e18f28efd80da4f488e60e}{\index{state.\-h@{state.\-h}!State\-\_\-\-Get\-Current\-Challenge@{State\-\_\-\-Get\-Current\-Challenge}}
+\index{State\-\_\-\-Get\-Current\-Challenge@{State\-\_\-\-Get\-Current\-Challenge}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Get\-Current\-Challenge}]{\setlength{\rightskip}{0pt plus 5cm}void State\-\_\-\-Get\-Current\-Challenge (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}}\label{state_8h_a90c042f2a0e18f28efd80da4f488e60e}
+
+
+Get current challenge. 
+
+Get current challenge
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & address to save challenge \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{state_8h_afd31c5608e2aababd8efff1f170c1b2e}{\index{state.\-h@{state.\-h}!State\-\_\-\-Get\-Current\-Security@{State\-\_\-\-Get\-Current\-Security}}
+\index{State\-\_\-\-Get\-Current\-Security@{State\-\_\-\-Get\-Current\-Security}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Get\-Current\-Security}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t State\-\_\-\-Get\-Current\-Security (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{state_8h_afd31c5608e2aababd8efff1f170c1b2e}
+
+
+Get current security state. 
+
+Get current security state
+
+\begin{DoxyReturn}{Returns}
+current security state 
+\end{DoxyReturn}
+\hypertarget{state_8h_ae101467a47dda550dcef26f05b434481}{\index{state.\-h@{state.\-h}!State\-\_\-\-Init@{State\-\_\-\-Init}}
+\index{State\-\_\-\-Init@{State\-\_\-\-Init}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Init}]{\setlength{\rightskip}{0pt plus 5cm}int State\-\_\-\-Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{state_8h_ae101467a47dda550dcef26f05b434481}
+
+
+Initialize State Manager. 
+
+\begin{DoxyReturn}{Returns}
+Result\par
+ Success = S\-T\-A\-T\-E\-\_\-\-O\-K\par
+ Not Success = S\-T\-A\-T\-E\-\_\-\-E\-R\-R\-O\-R 
+\end{DoxyReturn}
+\hypertarget{state_8h_abdcb1cbd0922476b3d7f882d04cbe345}{\index{state.\-h@{state.\-h}!State\-\_\-\-Set\-Current@{State\-\_\-\-Set\-Current}}
+\index{State\-\_\-\-Set\-Current@{State\-\_\-\-Set\-Current}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Set\-Current}]{\setlength{\rightskip}{0pt plus 5cm}int State\-\_\-\-Set\-Current (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{newfile}
+\end{DoxyParamCaption}
+)}}\label{state_8h_abdcb1cbd0922476b3d7f882d04cbe345}
+
+
+Set current file. 
+
+Set state of current file to a new file
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\-D\-F} & index of current D\-F in file table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{state_8h_a929190b9305f805a80adcf4854455572}{\index{state.\-h@{state.\-h}!State\-\_\-\-Set\-Current\-Key@{State\-\_\-\-Set\-Current\-Key}}
+\index{State\-\_\-\-Set\-Current\-Key@{State\-\_\-\-Set\-Current\-Key}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Set\-Current\-Key}]{\setlength{\rightskip}{0pt plus 5cm}int State\-\_\-\-Set\-Current\-Key (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{new\-Key}
+\end{DoxyParamCaption}
+)}}\label{state_8h_a929190b9305f805a80adcf4854455572}
+
+
+Set current E\-F\-Key. 
+
+Set state of current E\-F\-Key to a new E\-F\-Key
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\-E\-F\-Key} & index of current E\-F\-Key in file table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{state_8h_a4ca0a5601d8d5ea16c22289dc3d87222}{\index{state.\-h@{state.\-h}!State\-\_\-\-Verify@{State\-\_\-\-Verify}}
+\index{State\-\_\-\-Verify@{State\-\_\-\-Verify}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Verify}]{\setlength{\rightskip}{0pt plus 5cm}int State\-\_\-\-Verify (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{P\-I\-N}
+\end{DoxyParamCaption}
+)}}\label{state_8h_a4ca0a5601d8d5ea16c22289dc3d87222}
+
+
+verify security state with P\-I\-N 
+
+Verify security state using P\-I\-N
+
+
+\begin{DoxyParams}{Parameters}
+{\em P\-I\-N} & P\-I\-N Number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{state_8h_a0dac935fe070faf2365d6061a72279d4}{\index{state.\-h@{state.\-h}!State\-\_\-\-Verify\-Auth@{State\-\_\-\-Verify\-Auth}}
+\index{State\-\_\-\-Verify\-Auth@{State\-\_\-\-Verify\-Auth}!state.h@{state.\-h}}
+\subsubsection[{State\-\_\-\-Verify\-Auth}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t State\-\_\-\-Verify\-Auth (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{encrypted}
+\end{DoxyParamCaption}
+)}}\label{state_8h_a0dac935fe070faf2365d6061a72279d4}
+
+
+verify security state with External Authenticate 
+
+Verify terminal identity
+
+
+\begin{DoxyParams}{Parameters}
+{\em encrypted} & encrypted challenge from terminal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}

@@ -1,0 +1,28 @@
+digraph DFD_GetByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+config [label="Configuration"]
+hal_rxbytet0 [label="HAL\nRxByte T0", shape="circle", fixedsize=true, width=1];
+getbyte [label="Transmission\nGet Byte", shape="circle", fixedsize=true, width=1];
+data [label="Data"]
+
+// relations
+config -> getbyte
+hal_rxbytet0 -> getbyte [label="databyte received"]
+getbyte -> data;
+
+}

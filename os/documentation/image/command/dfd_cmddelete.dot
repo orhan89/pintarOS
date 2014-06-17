@@ -1,0 +1,46 @@
+digraph DFD_CommandInterpreter {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+
+delete [label="Command Handler\nDelete File", shape="circle", fixedsize=true, width=1.2];
+
+getdata [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1.2]
+
+fs_delete [label="FS\nDelete File", shape="circle", fixedsize=true, width=1.2]
+
+fid [label="FID"]
+
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+sw [label="SW"]
+
+
+// relations
+header -> delete
+
+getdata -> fid
+
+fid -> delete
+
+delete -> fs_delete [label=fid]
+fs_delete -> delete [label=status]
+
+delete -> set_sw
+
+set_sw -> sw
+
+}

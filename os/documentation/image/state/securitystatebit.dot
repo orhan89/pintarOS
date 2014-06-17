@@ -1,0 +1,17 @@
+digraph DFD_SecurityStateBit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+byte [shape=record, label="Ext. Auth.\nKey 7 | Ext. Auth.\nKey 6 | Ext. Auth.\nKey 5 | Ext. Auth.\nKey 4 | Ext. Auth.\nKey 3 | Ext. Auth.\nKey 2 | Ext. Auth.\nKey 1 | PVerify\nPIN"]
+
+}

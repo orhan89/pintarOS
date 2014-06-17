@@ -1,0 +1,26 @@
+digraph DFD_SetCurrentFile {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+new_file [label="New File"]
+set_currentfile [label="State\nSet Current File", shape="circle", fixedsize=true, width=1];
+state_mng [label="State Manager"]
+
+// relations
+new_file -> set_currentfile
+set_currentfile -> state_mng;
+
+}

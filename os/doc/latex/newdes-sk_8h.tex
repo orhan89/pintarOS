@@ -1,0 +1,76 @@
+\hypertarget{newdes-sk_8h}{\section{src/newdes-\/sk.h File Reference}
+\label{newdes-sk_8h}\index{src/newdes-\/sk.\-h@{src/newdes-\/sk.\-h}}
+}
+
+
+N\-E\-W\-D\-E\-S-\/\-S\-K declarations.  
+
+
+{\ttfamily \#include $<$types.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{newdes-sk_8h_ac00ffa9196b77a8b42a544de3258e53e}{\#define \hyperlink{newdes-sk_8h_ac00ffa9196b77a8b42a544de3258e53e}{N\-E\-W\-D\-E\-S\-S\-K\-\_\-\-K\-E\-Y\-\_\-\-L\-E\-N}~15}\label{newdes-sk_8h_ac00ffa9196b77a8b42a544de3258e53e}
+
+\begin{DoxyCompactList}\small\item\em N\-E\-W\-D\-E\-S-\/\-S\-K key size. \end{DoxyCompactList}\item 
+\hypertarget{newdes-sk_8h_a78ce1251bba5aa2cb5a9bae51b3c068c}{\#define \hyperlink{newdes-sk_8h_a78ce1251bba5aa2cb5a9bae51b3c068c}{N\-E\-W\-D\-E\-S\-S\-K\-\_\-\-B\-L\-O\-C\-K\-\_\-\-L\-E\-N}~8}\label{newdes-sk_8h_a78ce1251bba5aa2cb5a9bae51b3c068c}
+
+\begin{DoxyCompactList}\small\item\em N\-E\-W\-D\-E\-S-\/\-S\-K block length. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{newdes-sk_8h_a314c77c87cefb8e6645e28ef96d95e78}{newdessk\-\_\-enc} (iu8 $\ast$v, iu8 $\ast$k)
+\begin{DoxyCompactList}\small\item\em N\-E\-W\-D\-E\-S-\/\-S\-K encryption function. \end{DoxyCompactList}\item 
+void \hyperlink{newdes-sk_8h_a8d52f79081a3b4d520b0e21ecf24d397}{newdessk\-\_\-dec} (iu8 $\ast$v, iu8 $\ast$k)
+\begin{DoxyCompactList}\small\item\em N\-E\-W\-D\-E\-S-\/\-S\-K decryption function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+N\-E\-W\-D\-E\-S-\/\-S\-K declarations. \begin{DoxyParagraph}{Id\-:}
+\hyperlink{newdes-sk_8h}{newdes-\/sk.\-h},v 1.\-1 2003/03/30 12\-:42\-:21 m Exp 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{newdes-sk_8h_a8d52f79081a3b4d520b0e21ecf24d397}{\index{newdes-\/sk.\-h@{newdes-\/sk.\-h}!newdessk\-\_\-dec@{newdessk\-\_\-dec}}
+\index{newdessk\-\_\-dec@{newdessk\-\_\-dec}!newdes-sk.h@{newdes-\/sk.\-h}}
+\subsubsection[{newdessk\-\_\-dec}]{\setlength{\rightskip}{0pt plus 5cm}void newdessk\-\_\-dec (
+\begin{DoxyParamCaption}
+\item[{iu8 $\ast$}]{v, }
+\item[{iu8 $\ast$}]{k}
+\end{DoxyParamCaption}
+)}}\label{newdes-sk_8h_a8d52f79081a3b4d520b0e21ecf24d397}
+
+
+N\-E\-W\-D\-E\-S-\/\-S\-K decryption function. 
+
+This function decrypts {\itshape v} with {\itshape k} and returns the decrypted data in {\itshape v}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Array of eight iu8 values containing the data block. \\
+\hline
+{\em k} & Array of 15 iu8 values containing the key. \\
+\hline
+\end{DoxyParams}
+\hypertarget{newdes-sk_8h_a314c77c87cefb8e6645e28ef96d95e78}{\index{newdes-\/sk.\-h@{newdes-\/sk.\-h}!newdessk\-\_\-enc@{newdessk\-\_\-enc}}
+\index{newdessk\-\_\-enc@{newdessk\-\_\-enc}!newdes-sk.h@{newdes-\/sk.\-h}}
+\subsubsection[{newdessk\-\_\-enc}]{\setlength{\rightskip}{0pt plus 5cm}void newdessk\-\_\-enc (
+\begin{DoxyParamCaption}
+\item[{iu8 $\ast$}]{v, }
+\item[{iu8 $\ast$}]{k}
+\end{DoxyParamCaption}
+)}}\label{newdes-sk_8h_a314c77c87cefb8e6645e28ef96d95e78}
+
+
+N\-E\-W\-D\-E\-S-\/\-S\-K encryption function. 
+
+This function encrypts {\itshape v} with {\itshape k} and returns the encrypted data in {\itshape v}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Array of eight iu8 values containing the data block. \\
+\hline
+{\em k} & Array of 15 iu8 values containing the key. \\
+\hline
+\end{DoxyParams}

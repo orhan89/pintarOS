@@ -1,0 +1,219 @@
+\hypertarget{hal_8h}{\section{include/hal.h File Reference}
+\label{hal_8h}\index{include/hal.\-h@{include/hal.\-h}}
+}
+
+
+Header file for H\-A\-L (Hardware Abstraction Layer)  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{hal_8h_a345d4bf6e67fe2036ee84560373dafb7}{\#define {\bfseries H\-A\-L\-\_\-\-O\-K}~0}\label{hal_8h_a345d4bf6e67fe2036ee84560373dafb7}
+
+\item 
+\hypertarget{hal_8h_a3b8da8910a639a391c7c6f385fdc819b}{\#define {\bfseries H\-A\-L\-\_\-\-E\-R\-R\-O\-R}~1}\label{hal_8h_a3b8da8910a639a391c7c6f385fdc819b}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{hal_8h_ad106c3e360fec68aef9cc2da8bcb4064}{H\-A\-L\-\_\-\-Init} ()
+\begin{DoxyCompactList}\small\item\em Initialize Hardware. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{hal_8h_a136930f47e2cdb4cdd6bc147b9703b0f}{H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte} ()
+\begin{DoxyCompactList}\small\item\em Receive 1 byte data. \end{DoxyCompactList}\item 
+void \hyperlink{hal_8h_a5e86724251ff7e04917713b3e0d3eeaf}{H\-A\-L\-\_\-\-I\-O\-\_\-\-Tx\-Byte} (uint8\-\_\-t ch)
+\begin{DoxyCompactList}\small\item\em Transmit 1 byte data. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{hal_8h_a2a2216471be84d032a09559ed0b97cac}{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Byte} (uint16\-\_\-t address)
+\begin{DoxyCompactList}\small\item\em Read 1 byte data. \end{DoxyCompactList}\item 
+void \hyperlink{hal_8h_ab846f676e7ae737a96a974da5c8dd558}{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Byte} (uint16\-\_\-t address, uint8\-\_\-t databyte)
+\begin{DoxyCompactList}\small\item\em Write 1 byte data. \end{DoxyCompactList}\item 
+int \hyperlink{hal_8h_a48d7225f3720aa598e5c9fc3354c88e8}{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Block} (uint16\-\_\-t address, uint16\-\_\-t size, uint8\-\_\-t $\ast$databyte)
+\begin{DoxyCompactList}\small\item\em Read block of data. \end{DoxyCompactList}\item 
+int \hyperlink{hal_8h_aebb1592b9bb339c20a2e28a08b3deebe}{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Block} (uint16\-\_\-t address, uint16\-\_\-t size, uint8\-\_\-t $\ast$databyte)
+\begin{DoxyCompactList}\small\item\em Write block of data. \end{DoxyCompactList}\item 
+void \hyperlink{hal_8h_ae2c545801a4158cd4d1967ea8a4a22be}{H\-A\-L\-\_\-\-R\-N\-D\-\_\-\-Get\-Block} (uint8\-\_\-t $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Generate Pseudo Random Numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for H\-A\-L (Hardware Abstraction Layer) \begin{DoxyAuthor}{Author}
+Ricky Hariady (\href{mailto:ricky.hariady@enter.web.id}{\tt ricky.\-hariady@enter.\-web.\-id})
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+7/10/2013 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{hal_8h_ad106c3e360fec68aef9cc2da8bcb4064}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-Init@{H\-A\-L\-\_\-\-Init}}
+\index{H\-A\-L\-\_\-\-Init@{H\-A\-L\-\_\-\-Init}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-Init}]{\setlength{\rightskip}{0pt plus 5cm}int H\-A\-L\-\_\-\-Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_ad106c3e360fec68aef9cc2da8bcb4064}
+
+
+Initialize Hardware. 
+
+\begin{DoxyReturn}{Returns}
+Result\par
+ Success = H\-A\-L\-\_\-\-O\-K\par
+ Not Success = H\-A\-L\-\_\-\-E\-R\-R\-O\-R 
+\end{DoxyReturn}
+\hypertarget{hal_8h_a136930f47e2cdb4cdd6bc147b9703b0f}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte@{H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte}}
+\index{H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte@{H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t H\-A\-L\-\_\-\-I\-O\-\_\-\-Rx\-Byte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_a136930f47e2cdb4cdd6bc147b9703b0f}
+
+
+Receive 1 byte data. 
+
+Receive 1 byte data from from serial I\-O
+
+\begin{DoxyReturn}{Returns}
+the data byte received 
+\end{DoxyReturn}
+\hypertarget{hal_8h_a5e86724251ff7e04917713b3e0d3eeaf}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-I\-O\-\_\-\-Tx\-Byte@{H\-A\-L\-\_\-\-I\-O\-\_\-\-Tx\-Byte}}
+\index{H\-A\-L\-\_\-\-I\-O\-\_\-\-Tx\-Byte@{H\-A\-L\-\_\-\-I\-O\-\_\-\-Tx\-Byte}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-I\-O\-\_\-\-Tx\-Byte}]{\setlength{\rightskip}{0pt plus 5cm}void H\-A\-L\-\_\-\-I\-O\-\_\-\-Tx\-Byte (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{ch}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_a5e86724251ff7e04917713b3e0d3eeaf}
+
+
+Transmit 1 byte data. 
+
+Transmit 1 byte data to serial I\-O
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data byte to transmit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{hal_8h_a48d7225f3720aa598e5c9fc3354c88e8}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Block@{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Block}}
+\index{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Block@{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Block}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Block}]{\setlength{\rightskip}{0pt plus 5cm}int H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Block (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{address, }
+\item[{uint16\-\_\-t}]{size, }
+\item[{uint8\-\_\-t $\ast$}]{databyte}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_a48d7225f3720aa598e5c9fc3354c88e8}
+
+
+Read block of data. 
+
+Read block of data from non-\/volatile memory (E\-E\-P\-R\-O\-M/\-Flash)
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & virtual address of beginning of memory want to read \\
+\hline
+{\em size} & size of data to be read \\
+\hline
+{\em databyte} & address where the readed data to be saved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data readed 
+\end{DoxyReturn}
+\hypertarget{hal_8h_a2a2216471be84d032a09559ed0b97cac}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Byte@{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Byte}}
+\index{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Byte@{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Byte}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Byte}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t H\-A\-L\-\_\-\-Mem\-\_\-\-Read\-Byte (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{address}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_a2a2216471be84d032a09559ed0b97cac}
+
+
+Read 1 byte data. 
+
+Read 1 byte data from non-\/volatile memory (E\-E\-P\-R\-O\-M/\-Flash)
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & virtual address of memory want to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the data byte readed 
+\end{DoxyReturn}
+\hypertarget{hal_8h_aebb1592b9bb339c20a2e28a08b3deebe}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Block@{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Block}}
+\index{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Block@{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Block}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Block}]{\setlength{\rightskip}{0pt plus 5cm}int H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Block (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{address, }
+\item[{uint16\-\_\-t}]{size, }
+\item[{uint8\-\_\-t $\ast$}]{databyte}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_aebb1592b9bb339c20a2e28a08b3deebe}
+
+
+Write block of data. 
+
+write block of data to non-\/volatile memory (E\-E\-P\-R\-O\-M/\-Flash)
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & virtual address of beginning of memory want to read \\
+\hline
+{\em size} & size of data to be write \\
+\hline
+{\em databyte} & address where the data to be write are saved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data wrote 
+\end{DoxyReturn}
+\hypertarget{hal_8h_ab846f676e7ae737a96a974da5c8dd558}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Byte@{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Byte}}
+\index{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Byte@{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Byte}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Byte}]{\setlength{\rightskip}{0pt plus 5cm}void H\-A\-L\-\_\-\-Mem\-\_\-\-Write\-Byte (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{address, }
+\item[{uint8\-\_\-t}]{databyte}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_ab846f676e7ae737a96a974da5c8dd558}
+
+
+Write 1 byte data. 
+
+Write 1 byte data to non-\/volatile memory (E\-E\-P\-R\-O\-M/flash)
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & virtual address of memory want to write \\
+\hline
+{\em databyte} & the data to be write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\hypertarget{hal_8h_ae2c545801a4158cd4d1967ea8a4a22be}{\index{hal.\-h@{hal.\-h}!H\-A\-L\-\_\-\-R\-N\-D\-\_\-\-Get\-Block@{H\-A\-L\-\_\-\-R\-N\-D\-\_\-\-Get\-Block}}
+\index{H\-A\-L\-\_\-\-R\-N\-D\-\_\-\-Get\-Block@{H\-A\-L\-\_\-\-R\-N\-D\-\_\-\-Get\-Block}!hal.h@{hal.\-h}}
+\subsubsection[{H\-A\-L\-\_\-\-R\-N\-D\-\_\-\-Get\-Block}]{\setlength{\rightskip}{0pt plus 5cm}void H\-A\-L\-\_\-\-R\-N\-D\-\_\-\-Get\-Block (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{buf}
+\end{DoxyParamCaption}
+)}}\label{hal_8h_ae2c545801a4158cd4d1967ea8a4a22be}
+
+
+Generate Pseudo Random Numbers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & address where the pseudo random numbers to be saved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

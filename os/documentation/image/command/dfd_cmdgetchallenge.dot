@@ -1,0 +1,43 @@
+digraph DFD_CommandInterpreter {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+
+getchallenge [label="Command Handler\nGetChallenge", shape="circle", fixedsize=true, width=1.2];
+
+senddata [label="Transmission\nSend Data", shape="circle", fixedsize=true, width=1.2]
+
+challenge [label="challenge"]
+
+state_getchallenge [label="State\nGet Challenge", shape="circle", fixedsize=true, width=1.2]
+
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+sw [label="SW"]
+
+
+// relations
+header -> getchallenge
+
+state_getchallenge -> challenge
+
+challenge -> senddata
+
+getchallenge -> set_sw
+
+set_sw -> sw
+
+}

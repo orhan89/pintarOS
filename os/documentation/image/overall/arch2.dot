@@ -1,0 +1,86 @@
+digraph Command_Interpreter {
+
+//rankdir=LR
+//constraint=false
+//rank=sink
+nodesep = 0.5
+ranksep = 1
+center = true
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+{
+rank = "same"
+invis_a [style="invis"]
+state [label="State\nManager", shape="circle", fixedsize=true, width=1];
+invis_b [style="invis"]
+invis_a -> state -> invis_b [style="invis"]
+invis_b -> state -> invis_a [style="invis"]
+}
+
+{
+rank=same
+crypt [label="Crypto\nLib", shape="circle", fixedsize=true, width=1]
+command [label="Command\nHandler", shape = "circle", fixedsize=true, width=1]
+fs [label="File\nSystem", shape="circle", fixedsize=true, width=1]
+}
+
+{
+rank=same
+invis_c [style="invis", shape="circle", fixedsize=true, width=1]
+trans [label="Transmission\nHandler", shape="circle", fixedsize=true, width=1]
+invis_d [style="invis", shape="circle", fixedsize=true, width=1, layer=2]
+invis_c -> trans -> invis_d [style="invis"] 
+invis_d -> trans -> invis_c [style="invis"]
+}
+
+{
+rank=same
+crypto [label="Crypto\n devices", style="invis", shape="circle", fixedsize=true, width=1]
+io [label="IO", shape="circle", fixedsize=true, width=1]
+mem [label="MMU", shape="circle", fixedsize=true, width=1]
+crypto -> io -> mem [style="invis"] 
+mem -> io -> crypto [style="invis"]
+}
+
+// relations
+//state -> crypt -> command -> fs -> trans -> io -> mem
+invis_a -> crypt [style="invis"]
+crypt -> invis_a [style="invis"]
+state -> crypt [label="plain (enc),\nencrypted (dec)"]
+crypt -> state [label="encrypted (enc),\nplain (enc)"]
+state -> command [label="challenge (get)\nsecurity state (get)"]
+command -> state [label="PIN (verify),\nKey (ext. auth)"]
+state -> fs [label="current file/record(get),\nsecurity state (get)"]
+fs -> state [label="current file/record(set)"]
+invis_b -> fs [style="invis"]
+command -> crypt [label="plain (enc),\nencrypted (dec)"]
+crypt -> command [label="encrypted (enc),\nplain (enc)"]
+command -> fs [label="data (update),\noffset (read,update),\nfid (select/delete file),\nfile info (create file)"]
+fs -> command [label="data (read),\naccess right (read, update)"]
+//crypt -> crypto [label="data (write),\noffset (write),\nlength (write)", constraint=false]
+//crypto -> crypt [label="data (write),\noffset (write),\nlength (write)", constraint=false]
+crypt -> invis_c [style="invis"]
+command -> trans [label="status word,\nresponse data"]
+trans -> command [label="command header,\ncommand data"]
+fs -> invis_d [style="invis"]
+invis_c -> crypto [style="invis"]
+trans -> io [label="data byte (send)"]
+io -> trans [label="data byte (receive)"]
+invis_d -> mem [style="invis"]
+fs -> mem [label="data (write),\noffset (write),\nlength (write)", constraint=false]
+mem -> fs [label="data (read),\noffset (read),\nlength (read)", constraint=false]
+
+
+}

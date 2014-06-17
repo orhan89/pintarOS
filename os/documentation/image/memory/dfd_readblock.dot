@@ -1,0 +1,31 @@
+digraph DFD_ReadBlock {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+length [label="Length"]
+readbyte [label="Memory\nRead Byte", shape="circle", fixedsize=true, width=1];
+readblock [label="Memory\nRead Block", shape="circle", fixedsize=true, width=1];
+data [label="Buffer (dst)"]
+address [label="Memory address\nto be read"]
+
+// relations
+address -> readblock
+length -> readblock
+readbyte -> readblock [label="databyte read"]
+readblock -> readbyte [label="address"]
+readblock -> data;
+
+}

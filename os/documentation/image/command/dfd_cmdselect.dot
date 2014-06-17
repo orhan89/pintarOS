@@ -1,0 +1,51 @@
+digraph DFD_CommandSelect {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+
+select [label="Command Handler\nSelect", shape="circle", fixedsize=true, width=1.2];
+
+getdata [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1.2]
+
+fid [label="FID"]
+
+{
+rank=same
+selectfid [label="FS\nSelect FID", shape="circle", fixedsize=true, width=1.2]
+selectmf [label="FS\nSelect MF", shape="circle", fixedsize=true, width=1.2]
+}
+
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+
+sw [label="SW"]
+
+// relations
+header -> select
+
+getdata -> select
+
+select -> fid
+
+fid -> selectfid
+selectfid -> select [label="status"]
+
+selectmf -> select [label="status"]
+
+{rank=same; select -> set_sw [label="response type"]}
+set_sw -> sw
+
+}

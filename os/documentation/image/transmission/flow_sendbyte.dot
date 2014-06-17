@@ -1,0 +1,38 @@
+digraph Flow_TxByte {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+config [label="Konfigurasi\nProtokol?", shape="diamond", fixedsize=true, width=2]
+hal_sendbytet0 [label="HAL\nTx Byte T0", shape="box"]
+t1 [label="T=1\n(Not Implemented)", shape="box", style="dashed"]
+end [label="End", shape="oval"];
+
+// relations
+/* start -> hal_sendbyte; */
+start -> config;
+config -> hal_sendbytet0 [label="T=0"];
+/* hal_sendbyte -> end; */
+dlast [width=0, shape="point", label="."];
+hal_sendbytet0 -> dlast [arrowhead=none]
+dlast -> end;
+/* config -> t1 [label="T=1"]; */
+d0a [width=0, shape="point", label="."];
+d0b [width=0, shape="point", label="."];
+{rank=same; config -> d0a [arrowhead=none, style=dashed];}
+d0a -> t1 [label="T=1", style=dashed]
+t1 -> d0b [arrowhead=none, style=dashed]
+{rank=same; dlast -> d0b [dir=back, style=dashed];}
+
+}

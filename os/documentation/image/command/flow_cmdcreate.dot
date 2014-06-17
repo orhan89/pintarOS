@@ -1,0 +1,80 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+gettag [label="Transmission\nGet Tag", shape="box", fixedsize=true, width=1.5]
+check_tag [label="Tag ?", shape="diamond", fixedsize=true, width=1.5]
+
+getfid_ef [label="Transmission\nGet FID,Size,AC", shape="box", fixedsize=true, width=1.5]
+finfo_ef [label="Create EF File Info Struct", shape="box", fixedsize=true, width=1.5]
+
+getfid_df [label="Transmission\nGet FID", shape="box", fixedsize=true, width=1.5]
+finfo_df [label="Create DF File Info Struct", shape="box", fixedsize=true, width=1.5]
+
+fs_create [label="FS Create File", shape="box", fixedsize=true, width=1.5]
+success [label="Succes\nCreate File", shape="diamond", fixedsize=true, width=1.5]
+{
+rank=same;
+set_sw1 [label="Set Response\nNormal", shape="box", fixedsize=true, width=1.5]
+set_sw2 [label="Set Response\nFatal Error", shape="box", fixedsize=true, width=1.5]
+}
+
+end [label="End", shape="oval"];
+
+{rank=same; getfid_ef; getfid_df;}
+{rank=same; finfo_ef; finfo_df;}
+
+// relations
+start -> gettag
+gettag -> check_tag
+
+c0b [width=0, shape="point", label="."];
+check_tag -> getfid_ef [label="EF"]
+getfid_ef -> finfo_ef
+finfo_ef -> c0b [arrowhead=none]
+
+c1a [width=0, shape="point", label="."];
+c1b [width=0, shape="point", label="."];
+{rank=same; check_tag -> c1a [label="DF", arrowhead=none];}
+c1a -> getfid_df
+getfid_df -> finfo_df
+finfo_df -> c1b [arrowhead=none]
+
+{
+rank=same
+c0b -> c1b [dir=back]
+}
+
+c0b -> fs_create
+fs_create -> success
+
+d0b [width=0, shape="point", label="."];
+success -> set_sw1 [label="Yes"]
+set_sw1 -> d0b [arrowhead=none]
+
+d1a [width=0, shape="point", label="."];
+d1b [width=0, shape="point", label="."];
+{rank=same; success -> d1a [label="No", arrowhead=none];}
+d1a -> set_sw2
+set_sw2 -> d1b [arrowhead=none]
+
+{
+rank=same
+d0b -> d1b [dir=back]
+}
+
+d0b -> end
+
+}

@@ -1,0 +1,26 @@
+digraph DFD_GetSecurityState {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+state_mng [label="State Manager"]
+get_securitystate [label="State\nGet Security State", shape="circle", fixedsize=true, width=1.2];
+security_state [label="Security State"]
+
+// relations
+state_mng -> get_securitystate
+get_securitystate -> security_state
+
+}

@@ -1,0 +1,26 @@
+digraph DFD_WriteByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+address [label="Address"]
+externalwritebyte [label="External\nMemory Write", shape="circle", fixedsize=true, width=1];
+data [label="Data read"]
+
+// relations
+address -> externalwritebyte;
+data -> externalwritebyte;
+
+}

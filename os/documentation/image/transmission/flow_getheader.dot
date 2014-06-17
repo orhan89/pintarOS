@@ -1,0 +1,37 @@
+digraph Flow_GetHeader {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+get_byte [label="Transmission\nGet Byte", shape="parallelogram"]
+save_byte [label="Save to header array", shape="box"]
+check_5 [label="Get 5 byte\nalready ?", shape="diamond"]
+end [label="End", shape="oval"];
+
+// relations
+/* start -> get_byte; */
+d0 [width=0, shape="point", label="."];
+start -> d0 [arrowhead=none]
+d0 -> get_byte
+get_byte -> save_byte;
+save_byte -> check_5;
+/* check_5 -> get_byte [label="No", constraint=false, tailport=e, headport=e]; */
+d1 [width=0, shape="point", label="."];
+d2 [width=0, shape="point", label="."];
+d1 -> d2 [dir=back, arrowtail=none]
+{rank=same; d0 -> d1 [dir=back];}
+{rank=same; check_5 -> d2 [arrowhead=none, label="No"];}
+check_5 -> end [label="Yes"];
+
+}

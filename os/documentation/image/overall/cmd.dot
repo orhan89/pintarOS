@@ -1,0 +1,36 @@
+digraph Command_Interpreter {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+check_CLA [label="Check CLA == 0x80", shape="diamond"]
+check_INS [label="Check INS", shape="diamond"]
+handler [label="Command Handler 1..n", shape="box3d"]
+set_sw_wrong_cla [label="Set SW='WRONG_CLA'", shape="box"]
+set_sw_wrong_ins [label="Set SW='WRONG_INS'", shape="box"]
+end [label="End", shape="oval"];
+
+// relations
+start -> check_CLA;
+check_CLA -> set_sw_wrong_cla [label="No"]
+check_CLA -> check_INS [label="Yes"];
+check_INS -> handler[label="INS Found", weight=2, style="bold"];
+check_INS -> set_sw_wrong_ins [label="INS not found"];
+set_sw_wrong_cla -> end;
+set_sw_wrong_ins -> end;
+handler -> end;
+
+{rank=same; handler set_sw_wrong_cla set_sw_wrong_ins}
+
+}

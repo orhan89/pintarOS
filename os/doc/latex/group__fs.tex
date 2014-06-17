@@ -1,0 +1,386 @@
+\hypertarget{group__fs}{\section{File System}
+\label{group__fs}\index{File System@{File System}}
+}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__fs__structure}{File System Structure}
+\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structEF__st}{E\-F\-\_\-st}
+\begin{DoxyCompactList}\small\item\em structure of E\-F file header \end{DoxyCompactList}\item 
+struct \hyperlink{structDF__st}{D\-F\-\_\-st}
+\begin{DoxyCompactList}\small\item\em structure of D\-F file descriptor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__fs_ga3167e1c51bc79684fdfb78c181075d11}{F\-S\-\_\-\-S\-I\-Z\-E}~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-S\-I\-Z\-E
+\item 
+\#define \hyperlink{group__fs_ga484d3b027c362670c91431b360d8e41a}{F\-S\-\_\-\-S\-T\-A\-R\-T}~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-S\-T\-A\-R\-T
+\item 
+\#define \hyperlink{group__fs_gad6b56bdbbe5838a6260ddc0926fa1891}{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E
+\item 
+\#define \hyperlink{group__fs_ga5534402cd21abf73c1851e468ca502c4}{F\-S\-\_\-\-B\-L\-O\-C\-K\-S}~\hyperlink{group__fs_ga3167e1c51bc79684fdfb78c181075d11}{F\-S\-\_\-\-S\-I\-Z\-E}/\hyperlink{group__fs_gad6b56bdbbe5838a6260ddc0926fa1891}{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__fs_gae0b7a8fdbb83d5bdeaf6ee5bab8054fe}{ef\-\_\-struct} \{ \hyperlink{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054feac719d3f34968bcf992d4c0c48841cf63}{Transparent}, 
+\hyperlink{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054feae0da40ac190d835380202f40a9fc76eb}{Record}, 
+\hyperlink{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054fea5aa1e27646a18fb490c0ff4a9b7b2f6e}{Cyclic}
+ \}
+\begin{DoxyCompactList}\small\item\em E\-F File Structure enumeration. \end{DoxyCompactList}\item 
+enum \hyperlink{group__fs_ga6f46d6e4f39750fecff1240810793832}{ef\-\_\-type} \{ \hyperlink{group__fs_gga6f46d6e4f39750fecff1240810793832a7352fd1878874b86d44e973e7b7c046e}{Working}, 
+\hyperlink{group__fs_gga6f46d6e4f39750fecff1240810793832aa992d66faf4c155dfd78ec168fc25f8a}{Internal}
+ \}
+\begin{DoxyCompactList}\small\item\em E\-F File Type enumeration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__fs_ga5f5f0f157759a32e861b2d8177911353}{F\-S\-Initialize} ()
+\begin{DoxyCompactList}\small\item\em Initializer
+
+Initialize file system. \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_gafed36802a2254132739776c576c0e53e}{F\-S\-Get\-Header} (uint16\-\_\-t block\-\_\-addr, uint8\-\_\-t offset, uint8\-\_\-t $\ast$dest)
+\begin{DoxyCompactList}\small\item\em F\-S\-Get\-Header
+
+File system function to retrieve header information of a file. \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_gab1bf818b552bb3c24080e3249112e026}{F\-S\-Select\-M\-F} ()
+\begin{DoxyCompactList}\small\item\em select M\-F
+
+File system function to select M\-F \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_ga6df8bb917f2541f08f75796623a956a4}{F\-S\-Select\-F\-I\-D} (uint16\-\_\-t fid)
+\begin{DoxyCompactList}\small\item\em select with full F\-I\-D
+
+File system function to select a file with full F\-I\-D \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_ga11624170ed19096e661a18cf31ae0cfb}{F\-S\-Select\-Path} (uint16\-\_\-t $\ast$path, int length)
+\begin{DoxyCompactList}\small\item\em select with path
+
+File system function to select a file with path \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_ga9e04aaa657e9c4bcca8323c8779fc687}{F\-S\-Select\-S\-F\-I\-D} (uint8\-\_\-t sfid)
+\begin{DoxyCompactList}\small\item\em select with short F\-I\-D
+
+File system function to select a file with short F\-I\-D \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_ga697390f044810e38c9308d12109487a9}{F\-S\-Select\-Name} (char $\ast$D\-Fname, uint8\-\_\-t length)
+\begin{DoxyCompactList}\small\item\em select with name
+
+File system function to select a D\-F file with name \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_ga9f8915bf60a20928be8f7ab9a5750309}{F\-S\-Access\-Binary} (int op, int offset, int length, uint8\-\_\-t $\ast$databyte)
+\begin{DoxyCompactList}\small\item\em access a transparent file
+
+File system function to access (read \& update) a transparent file \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_gadee7ce5359cf03ffb89420e4012ca8b9}{F\-S\-Access\-Record} (int op, int record\-Num, int length, uint8\-\_\-t $\ast$databyte)
+\begin{DoxyCompactList}\small\item\em access a record file
+
+File system function to access a record file \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_ga57bbc0e2b610758d6710826166345004}{F\-S\-Create\-File} (int tag, void $\ast$desc)
+\begin{DoxyCompactList}\small\item\em create a new file
+
+File system function to create a file \end{DoxyCompactList}\item 
+int \hyperlink{group__fs_gab24d6b7331b45fa5ad94f87244f4ce29}{F\-S\-Delete\-File} (uint16\-\_\-t fid)
+\begin{DoxyCompactList}\small\item\em delete a file
+
+File system function to delete a file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File System Module 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__fs_gad6b56bdbbe5838a6260ddc0926fa1891}{\index{File System@{File System}!F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}!File System@{File System}}
+\subsubsection[{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}}\label{group__fs_gad6b56bdbbe5838a6260ddc0926fa1891}
+Define the size of block to be used Get the value from C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E \hypertarget{group__fs_ga5534402cd21abf73c1851e468ca502c4}{\index{File System@{File System}!F\-S\-\_\-\-B\-L\-O\-C\-K\-S@{F\-S\-\_\-\-B\-L\-O\-C\-K\-S}}
+\index{F\-S\-\_\-\-B\-L\-O\-C\-K\-S@{F\-S\-\_\-\-B\-L\-O\-C\-K\-S}!File System@{File System}}
+\subsubsection[{F\-S\-\_\-\-B\-L\-O\-C\-K\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-B\-L\-O\-C\-K\-S~{\bf F\-S\-\_\-\-S\-I\-Z\-E}/{\bf F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}}}\label{group__fs_ga5534402cd21abf73c1851e468ca502c4}
+Define the number of blocks available Value obtained from F\-S\-\_\-\-S\-I\-Z\-E and F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E \hypertarget{group__fs_ga3167e1c51bc79684fdfb78c181075d11}{\index{File System@{File System}!F\-S\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-S\-I\-Z\-E}!File System@{File System}}
+\subsubsection[{F\-S\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-S\-I\-Z\-E~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-S\-I\-Z\-E}}\label{group__fs_ga3167e1c51bc79684fdfb78c181075d11}
+Define the file system size in bytes. Get the value from C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-S\-I\-Z\-E \hypertarget{group__fs_ga484d3b027c362670c91431b360d8e41a}{\index{File System@{File System}!F\-S\-\_\-\-S\-T\-A\-R\-T@{F\-S\-\_\-\-S\-T\-A\-R\-T}}
+\index{F\-S\-\_\-\-S\-T\-A\-R\-T@{F\-S\-\_\-\-S\-T\-A\-R\-T}!File System@{File System}}
+\subsubsection[{F\-S\-\_\-\-S\-T\-A\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-S\-T\-A\-R\-T~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-S\-T\-A\-R\-T}}\label{group__fs_ga484d3b027c362670c91431b360d8e41a}
+Define the start address given to file system Get the value from C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-S\-T\-A\-R\-T 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__fs_gae0b7a8fdbb83d5bdeaf6ee5bab8054fe}{\index{File System@{File System}!ef\-\_\-struct@{ef\-\_\-struct}}
+\index{ef\-\_\-struct@{ef\-\_\-struct}!File System@{File System}}
+\subsubsection[{ef\-\_\-struct}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ef\-\_\-struct}}}\label{group__fs_gae0b7a8fdbb83d5bdeaf6ee5bab8054fe}
+
+
+E\-F File Structure enumeration. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Transparent@{Transparent}!File System@{File System}}\index{File System@{File System}!Transparent@{Transparent}}\item[{\em 
+\hypertarget{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054feac719d3f34968bcf992d4c0c48841cf63}{Transparent}\label{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054feac719d3f34968bcf992d4c0c48841cf63}
+}]File using transparent structure. \index{Record@{Record}!File System@{File System}}\index{File System@{File System}!Record@{Record}}\item[{\em 
+\hypertarget{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054feae0da40ac190d835380202f40a9fc76eb}{Record}\label{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054feae0da40ac190d835380202f40a9fc76eb}
+}]File using Record structure. \index{Cyclic@{Cyclic}!File System@{File System}}\index{File System@{File System}!Cyclic@{Cyclic}}\item[{\em 
+\hypertarget{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054fea5aa1e27646a18fb490c0ff4a9b7b2f6e}{Cyclic}\label{group__fs_ggae0b7a8fdbb83d5bdeaf6ee5bab8054fea5aa1e27646a18fb490c0ff4a9b7b2f6e}
+}]File using Cyclic Record Structure. \end{description}
+\end{Desc}
+\hypertarget{group__fs_ga6f46d6e4f39750fecff1240810793832}{\index{File System@{File System}!ef\-\_\-type@{ef\-\_\-type}}
+\index{ef\-\_\-type@{ef\-\_\-type}!File System@{File System}}
+\subsubsection[{ef\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ef\-\_\-type}}}\label{group__fs_ga6f46d6e4f39750fecff1240810793832}
+
+
+E\-F File Type enumeration. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Working@{Working}!File System@{File System}}\index{File System@{File System}!Working@{Working}}\item[{\em 
+\hypertarget{group__fs_gga6f46d6e4f39750fecff1240810793832a7352fd1878874b86d44e973e7b7c046e}{Working}\label{group__fs_gga6f46d6e4f39750fecff1240810793832a7352fd1878874b86d44e973e7b7c046e}
+}]Working type file. \index{Internal@{Internal}!File System@{File System}}\index{File System@{File System}!Internal@{Internal}}\item[{\em 
+\hypertarget{group__fs_gga6f46d6e4f39750fecff1240810793832aa992d66faf4c155dfd78ec168fc25f8a}{Internal}\label{group__fs_gga6f46d6e4f39750fecff1240810793832aa992d66faf4c155dfd78ec168fc25f8a}
+}]Internal type file. \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__fs_ga9f8915bf60a20928be8f7ab9a5750309}{\index{File System@{File System}!F\-S\-Access\-Binary@{F\-S\-Access\-Binary}}
+\index{F\-S\-Access\-Binary@{F\-S\-Access\-Binary}!File System@{File System}}
+\subsubsection[{F\-S\-Access\-Binary}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Access\-Binary (
+\begin{DoxyParamCaption}
+\item[{int}]{op, }
+\item[{int}]{offset, }
+\item[{int}]{length, }
+\item[{uint8\-\_\-t $\ast$}]{databyte}
+\end{DoxyParamCaption}
+)}}\label{group__fs_ga9f8915bf60a20928be8f7ab9a5750309}
+
+
+access a transparent file
+
+File system function to access (read \& update) a transparent file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & operation to perform \\
+\hline
+{\em offset} & offset of the data to read/update \\
+\hline
+{\em length} & length of the data to read/update \\
+\hline
+{\em $\ast$data} & pointer to data buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_gadee7ce5359cf03ffb89420e4012ca8b9}{\index{File System@{File System}!F\-S\-Access\-Record@{F\-S\-Access\-Record}}
+\index{F\-S\-Access\-Record@{F\-S\-Access\-Record}!File System@{File System}}
+\subsubsection[{F\-S\-Access\-Record}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Access\-Record (
+\begin{DoxyParamCaption}
+\item[{int}]{op, }
+\item[{int}]{record\-Num, }
+\item[{int}]{length, }
+\item[{uint8\-\_\-t $\ast$}]{databyte}
+\end{DoxyParamCaption}
+)}}\label{group__fs_gadee7ce5359cf03ffb89420e4012ca8b9}
+
+
+access a record file
+
+File system function to access a record file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & operation to perform \\
+\hline
+{\em record\-Num} & record Number \\
+\hline
+{\em length} & length of the data \\
+\hline
+{\em $\ast$data} & pointer to data buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_ga57bbc0e2b610758d6710826166345004}{\index{File System@{File System}!F\-S\-Create\-File@{F\-S\-Create\-File}}
+\index{F\-S\-Create\-File@{F\-S\-Create\-File}!File System@{File System}}
+\subsubsection[{F\-S\-Create\-File}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Create\-File (
+\begin{DoxyParamCaption}
+\item[{int}]{tag, }
+\item[{void $\ast$}]{desc}
+\end{DoxyParamCaption}
+)}}\label{group__fs_ga57bbc0e2b610758d6710826166345004}
+
+
+create a new file
+
+File system function to create a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & Descriptor of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_gab24d6b7331b45fa5ad94f87244f4ce29}{\index{File System@{File System}!F\-S\-Delete\-File@{F\-S\-Delete\-File}}
+\index{F\-S\-Delete\-File@{F\-S\-Delete\-File}!File System@{File System}}
+\subsubsection[{F\-S\-Delete\-File}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Delete\-File (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{fid}
+\end{DoxyParamCaption}
+)}}\label{group__fs_gab24d6b7331b45fa5ad94f87244f4ce29}
+
+
+delete a file
+
+File system function to delete a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$fid} & F\-I\-D of the file to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+File System Result enum 
+\end{DoxyReturn}
+\hypertarget{group__fs_gafed36802a2254132739776c576c0e53e}{\index{File System@{File System}!F\-S\-Get\-Header@{F\-S\-Get\-Header}}
+\index{F\-S\-Get\-Header@{F\-S\-Get\-Header}!File System@{File System}}
+\subsubsection[{F\-S\-Get\-Header}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Get\-Header (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{block\-\_\-addr, }
+\item[{uint8\-\_\-t}]{offset, }
+\item[{uint8\-\_\-t $\ast$}]{dest}
+\end{DoxyParamCaption}
+)}}\label{group__fs_gafed36802a2254132739776c576c0e53e}
+
+
+F\-S\-Get\-Header
+
+File system function to retrieve header information of a file. 
+
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_ga5f5f0f157759a32e861b2d8177911353}{\index{File System@{File System}!F\-S\-Initialize@{F\-S\-Initialize}}
+\index{F\-S\-Initialize@{F\-S\-Initialize}!File System@{File System}}
+\subsubsection[{F\-S\-Initialize}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__fs_ga5f5f0f157759a32e861b2d8177911353}
+
+
+Initializer
+
+Initialize file system. 
+
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_ga6df8bb917f2541f08f75796623a956a4}{\index{File System@{File System}!F\-S\-Select\-F\-I\-D@{F\-S\-Select\-F\-I\-D}}
+\index{F\-S\-Select\-F\-I\-D@{F\-S\-Select\-F\-I\-D}!File System@{File System}}
+\subsubsection[{F\-S\-Select\-F\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Select\-F\-I\-D (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{fid}
+\end{DoxyParamCaption}
+)}}\label{group__fs_ga6df8bb917f2541f08f75796623a956a4}
+
+
+select with full F\-I\-D
+
+File system function to select a file with full F\-I\-D 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fid} & F\-I\-D of file to select \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_gab1bf818b552bb3c24080e3249112e026}{\index{File System@{File System}!F\-S\-Select\-M\-F@{F\-S\-Select\-M\-F}}
+\index{F\-S\-Select\-M\-F@{F\-S\-Select\-M\-F}!File System@{File System}}
+\subsubsection[{F\-S\-Select\-M\-F}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Select\-M\-F (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__fs_gab1bf818b552bb3c24080e3249112e026}
+
+
+select M\-F
+
+File system function to select M\-F 
+
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_ga697390f044810e38c9308d12109487a9}{\index{File System@{File System}!F\-S\-Select\-Name@{F\-S\-Select\-Name}}
+\index{F\-S\-Select\-Name@{F\-S\-Select\-Name}!File System@{File System}}
+\subsubsection[{F\-S\-Select\-Name}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Select\-Name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{D\-Fname, }
+\item[{uint8\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}\label{group__fs_ga697390f044810e38c9308d12109487a9}
+
+
+select with name
+
+File system function to select a D\-F file with name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em D\-Fname} & pointer to D\-Fname \\
+\hline
+{\em length} & length of D\-Fname \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_ga11624170ed19096e661a18cf31ae0cfb}{\index{File System@{File System}!F\-S\-Select\-Path@{F\-S\-Select\-Path}}
+\index{F\-S\-Select\-Path@{F\-S\-Select\-Path}!File System@{File System}}
+\subsubsection[{F\-S\-Select\-Path}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Select\-Path (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t $\ast$}]{path, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{group__fs_ga11624170ed19096e661a18cf31ae0cfb}
+
+
+select with path
+
+File system function to select a file with path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & pointer to path \\
+\hline
+{\em length} & length of the path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}
+\hypertarget{group__fs_ga9e04aaa657e9c4bcca8323c8779fc687}{\index{File System@{File System}!F\-S\-Select\-S\-F\-I\-D@{F\-S\-Select\-S\-F\-I\-D}}
+\index{F\-S\-Select\-S\-F\-I\-D@{F\-S\-Select\-S\-F\-I\-D}!File System@{File System}}
+\subsubsection[{F\-S\-Select\-S\-F\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int F\-S\-Select\-S\-F\-I\-D (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{sfid}
+\end{DoxyParamCaption}
+)}}\label{group__fs_ga9e04aaa657e9c4bcca8323c8779fc687}
+
+
+select with short F\-I\-D
+
+File system function to select a file with short F\-I\-D 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sfid} & Short F\-I\-D of file to select \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result 
+\end{DoxyReturn}

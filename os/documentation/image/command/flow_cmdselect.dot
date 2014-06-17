@@ -1,0 +1,72 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+check_p1p2 [label="P1P2 == 0x0000 ?", shape="diamond", fixedsize=true, width=1.5]
+check_p3 [label="P3 == 0", shape="diamond", fixedsize=true, width=1.5]
+selectmf [label="FS\nSelect MF", shape="box", fixedsize=true, width=1.5]
+getdata [label="Get FID from\nCommand Data", shape="box", fixedsize=true, width=1.5]
+selectfid [label="FS\nSelect File with given FID", shape="box", fixedsize=true, width=1.5]
+found [label="File Found ?", shape="diamond", fixedsize=true, width=1.5]
+{
+rank=same;
+set_sw1 [label="Set Response\nOK", shape="box", fixedsize=true, width=1.5]
+set_sw2 [label="Set Response\nOK", shape="box", fixedsize=true, width=1.5]
+set_sw3 [label="Set Response\nFile Not Found", shape="box", fixedsize=true, width=1.5]
+set_sw4 [label="Set Response\nWrong P1P2", shape="box", fixedsize=true, width=1.5]
+}
+
+end [label="End", shape="oval"];
+
+// relations
+start -> check_p1p2
+
+check_p1p2 -> check_p3
+
+c0b [width=0, shape="point", label="."];
+check_p3 -> selectmf [label="Yes"]
+selectmf -> set_sw1
+set_sw1 -> c0b [arrowhead=none]
+
+c1a [width=0, shape="point", label="."];
+c1b [width=0, shape="point", label="."];
+{rank=same; check_p3 -> c1a [label="No", arrowhead=none];}
+c1a -> getdata
+getdata -> selectfid
+selectfid -> found
+found -> set_sw2 [label="Yes"]
+set_sw2 -> c1b [arrowhead=none]
+
+c11a [width=0, shape="point", label="."];
+c11b [width=0, shape="point", label="."];
+{rank=same; found -> c11a [label="No", arrowhead=none];}
+c11a -> set_sw3
+set_sw3 -> c11b [arrowhead=none]
+
+b1a [width=0, shape="point", label="."];
+b1b [width=0, shape="point", label="."];
+{rank=same; check_p1p2 -> b1a [label="No", arrowhead=none];}
+b1a -> set_sw4
+set_sw4 -> b1b [arrowhead=none]
+
+{
+rank=same
+c11b -> b1b [dir=back, arrowtail=none]
+c1b -> c11b [dir=back, arrowtail=none]
+c0b -> c1b [dir=back]
+}
+c0b -> end
+
+}

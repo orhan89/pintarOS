@@ -1,0 +1,22 @@
+digraph DFD_HALInit {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+hw_config [label="Configuration"]
+halinit [label="HAL\n HW Init", shape="circle", fixedsize=true, width=1];
+
+hw_config -> halinit;
+
+}

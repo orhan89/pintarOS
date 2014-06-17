@@ -1,0 +1,50 @@
+digraph DFD_CommandInterpreter {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+interpreter [label="Command\nInterpreter", shape="circle", fixedsize=true, width=1];
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+sw [label="Status Word (SW)"]
+
+// {
+// rank=same;
+// select [label="Command Handler\nSelect", shape="circle", fixedsize=true, width=1.2];
+// read [label="Command Handler\nRead Binary", shape="circle", fixedsize=true, width=1.2];
+// update [label="Command Handler\nUpdate Binary", shape="circle", fixedsize=true, width=1.2];
+// create [label="Command Handler\nCreate File", shape="circle", fixedsize=true, width=1.2];
+// delete [label="Command Handler\nDelete File", shape="circle", fixedsize=true, width=1.2];
+// verify [label="Command Handler\nVerify (PIN)", shape="circle", fixedsize=true, width=1.2];
+// get_challenge [label="Command Handler\nGet Challenge", shape="circle", fixedsize=true, width=1.2];
+// ext_auth [label="Command Handler\nExternal Auth", shape="circle", fixedsize=true, width=1.2];
+// get_response [label="Command Handler\nGet Response", shape="circle", fixedsize=true, width=1.2];
+// }
+
+// relations
+header -> interpreter
+interpreter -> set_sw
+set_sw -> sw
+// interpreter -> select
+// interpreter -> read
+// interpreter -> update
+// interpreter -> create
+// interpreter -> delete
+// interpreter -> verify
+// interpreter -> get_challenge
+// interpreter -> ext_auth
+// interpreter -> get_response
+
+}

@@ -1,0 +1,40 @@
+digraph Flow_ReadByte {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+check_address [label="address\n>\nINTERNAL_SIZE", shape="diamond", fixedsize=true, width=2]
+hal_readinternal [label="HAL Read Internal\n(location=address)", shape="box", fixedsize=true, width=2.5]
+hal_readexternal [label="HAL Read External\n(location=address-INTERNAL_SIZE)", shape="box", fixedsize=true, width=2.5]
+save_byte [label="return received byte", fixedsize=true, width=2]
+end [label="End", shape="oval"];
+
+d1 [width=0, shape="point", label="."];
+d2 [width=0, shape="point", label="."];
+d3 [width=0, shape="point", label="."];
+
+// relations
+start -> check_address
+check_address -> hal_readinternal [label="No"]
+hal_readinternal -> d3 [arrowhead=none]
+/* check_address -> hal_readexternal [label="Yes", tailport=e, headport=n] */
+{rank=same; check_address -> d1 [arrowhead=none];}
+d1 -> hal_readexternal
+hal_readexternal -> d2 [arrowhead=none]
+{rank=same; d3 -> d2 [dir=back, ];}
+
+d3 -> save_byte[];
+save_byte -> end;
+
+}

@@ -1,0 +1,80 @@
+\hypertarget{tea_8c}{\section{src/tea.c File Reference}
+\label{tea_8c}\index{src/tea.\-c@{src/tea.\-c}}
+}
+
+
+T\-E\-A functions.  
+
+
+{\ttfamily \#include $<$config.\-h$>$}\\*
+{\ttfamily \#include $<$tea.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{tea_8c_acc11a6fe68ea2492d21b88fb5f61e6c4}{\#define {\bfseries T\-E\-A\-\_\-\-S\-M\-A\-L\-L}}\label{tea_8c_acc11a6fe68ea2492d21b88fb5f61e6c4}
+
+\item 
+\hypertarget{tea_8c_ac0de559b1de7df84709f253b5276a71a}{\#define {\bfseries hton\-\_\-ul}(x, y)}\label{tea_8c_ac0de559b1de7df84709f253b5276a71a}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{tea_8c_a000531b068708b6384e0e43f4e5de4d3}{uint32\-\_\-t {\bfseries tea\-\_\-func} (uint32\-\_\-t $\ast$in, uint32\-\_\-t $\ast$sum, uint32\-\_\-t $\ast$k)}\label{tea_8c_a000531b068708b6384e0e43f4e5de4d3}
+
+\item 
+void \hyperlink{tea_8c_a542935b6cd737dab8bf9c5bbfc10dbf0}{tea\-\_\-enc} (uint32\-\_\-t $\ast$v, uint32\-\_\-t $\ast$k)
+\begin{DoxyCompactList}\small\item\em T\-E\-A encryption function. \end{DoxyCompactList}\item 
+void \hyperlink{tea_8c_aca30c56208449c7ff223be556d98df80}{tea\-\_\-dec} (uint32\-\_\-t $\ast$v, uint32\-\_\-t $\ast$k)
+\begin{DoxyCompactList}\small\item\em T\-E\-A decryption function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\-E\-A functions. \begin{DoxyParagraph}{Id\-:}
+\hyperlink{tea_8c}{tea.\-c},v 1.\-6 2003/04/02 23\-:57\-:54 m Exp 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{tea_8c_aca30c56208449c7ff223be556d98df80}{\index{tea.\-c@{tea.\-c}!tea\-\_\-dec@{tea\-\_\-dec}}
+\index{tea\-\_\-dec@{tea\-\_\-dec}!tea.c@{tea.\-c}}
+\subsubsection[{tea\-\_\-dec}]{\setlength{\rightskip}{0pt plus 5cm}void tea\-\_\-dec (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t $\ast$}]{v, }
+\item[{uint32\-\_\-t $\ast$}]{k}
+\end{DoxyParamCaption}
+)}}\label{tea_8c_aca30c56208449c7ff223be556d98df80}
+
+
+T\-E\-A decryption function. 
+
+This function decrypts {\itshape v} with {\itshape k} and returns the decrypted data in {\itshape v}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Array of two long values containing the data block. \\
+\hline
+{\em k} & Array of four long values containing the key. \\
+\hline
+\end{DoxyParams}
+\hypertarget{tea_8c_a542935b6cd737dab8bf9c5bbfc10dbf0}{\index{tea.\-c@{tea.\-c}!tea\-\_\-enc@{tea\-\_\-enc}}
+\index{tea\-\_\-enc@{tea\-\_\-enc}!tea.c@{tea.\-c}}
+\subsubsection[{tea\-\_\-enc}]{\setlength{\rightskip}{0pt plus 5cm}void tea\-\_\-enc (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t $\ast$}]{v, }
+\item[{uint32\-\_\-t $\ast$}]{k}
+\end{DoxyParamCaption}
+)}}\label{tea_8c_a542935b6cd737dab8bf9c5bbfc10dbf0}
+
+
+T\-E\-A encryption function. 
+
+This function encrypts {\itshape v} with {\itshape k} and returns the encrypted data in {\itshape v}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Array of two long values containing the data block. \\
+\hline
+{\em k} & Array of four long values containing the key. \\
+\hline
+\end{DoxyParams}

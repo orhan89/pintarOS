@@ -1,0 +1,34 @@
+digraph Command_ReadBinary {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header\n(from Transmission)"];
+get_io [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1];
+create [label="Command\nCreate File", shape="circle", fixedsize=true, width=1]; 
+fs_check [label="FS\nCheckAC", shape="circle", fixedsize=true, width=1];
+fs_create [label="FS\nCreate File", shape="circle", fixedsize=true, width=1];
+set_sw [label="Response\nSetSW", shape="circle", fixedsize=true, width=1];
+
+// relations
+header -> create
+get_io -> create [label="Command data"]
+create -> fs_check [label="operation (CREATE)"]
+fs_check -> create [label="access right"]
+create -> fs_create [label="tag (EF/DF),\nFile info (fid, etc)"]
+fs_create -> create [label="result status"]
+create -> set_sw [label="Response Type"]
+
+}

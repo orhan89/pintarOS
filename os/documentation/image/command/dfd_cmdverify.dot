@@ -1,0 +1,50 @@
+digraph DFD_CommandInterpreter {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+
+verify [label="Command Handler\nVerify PIN", shape="circle", fixedsize=true, width=1.2];
+
+getdata [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1.2]
+
+readbyte [label="Memory\nRead Byte", shape="circle", fixedsize=true, width=1.2]
+
+counter [label="Retries Counter"]
+
+state_verify [label="State\nVerify", shape="circle", fixedsize=true, width=1.2]
+
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+sw [label="SW"]
+
+
+// relations
+header -> verify
+
+getdata -> PIN
+
+PIN -> verify
+
+verify -> state_verify [label=fid]
+state_verify -> verify [label=status]
+
+verify -> readbyte [dir=back,label="counter value"]
+readbyte -> counter [dir=back]
+
+verify -> set_sw
+set_sw -> sw
+
+}

@@ -1,0 +1,23 @@
+digraph Trans_GetHeader {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+header [label="Command Header"];
+sendack [label="Transmission\nSend ACK", shape="circle", fixedsize=true, width=1];
+hal_io_tx [label="HAL\nTx Byte", shape="circle", fixedsize=true, width=1];
+
+header -> sendack
+sendack -> hal_io_tx [label="byte transmitting"]
+
+}

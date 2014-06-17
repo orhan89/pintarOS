@@ -1,0 +1,406 @@
+\begin{theindex}
+
+  \item {B111600}
+    \subitem {transmission.\-h}, \hyperpage{40}
+  \item {B19200}
+    \subitem {transmission.\-h}, \hyperpage{40}
+  \item {B38400}
+    \subitem {transmission.\-h}, \hyperpage{40}
+  \item {B9600}
+    \subitem {transmission.\-h}, \hyperpage{40}
+
+  \indexspace
+
+  \item {command.\discretionary {-}{}{}h}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Append\discretionary {-}{}{}Record}, 
+		\hyperpage{23}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Create\discretionary {-}{}{}File}, 
+		\hyperpage{23}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Delete}, 
+		\hyperpage{23}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Delete\discretionary {-}{}{}File}, 
+		\hyperpage{23}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}External\discretionary {-}{}{}Auth}, 
+		\hyperpage{23}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Challenge}, 
+		\hyperpage{24}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Response}, 
+		\hyperpage{24}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Install}, 
+		\hyperpage{24}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Internal\discretionary {-}{}{}Auth}, 
+		\hyperpage{24}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Interpreter}, 
+		\hyperpage{24}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Load}, 
+		\hyperpage{25}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Binary}, 
+		\hyperpage{25}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Record}, 
+		\hyperpage{25}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Select}, 
+		\hyperpage{25}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Update\discretionary {-}{}{}Binary}, 
+		\hyperpage{25}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Update\discretionary {-}{}{}Record}, 
+		\hyperpage{26}
+    \subitem {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Verify}, 
+		\hyperpage{26}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Append\discretionary {-}{}{}Record}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{23}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Create\discretionary {-}{}{}File}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{23}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Delete}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{23}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Delete\discretionary {-}{}{}File}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{23}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}External\discretionary {-}{}{}Auth}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{23}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Challenge}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{24}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Response}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{24}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Install}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{24}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Internal\discretionary {-}{}{}Auth}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{24}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Interpreter}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{24}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Load}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{25}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Binary}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{25}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Record}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{25}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Select}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{25}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Update\discretionary {-}{}{}Binary}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{25}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Update\discretionary {-}{}{}Record}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{26}
+  \item {Command\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Verify}
+    \subitem {command.\discretionary {-}{}{}h}, \hyperpage{26}
+  \item {Cyclic}
+    \subitem {File System}, \hyperpage{9}
+
+  \indexspace
+
+  \item {D\discretionary {-}{}{}F\discretionary {-}{}{}\_\discretionary {-}{}{}st}, 
+		\hyperpage{17}
+
+  \indexspace
+
+  \item {E\discretionary {-}{}{}F\discretionary {-}{}{}\_\discretionary {-}{}{}st}, 
+		\hyperpage{17}
+  \item {ef\discretionary {-}{}{}\_\discretionary {-}{}{}struct}
+    \subitem {File System}, \hyperpage{9}
+  \item {ef\discretionary {-}{}{}\_\discretionary {-}{}{}type}
+    \subitem {File System}, \hyperpage{9}
+
+  \indexspace
+
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}C\discretionary {-}{}{}K\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {File System}, \hyperpage{8}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}C\discretionary {-}{}{}K\discretionary {-}{}{}S}
+    \subitem {File System}, \hyperpage{8}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}O\discretionary {-}{}{}D\discretionary {-}{}{}Y\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {fs.\discretionary {-}{}{}c}, \hyperpage{44}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}L\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}O\discretionary {-}{}{}D\discretionary {-}{}{}Y\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {File System Structure}, \hyperpage{13}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}L\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {File System Structure}, \hyperpage{13}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {File Header Structure}, \hyperpage{14}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {File Header Structure}, \hyperpage{14}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {File Header Structure}, \hyperpage{15}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
+    \subitem {File System}, \hyperpage{8}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T}
+    \subitem {File System}, \hyperpage{8}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Access\discretionary {-}{}{}Binary}
+    \subitem {File System}, \hyperpage{9}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Access\discretionary {-}{}{}Record}
+    \subitem {File System}, \hyperpage{9}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Create\discretionary {-}{}{}File}
+    \subitem {File System}, \hyperpage{9}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Delete\discretionary {-}{}{}File}
+    \subitem {File System}, \hyperpage{10}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Get\discretionary {-}{}{}Header}
+    \subitem {File System}, \hyperpage{10}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Initialize}
+    \subitem {File System}, \hyperpage{10}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}D}
+    \subitem {File System}, \hyperpage{10}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}M\discretionary {-}{}{}F}
+    \subitem {File System}, \hyperpage{11}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}Name}
+    \subitem {File System}, \hyperpage{11}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}Path}
+    \subitem {File System}, \hyperpage{11}
+  \item {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}S\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}D}
+    \subitem {File System}, \hyperpage{11}
+  \item {File Header Structure}, \hyperpage{14}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{14}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{14}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{15}
+  \item {File System}, \hyperpage{7}
+    \subitem {Cyclic}, \hyperpage{9}
+    \subitem {ef\discretionary {-}{}{}\_\discretionary {-}{}{}struct}, 
+		\hyperpage{9}
+    \subitem {ef\discretionary {-}{}{}\_\discretionary {-}{}{}type}, 
+		\hyperpage{9}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}C\discretionary {-}{}{}K\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{8}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}C\discretionary {-}{}{}K\discretionary {-}{}{}S}, 
+		\hyperpage{8}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{8}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T}, 
+		\hyperpage{8}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Access\discretionary {-}{}{}Binary}, 
+		\hyperpage{9}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Access\discretionary {-}{}{}Record}, 
+		\hyperpage{9}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Create\discretionary {-}{}{}File}, 
+		\hyperpage{9}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Delete\discretionary {-}{}{}File}, 
+		\hyperpage{10}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Get\discretionary {-}{}{}Header}, 
+		\hyperpage{10}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Initialize}, 
+		\hyperpage{10}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}D}, 
+		\hyperpage{10}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}M\discretionary {-}{}{}F}, 
+		\hyperpage{11}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}Name}, 
+		\hyperpage{11}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}Path}, 
+		\hyperpage{11}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}Select\discretionary {-}{}{}S\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}D}, 
+		\hyperpage{11}
+    \subitem {Internal}, \hyperpage{9}
+    \subitem {Record}, \hyperpage{9}
+    \subitem {Transparent}, \hyperpage{9}
+    \subitem {Working}, \hyperpage{9}
+  \item {File System Structure}, \hyperpage{13}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}L\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}O\discretionary {-}{}{}D\discretionary {-}{}{}Y\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{13}
+    \subitem {F\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}L\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{13}
+
+  \indexspace
+
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}O\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Rx\discretionary {-}{}{}Byte}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{30}
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}O\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Tx\discretionary {-}{}{}Byte}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{30}
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Init}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{30}
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Block}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{30}
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Byte}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{30}
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Write\discretionary {-}{}{}Block}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{31}
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Write\discretionary {-}{}{}Byte}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{31}
+  \item {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}R\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Block}
+    \subitem {hal.\discretionary {-}{}{}h}, \hyperpage{31}
+  \item {hal.\discretionary {-}{}{}h}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}O\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Rx\discretionary {-}{}{}Byte}, 
+		\hyperpage{30}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}O\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Tx\discretionary {-}{}{}Byte}, 
+		\hyperpage{30}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Init}, 
+		\hyperpage{30}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Block}, 
+		\hyperpage{30}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Read\discretionary {-}{}{}Byte}, 
+		\hyperpage{30}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Write\discretionary {-}{}{}Block}, 
+		\hyperpage{31}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Mem\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Write\discretionary {-}{}{}Byte}, 
+		\hyperpage{31}
+    \subitem {H\discretionary {-}{}{}A\discretionary {-}{}{}L\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}R\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Block}, 
+		\hyperpage{31}
+  \item {hton\discretionary {-}{}{}\_\discretionary {-}{}{}ul}
+    \subitem {tea.\discretionary {-}{}{}h}, \hyperpage{38}
+  \item {hton\discretionary {-}{}{}\_\discretionary {-}{}{}us}
+    \subitem {tea.\discretionary {-}{}{}h}, \hyperpage{38}
+
+  \indexspace
+
+  \item {include/command.\discretionary {-}{}{}h}, \hyperpage{21}
+  \item {include/config.\discretionary {-}{}{}h}, \hyperpage{26}
+  \item {include/fs.\discretionary {-}{}{}h}, \hyperpage{27}
+  \item {include/hal.\discretionary {-}{}{}h}, \hyperpage{29}
+  \item {include/response.\discretionary {-}{}{}h}, \hyperpage{31}
+  \item {include/state.\discretionary {-}{}{}h}, \hyperpage{33}
+  \item {include/tea.\discretionary {-}{}{}h}, \hyperpage{37}
+  \item {include/transmission.\discretionary {-}{}{}h}, \hyperpage{39}
+  \item {Internal}
+    \subitem {File System}, \hyperpage{9}
+
+  \indexspace
+
+  \item {max}
+    \subitem {tea.\discretionary {-}{}{}h}, \hyperpage{38}
+  \item {min}
+    \subitem {tea.\discretionary {-}{}{}h}, \hyperpage{38}
+
+  \indexspace
+
+  \item {newdes-\/sk.\discretionary {-}{}{}h}
+    \subitem {newdessk\discretionary {-}{}{}\_\discretionary {-}{}{}dec}, 
+		\hyperpage{45}
+    \subitem {newdessk\discretionary {-}{}{}\_\discretionary {-}{}{}enc}, 
+		\hyperpage{45}
+  \item {newdessk\discretionary {-}{}{}\_\discretionary {-}{}{}dec}
+    \subitem {newdes-\/sk.\discretionary {-}{}{}h}, \hyperpage{45}
+  \item {newdessk\discretionary {-}{}{}\_\discretionary {-}{}{}enc}
+    \subitem {newdes-\/sk.\discretionary {-}{}{}h}, \hyperpage{45}
+
+  \indexspace
+
+  \item {Record}
+    \subitem {File System}, \hyperpage{9}
+  \item {response.\discretionary {-}{}{}h}
+    \subitem {Response\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Set\discretionary {-}{}{}S\discretionary {-}{}{}W}, 
+		\hyperpage{32}
+  \item {Response\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Set\discretionary {-}{}{}S\discretionary {-}{}{}W}
+    \subitem {response.\discretionary {-}{}{}h}, \hyperpage{32}
+
+  \indexspace
+
+  \item {src/fs.\discretionary {-}{}{}c}, \hyperpage{42}
+  \item {src/newdes-\/sk.\discretionary {-}{}{}h}, \hyperpage{45}
+  \item {src/tea.\discretionary {-}{}{}c}, \hyperpage{46}
+  \item {state.\discretionary {-}{}{}h}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Change\discretionary {-}{}{}State}, 
+		\hyperpage{34}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Current}, 
+		\hyperpage{34}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Current\discretionary {-}{}{}Challenge}, 
+		\hyperpage{34}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Current\discretionary {-}{}{}Security}, 
+		\hyperpage{34}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Init}, 
+		\hyperpage{35}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Set\discretionary {-}{}{}Current}, 
+		\hyperpage{35}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Set\discretionary {-}{}{}Current\discretionary {-}{}{}Key}, 
+		\hyperpage{35}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Verify}, 
+		\hyperpage{35}
+    \subitem {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Verify\discretionary {-}{}{}Auth}, 
+		\hyperpage{35}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Change\discretionary {-}{}{}State}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{34}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Current}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{34}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Current\discretionary {-}{}{}Challenge}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{34}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Current\discretionary {-}{}{}Security}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{34}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Init}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{35}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Set\discretionary {-}{}{}Current}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{35}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Set\discretionary {-}{}{}Current\discretionary {-}{}{}Key}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{35}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Verify}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{35}
+  \item {State\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Verify\discretionary {-}{}{}Auth}
+    \subitem {state.\discretionary {-}{}{}h}, \hyperpage{35}
+  \item {state\discretionary {-}{}{}\_\discretionary {-}{}{}struct}, 
+		\hyperpage{18}
+
+  \indexspace
+
+  \item {T0}
+    \subitem {transmission.\-h}, \hyperpage{40}
+  \item {T1}
+    \subitem {transmission.\-h}, \hyperpage{40}
+  \item {t\discretionary {-}{}{}\_\discretionary {-}{}{}baudrate}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{40}
+  \item {t\discretionary {-}{}{}\_\discretionary {-}{}{}config\discretionary {-}{}{}\_\discretionary {-}{}{}struct}, 
+		\hyperpage{18}
+  \item {t\discretionary {-}{}{}\_\discretionary {-}{}{}proto}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{40}
+  \item {tea.\discretionary {-}{}{}c}
+    \subitem {tea\discretionary {-}{}{}\_\discretionary {-}{}{}dec}, 
+		\hyperpage{46}
+    \subitem {tea\discretionary {-}{}{}\_\discretionary {-}{}{}enc}, 
+		\hyperpage{46}
+  \item {tea.\discretionary {-}{}{}h}
+    \subitem {hton\discretionary {-}{}{}\_\discretionary {-}{}{}ul}, 
+		\hyperpage{38}
+    \subitem {hton\discretionary {-}{}{}\_\discretionary {-}{}{}us}, 
+		\hyperpage{38}
+    \subitem {max}, \hyperpage{38}
+    \subitem {min}, \hyperpage{38}
+    \subitem {tea\discretionary {-}{}{}\_\discretionary {-}{}{}dec}, 
+		\hyperpage{38}
+    \subitem {tea\discretionary {-}{}{}\_\discretionary {-}{}{}enc}, 
+		\hyperpage{38}
+  \item {tea\discretionary {-}{}{}\_\discretionary {-}{}{}dec}
+    \subitem {tea.\discretionary {-}{}{}c}, \hyperpage{46}
+    \subitem {tea.\discretionary {-}{}{}h}, \hyperpage{38}
+  \item {tea\discretionary {-}{}{}\_\discretionary {-}{}{}enc}
+    \subitem {tea.\discretionary {-}{}{}c}, \hyperpage{46}
+    \subitem {tea.\discretionary {-}{}{}h}, \hyperpage{38}
+  \item {transmission.\-h}
+    \subitem {B111600}, \hyperpage{40}
+    \subitem {B19200}, \hyperpage{40}
+    \subitem {B38400}, \hyperpage{40}
+    \subitem {B9600}, \hyperpage{40}
+    \subitem {T0}, \hyperpage{40}
+    \subitem {T1}, \hyperpage{40}
+  \item {transmission.\discretionary {-}{}{}h}
+    \subitem {t\discretionary {-}{}{}\_\discretionary {-}{}{}baudrate}, 
+		\hyperpage{40}
+    \subitem {t\discretionary {-}{}{}\_\discretionary {-}{}{}proto}, 
+		\hyperpage{40}
+    \subitem {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Data}, 
+		\hyperpage{40}
+    \subitem {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Header}, 
+		\hyperpage{40}
+    \subitem {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Init}, 
+		\hyperpage{41}
+    \subitem {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}K}, 
+		\hyperpage{41}
+    \subitem {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}Data}, 
+		\hyperpage{41}
+    \subitem {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}N\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}K}, 
+		\hyperpage{41}
+    \subitem {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}S\discretionary {-}{}{}W}, 
+		\hyperpage{41}
+  \item {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Data}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{40}
+  \item {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Get\discretionary {-}{}{}Header}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{40}
+  \item {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Init}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{41}
+  \item {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}K}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{41}
+  \item {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}Data}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{41}
+  \item {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}N\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}K}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{41}
+  \item {Transmission\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}Send\discretionary {-}{}{}S\discretionary {-}{}{}W}
+    \subitem {transmission.\discretionary {-}{}{}h}, \hyperpage{41}
+  \item {Transparent}
+    \subitem {File System}, \hyperpage{9}
+
+  \indexspace
+
+  \item {Working}
+    \subitem {File System}, \hyperpage{9}
+
+\end{theindex}

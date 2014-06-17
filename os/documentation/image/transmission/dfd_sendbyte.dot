@@ -1,0 +1,28 @@
+digraph DFD_SendByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+config [label="Configuration"]
+hal_txbytet0 [label="HAL\nTx Byte T0", shape="circle", fixedsize=true, width=1];
+sendbyte [label="Transmission\nSend Byte", shape="circle", fixedsize=true, width=1];
+data [label="Data"]
+
+// relations
+config -> sendbyte
+sendbyte -> hal_txbytet0 [label="databyte to transmit"]
+data -> sendbyte;
+
+}

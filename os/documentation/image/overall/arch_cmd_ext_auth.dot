@@ -1,0 +1,31 @@
+digraph Command_Select {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header\n(from Transmission)"];
+get_data [label="Transmission\nGetData", shape="circle", fixedsize=true, width=1];
+ext_auth [label="Command\nExt. Auth", shape="circle", fixedsize=true, width=1]; 
+state_auth [label="State\nVerifyExt Auth", shape="circle", fixedsize=true, width=1];
+set_sw [label="Response\nSetSW", shape="circle", fixedsize=true, width=1];
+
+// relations
+header -> ext_auth
+get_data -> ext_auth [label="Command Data"]
+ext_auth -> state_auth [label="Challenge\n(encrypted)"]
+state_auth -> ext_auth [label="result status"]
+ext_auth -> set_sw [label="Response Type"]
+
+}

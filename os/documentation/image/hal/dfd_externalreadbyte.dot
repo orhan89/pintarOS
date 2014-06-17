@@ -1,0 +1,26 @@
+digraph DFD_ReadByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+address [label="Address"]
+externalreadbyte [label="External\nMemory Read", shape="circle", fixedsize=true, width=1];
+data [label="Data read"]
+
+// relations
+address -> externalreadbyte
+externalreadbyte -> data;
+
+}

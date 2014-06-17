@@ -1,0 +1,58 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+response [label="Respons Type ?", shape="diamond", fixedsize=true, width=1.5]
+ok [label="SW = 0x9000", shape="box", fixedsize=true, width=1.5]
+normal [label="SW = 0x6100", shape="box", fixedsize=true, width=1.5]
+wrong_len [label="SW = 0x6700", shape="box", fixedsize=true, width=1.5]
+etc [label="SW = 0xXXXX", shape="box3d", fixedsize=true, width=1.5]
+
+add_extra [label="Insert extra parameter", shape="box", fixedsize=true, width=1.5]
+
+end [label="End", shape="oval"];
+
+// relations
+start -> response
+
+response -> ok [label="OK"]
+d0b [width=0, shape="point", label="."];
+ok -> d0b
+
+d1a [width=0, shape="point", label="."];
+d1b [width=0, shape="point", label="."];
+{rank=same; response -> d1a [arrowhead=none];}
+d1a -> normal [label="Normal"]
+normal -> d1b [arrowhead=none]
+{rank=same; d0b -> d1b [dir=back]}
+
+d2a [width=0, shape="point", label="."];
+d2b [width=0, shape="point", label="."];
+{rank=same; d1a -> d2a [arrowhead=none];}
+d2a -> wrong_len [label="Wrong Length"]
+wrong_len -> d2b [arrowhead=none]
+{rank=same; d1b -> d2b [dir=back, arrowtail=none]}
+
+d3a [width=0, shape="point", label="."];
+d3b [width=0, shape="point", label="."];
+{rank=same; d2a -> d3a [arrowhead=none, style=dashed];}
+d3a -> etc [style=dashed]
+etc -> d3b [arrowhead=none, style=dashed]
+{rank=same; d2b -> d3b [dir=back, arrowtail=none, style=dashed]}
+
+d0b -> add_extra
+add_extra -> end
+
+}

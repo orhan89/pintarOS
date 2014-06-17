@@ -1,0 +1,86 @@
+\documentclass[a4paper, 12pt]{report}
+\pagestyle{headings}
+
+\usepackage{graphicx}
+\graphicspath{ {image/} }
+
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{nameref}
+
+\newenvironment{mydescription}[1]
+  {\begin{list}{}%
+   {\renewcommand\makelabel[1]{##1:\hfill}%
+   \settowidth\labelwidth{\makelabel{#1}}%
+   \setlength\leftmargin{\labelwidth}
+   \addtolength\leftmargin{\labelsep}}}
+  {\end{list}}
+
+%\renewcommand{\descriptionlabel}[1]{\hspace{1cm}\textsf{#1}\hfill}
+
+\begin{document}
+
+\title{PintarOS}
+\author{Ricky Hariady}
+
+\maketitle
+
+\chapter{Gambaran Umum}
+\label{overview}
+
+% pintarOS dirancang sebagai sistem operasi untuk smart card yang bersifat serba guna (multi-purpose) dan multi-aplikasi. Sistem operasi ini merupakan gabungan dari tipe general purpose yang menggunakan command set yang telah ditentukan serta dedicated COS yang dapat ditambahkan command-command yang bersifat khusus. Hal ini memberikan keleluasaan bagi pengguna smart card dalam mengembangkan aplikasi.
+
+% sebagaimana trend dalam pengembangan sistem operasi smart card, pintarOS dirancang sebagai sebuah sistem operasi yang generic, yang memiliki tingkat keterbebasan yang tinggi terhadap hardware sehingga tidak terbatas pada arsitektur komputasi tertentu. Meskipun sebagai awal dikembangkan untuk smart card berbasis 8051, pintarOS dirancang agar dapat dengan mudah diimplementasikan pada arsitektur mikroprocessor lainnya ataupun platform tertentu. 
+
+% mengingat luasnya cakupan smart card yang tersedia, pintarOS haruslah dapat dikostumisasi sesuai keperluan dan kemampuan smart card yang ada, sehingga memiliki fleksibilitas yang tinggi. hal ini dapat dilakukan dengan merancang pintarOS secara modular, dimana module-module yang akan digunakan dapat rekonfigurasi pada saat diproduksi. sebagai contoh, smart card dapat dikonfigurasi untuk menggunakan protocol transmisi T0 saja, T1 saja, atau keduanya. demikian pula command set yang disediakan, file structure yang didukung, jumlah channel, serta algoritma-algoritma kriptografi yang akan digunakan. proses rekonfigurasi ini dapat dibayangkan seperti pada kompilasi kernel di sistem operasi Linux/UNIX.
+
+% Dengan pendekatan modular ini juga, pintarOS dapat diperluas secara tidak terbatas dengan menambah module-module baru, seperti algoritma kriptografi khusus yang dikembangkan oleh pembuat smart card.
+
+PintarOS merupakan sistem operasi khusus untuk \emph{smart card}. Desain sistem operasi akan mengikuti sebagian dari standard ISO 7816 yang mengatur berbagai aspek mengenai \emph{smart card}.
+
+Desain sistem operasi ini tidak dikhususkan pada satu platform hardware tertentu. Sebagai awal akan diimplementasikan pada smart card berbasis mikroprosesor AT90S8515 dan EEPROM 24Cxx yang lebih sering dinamakan \emph{funcard}, namun selanjutnya akan dapat di-porting pada berbagai platform hardware lainnya menggunakan desain dan kode sumber yang sama.
+
+PintarOS dirancang sebagai sistem yang modular, dimana setiap bagian memiliki fungsi-fungsi tersendiri.
+
+\section{Arsitektur Sistem}
+\label{pintaros-arsitektur}
+
+Gambar x menampilkan arsitektur yang digunakan oleh pintarOS, dimana terdiri dari beberapa lapisan. Di bagian paling dasar adalah lapisan hardware yang menjadi platform dari smart card sendiri, sementara di bagian paling atas adalah lapisan aplikasi. sistem operasi pintarOS berada diantara keduanya. Menggunakan model lapisan seperti pada gambar, aplikasi tidak dapat berhubungan langsung dengan hardware namun harus melalui service yang diberikan oleh sistem operasi.
+
+sebagian dari sistem operasi pintarOS ini diletakkan pada memory ROM dari smart card : HAL Driver, transmission handler, general command handler, etc. sementara sebagian lainnya diletakkan pada EEPROM. bagian yang diletakkan pada pada ROM merupakan modules dari pintarOS yang telah dipilih saat konfigurasi dan tidak akan dirubah setelah manufacture. sementara yang diletakkan pada EEPROM merupakan bagian yang dapat berubah setelah manufacture seperti file table dari file system, kunci keamanan, dll.
+
+Sebagaimana telah disebutkan, pintarOS dirancang secara modular. Modul-modul utama dari pintarOS ini ditampilkan pada Gambar x. Modul-modul ini dipisahkan menjadi dua bagian, yaitu hardware-dependent dan hardware-independent. bagian hardware-dependent terutama terdiri dari modul-modul hardware abstraction layer (HAL). Modul-Modul ini berfungsi seperti driver yang mengabstraksi hardware pada software sehingga fungsi-fungsi hardware dapat digunakan dengan cara yang sama sebagai layanan oleh modul lainnya meskipun menggunakan platform hardware yang berbeda.
+
+Berikut adalah penjelasan fungsi dari setiap modul:
+
+\begin{description}
+  \item[Hardware Abstraction Layer (HAL)] \hfil \\
+berfungsi menyediakan abstraksi dari hardware yang ada dan menyediakan layanan yang sama pada module-module di lapisan yang lebih tinggi meskipun menggunakan platform hardware yang berbeda.
+
+  \item[Transmission Handler]  \hfil \\
+bertanggung jawab menangani protokol transmisi yang dipilih untuk berkomunikasi dengan terminal.
+
+  \item[Command interpreter]  \hfil \\
+bertanggung jawab menginterpretasikan APDU Commmand dan memanggil command handler yang sesuai. Setiap instruksi yang didukung harus memiliki command handlernya masing-masing.
+
+  \item[Command Handler]  \hfil \\
+berfungsi menjalan instruksi sebagaimana yang diminta oleh command APDU. Setiap instruksi dijalankan menggunakan pendekatan yang sama, berdasarkan pada context command APDU.
+
+  \item[Response Manager]  \hfil \\
+berfungsi membentuk pesan response APDU (SW1 \and SW2) berdasarkan response type dari command handler.
+
+  \item[File System]  \hfil \\
+berfungsi menangani segala hal mengenai file. 
+handles everything associated with the file. Structure of the file system is stored on the File Tree, while the session manager stores information about the files, such as selected file, the state of the file, etc \ldots
+
+  \item[Crypto Lib]  \hfil \\
+menyediakan layanan kriptografi seperti enkripsi dan dekripsi.
+
+  \item[State Manager]  \hfil \\
+berfungsi menyimpan state smart card. Beberapa modul akan menggunakan state ini dalam menjalankan fungsinya, seperti File System membutuhkan informasi mengenai file yang sedang dipilih ketika akan membaca sebuah file.
+
+
+\end{description}
+
+
+\end{document}

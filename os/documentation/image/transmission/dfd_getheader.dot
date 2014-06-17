@@ -1,0 +1,23 @@
+digraph DFD_GetHeader {
+
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+getbyte [label="Transmission\nGet Byte", shape="circle", fixedsize=true, width=1];
+get_header [label="Transmission\nGet Header", shape="circle", fixedsize=true, width=1];
+header [label="APDU\nCommand Header"];
+
+getbyte -> get_header [label="byte received"]
+get_header -> header
+
+}

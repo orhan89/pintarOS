@@ -1,0 +1,32 @@
+This is makeindex, version 2.14 [02-Oct-2002] (kpathsea + Thai support).
+Scanning input file refman.idx....
+!! Input index error (file = refman.idx, line = 47):
+   -- First argument too long (max 1024).
+!! Input index error (file = refman.idx, line = 48):
+   -- First argument too long (max 1024).
+
+!! Input index error (file = refman.idx, line = 54):
+   -- First argument too long (max 1024).
+!! Input index error (file = refman.idx, line = 55):
+   -- First argument too long (max 1024).
+!! Input index error (file = refman.idx, line = 56):
+   -- First argument too long (max 1024).
+!! Input index error (file = refman.idx, line = 57):
+   -- First argument too long (max 1024).
+
+!! Input index error (file = refman.idx, line = 60):
+   -- First argument too long (max 1024).
+!! Input index error (file = refman.idx, line = 61):
+   -- First argument too long (max 1024).
+!! Input index error (file = refman.idx, line = 62):
+   -- First argument too long (max 1024).
+!! Input index error (file = refman.idx, line = 63):
+   -- First argument too long (max 1024).
+
+!! Input index error (file = refman.idx, line = 193):
+   -- First argument too long (max 1024).
+done (193 entries accepted, 11 rejected).
+Sorting entries.....done (1509 comparisons).
+Generating output file refman.ind....done (406 lines written, 0 warnings).
+Output written in refman.ind.
+Transcript written in refman.ilg.

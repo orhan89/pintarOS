@@ -1,0 +1,56 @@
+digraph SendByte {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+setup_out [label="Setup Port IO as OUTPUT", shape="box"]
+send_start [label="Send start bit", shape="parallelogram"]
+wait_0 [label="Wait 1 etu", shape="box"]
+send_bit [label="Send bit and rotate right", shape="parallelogram"]
+add_to_parity [label="add to parity", shape="box"]
+wait_1 [label="Wait 1 etu", shape="box"]
+already_8 [label="8 bit already ?", shape="diamond"]
+send_parity [label="Send parity", shape="parallelogram"]
+wait_2 [label="wait 1 etu", shape="box"]
+signal_high [label="give signal high", shape="parallelogram"]
+wait_3 [label="wait 1 etu", shape="box"]
+setup_in [label="Setup Port IO as INPUT", shape="box"]
+error [label="any error signal?", shape="diamond"]
+wait_4 [label="wait 1 etu", shape="box"]
+return [label="return", shape="oval"]
+wait_end [label="wait for end of error signal", shape="box"]
+wait_5 [label="wait 0.5 etu", shape="box"]
+
+// relations
+start -> setup_out
+setup_out -> send_start
+send_start -> wait_0
+wait_0 -> send_bit
+send_bit -> add_to_parity
+add_to_parity -> wait_1
+wait_1 -> already_8
+already_8 -> send_bit [label="No"]
+already_8 -> send_parity [label="Yes"]
+send_parity -> wait_2
+wait_2 -> signal_high
+signal_high -> wait_3
+wait_3 -> setup_in
+setup_in -> error
+error -> wait_4 [label="No"]
+wait_4 -> return
+error -> wait_end [label="Yes"]
+wait_end -> wait_5
+wait_5 -> setup_out
+
+}

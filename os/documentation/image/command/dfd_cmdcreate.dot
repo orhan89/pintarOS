@@ -1,0 +1,59 @@
+digraph DFD_CommandInterpreter {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+header [label="Command Header"]
+
+create [label="Command Handler\nCreate File", shape="circle", fixedsize=true, width=1.2];
+
+getdata [label="Transmission\nGet Data", shape="circle", fixedsize=true, width=1.2]
+
+fs_create [label="FS\nCreate File", shape="circle", fixedsize=true, width=1.2]
+
+fid [label="FID\n(DF/EF)"]
+size [label="Size\n(EF)"]
+acread [label="AC Read\n(EF)"]
+acupdate [label="AC Update\n(EF)"]
+finfo [label="File Info\n(DF/EF)"]
+
+set_sw [label="Response\nSet SW", shape="circle", fixedsize=true, width=1];
+sw [label="SW"]
+
+
+// relations
+header -> create
+
+getdata -> fid
+getdata -> size
+getdata -> acread
+getdata -> acupdate
+
+fid -> create
+size -> create
+acread -> create
+acupdate -> create
+
+create -> finfo
+
+finfo -> fs_create
+
+fs_create -> create [label="status"]
+
+create -> set_sw
+
+set_sw -> sw
+
+}

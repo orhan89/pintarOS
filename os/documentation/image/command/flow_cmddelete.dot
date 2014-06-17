@@ -1,0 +1,52 @@
+digraph Flow_StateInit {
+ 
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+start [label="Start", shape="oval"];
+
+getfid [label="Transmission\nGet FID", shape="box", fixedsize=true, width=1.5]
+
+fs_delete [label="FS Delete File", shape="box", fixedsize=true, width=1.5]
+success [label="Success\nDelete File", shape="diamond", fixedsize=true, width=1.5]
+{
+rank=same;
+set_sw1 [label="Set Response\nNormal", shape="box", fixedsize=true, width=1.5]
+set_sw2 [label="Set Response\nFatal Error", shape="box", fixedsize=true, width=1.5]
+}
+
+end [label="End", shape="oval"];
+
+// relations
+start -> getfid
+getfid -> fs_delete
+fs_delete -> success
+
+d0b [width=0, shape="point", label="."];
+success -> set_sw1 [label="Yes"]
+set_sw1 -> d0b [arrowhead=none]
+
+d1a [width=0, shape="point", label="."];
+d1b [width=0, shape="point", label="."];
+{rank=same; success -> d1a [label="No", arrowhead=none];}
+d1a -> set_sw2
+set_sw2 -> d1b [arrowhead=none]
+
+{
+rank=same
+d0b -> d1b [dir=back]
+}
+
+d0b -> end
+
+}

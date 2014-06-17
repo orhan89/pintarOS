@@ -1,0 +1,28 @@
+digraph DFD_StateInit {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+response_type [label="Response Type"]
+extra_param [label="Extra Parameter"]
+set_sw [label="Response\nSetSW", shape="circle", fixedsize=true, width=1];
+sw [label="Status Word (SW)"]
+
+// relations
+response_type -> set_sw
+extra_param -> set_sw
+set_sw -> sw;
+
+}

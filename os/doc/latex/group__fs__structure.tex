@@ -1,0 +1,30 @@
+\hypertarget{group__fs__structure}{\section{File System Structure}
+\label{group__fs__structure}\index{File System Structure@{File System Structure}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__fs__structure_ga2a3310e42776399983998435e74a4173}{F\-S\-\_\-\-A\-L\-L\-O\-C\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}~(\hyperlink{group__fs_ga5534402cd21abf73c1851e468ca502c4}{F\-S\-\_\-\-B\-L\-O\-C\-K\-S}/8)/\hyperlink{group__fs_gad6b56bdbbe5838a6260ddc0926fa1891}{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}
+\item 
+\#define \hyperlink{group__fs__structure_ga4bcf67d33f167440f0a2b1ea236b5261}{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E/\hyperlink{group__fs_gad6b56bdbbe5838a6260ddc0926fa1891}{F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}
+\item 
+\#define \hyperlink{group__fs__structure_ga4340411796330da232e2cc2af40fd00c}{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}~\hyperlink{group__fs_ga5534402cd21abf73c1851e468ca502c4}{F\-S\-\_\-\-B\-L\-O\-C\-K\-S} -\/ F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-O\-F\-F\-S\-E\-T
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File System Structure
+
+pintar\-O\-S file system consist of three section \-: Block Allocation Table, File Table and File Body All value given as block 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__fs__structure_ga2a3310e42776399983998435e74a4173}{\index{File System Structure@{File System Structure}!F\-S\-\_\-\-A\-L\-L\-O\-C\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-A\-L\-L\-O\-C\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-A\-L\-L\-O\-C\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-A\-L\-L\-O\-C\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}!File System Structure@{File System Structure}}
+\subsubsection[{F\-S\-\_\-\-A\-L\-L\-O\-C\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-A\-L\-L\-O\-C\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E~({\bf F\-S\-\_\-\-B\-L\-O\-C\-K\-S}/8)/{\bf F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}}}\label{group__fs__structure_ga2a3310e42776399983998435e74a4173}
+size of Allocation Table (in blocks) \hypertarget{group__fs__structure_ga4340411796330da232e2cc2af40fd00c}{\index{File System Structure@{File System Structure}!F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}!File System Structure@{File System Structure}}
+\subsubsection[{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-S\-I\-Z\-E~{\bf F\-S\-\_\-\-B\-L\-O\-C\-K\-S} -\/ F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-B\-O\-D\-Y\-\_\-\-O\-F\-F\-S\-E\-T}}\label{group__fs__structure_ga4340411796330da232e2cc2af40fd00c}
+size of File Body (in blocks) \hypertarget{group__fs__structure_ga4bcf67d33f167440f0a2b1ea236b5261}{\index{File System Structure@{File System Structure}!F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}}
+\index{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E@{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}!File System Structure@{File System Structure}}
+\subsubsection[{F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E~C\-O\-N\-F\-I\-G\-\_\-\-F\-S\-\_\-\-F\-I\-L\-E\-\_\-\-T\-A\-B\-L\-E\-\_\-\-S\-I\-Z\-E/{\bf F\-S\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}}}\label{group__fs__structure_ga4bcf67d33f167440f0a2b1ea236b5261}
+size of File Table (in blocks) 

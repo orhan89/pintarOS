@@ -1,0 +1,24 @@
+digraph DFD_StateInit {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+state_init [label="State\nInitialization", shape="circle", fixedsize=true, width=1];
+state_mng [label="State Manager"]
+
+// relations
+state_init -> state_mng;
+
+}

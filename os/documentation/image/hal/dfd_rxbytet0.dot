@@ -1,0 +1,24 @@
+digraph DFD_RxByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+recbytet0 [label="HAL\nRec Byte T0", shape="circle", fixedsize=true, width=1];
+data [label="Data received"]
+
+// relations
+recbytet0 -> data;
+
+}

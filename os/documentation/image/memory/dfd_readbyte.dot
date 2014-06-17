@@ -1,0 +1,34 @@
+digraph DFD_ReadByte {
+ 
+rankdir = LR
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "Red"
+     ]
+
+// all blocks
+config [label="INTERNAL_EEPROM_SIZE\n(Konfigurasi)"]
+hal_readinternal [label="HAL Read\nInternal", shape="circle", fixedsize=true, width=1];
+hal_readexternal [label="HAL Read\nExternal", shape="circle", fixedsize=true, width=1];
+readbyte [label="Memory\nRead Byte", shape="circle", fixedsize=true, width=1];
+data [label="Data byte"]
+address [label="Memory address\nto be read"]
+
+// relations
+config -> readbyte
+address -> readbyte
+readbyte -> hal_readinternal [label="address"]
+hal_readinternal -> readbyte [label="databyte"]
+readbyte -> data;
+readbyte -> hal_readexternal [label="address"]
+hal_readexternal -> readbyte [label="databyte"]
+
+}
